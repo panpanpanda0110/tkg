@@ -1,0 +1,2407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#5dbb63">
+<title>TKGたまごんと話し方れんしゅう</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2d2a26; --sub:#6b645b; --cream:#fff9e8; --yolk:#f6a23c; --yolk2:#ffd36b;
+  --green:#5dbb63; --green2:#3f9a46; --blue:#4f8fd8; --pink:#f4a3ae; --line:#efe6cf;
+  --card:#ffffff; --good:#e8f7e9; --tip:#fff4d6; --grow:#ffe9f0;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:"BIZ UDPGothic","M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+  color:var(--ink); font-size:19px; line-height:1.75;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(255,211,107,.35), transparent 30%),
+    radial-gradient(circle at 92% 85%, rgba(93,187,99,.18), transparent 35%),
+    var(--cream);
+  min-height:100vh;
+}
+button,input,textarea,select{font-family:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+ruby rt{font-size:.5em;color:#6b645b;font-weight:700}
+.round{font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","BIZ UDPGothic",sans-serif}
+.hidden{display:none!important}
+
+/* ===== ヘッダー ===== */
+header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);border-bottom:4px solid var(--green);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.hd{max-width:1240px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .egg{width:44px;height:44px;flex:0 0 44px}
+.logo .unit{font-size:12px;font-weight:700;color:var(--green2);background:var(--good);border-radius:999px;padding:1px 10px;display:inline-block}
+.logo h1{font-size:21px;margin:0;line-height:1.35;font-weight:800}
+.hd .tools{margin-left:auto;display:flex;gap:8px}
+.tbtn{border:2px solid var(--line);background:#fff;border-radius:14px;min-height:46px;padding:4px 12px;font-weight:700;font-size:15px;display:flex;align-items:center;gap:4px}
+.tbtn:active{transform:scale(.96)}
+.steps{max-width:1240px;margin:0 auto;padding:0 16px 8px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.step{flex:1 0 auto;min-width:84px;text-align:center;font-size:13px;font-weight:700;padding:4px 8px;border-radius:999px;background:#f3eee0;color:#9a917f;white-space:nowrap}
+.step.done{background:var(--good);color:var(--green2)}
+.step.now{background:var(--green);color:#fff;box-shadow:0 3px 0 var(--green2)}
+
+/* ===== レイアウト ===== */
+.layout{max-width:1240px;margin:0 auto;padding:14px 16px calc(28px + var(--safe-b));display:grid;grid-template-columns:330px 1fr;gap:18px;align-items:start}
+.stage{position:sticky;top:120px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.tamawrap{width:100%;max-width:300px;position:relative}
+#tama{width:100%;height:auto;display:block;overflow:visible}
+.bubble{position:relative;width:100%;background:#fff;border:3px solid var(--green);border-radius:22px;padding:14px 16px;font-size:20px;font-weight:700;line-height:1.7;box-shadow:0 5px 0 rgba(63,154,70,.25);min-height:80px}
+.bubble::before{content:"";position:absolute;top:-14px;left:50%;margin-left:-12px;border:12px solid transparent;border-bottom-color:var(--green);border-top:0}
+.bubble::after{content:"";position:absolute;top:-9px;left:50%;margin-left:-9px;border:9px solid transparent;border-bottom-color:#fff;border-top:0}
+.bubble .who{display:block;font-size:13px;color:var(--green2);margin-bottom:2px}
+.voicebar{display:flex;gap:8px;width:100%;flex-wrap:wrap;align-items:center}
+.vbtn{flex:1;min-height:52px;border-radius:16px;border:2px solid #cfe8d1;background:#fff;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;gap:6px}
+.vbtn:active{transform:scale(.97)}
+.vbtn.stop{border-color:#f5c2c2;color:#c0392b}
+.speaking-ind{width:100%;text-align:center;font-weight:800;color:var(--green2);font-size:15px;min-height:22px}
+.speaking-ind .bars{display:inline-flex;gap:3px;vertical-align:middle;margin-right:6px}
+.speaking-ind .bars i{width:4px;height:14px;background:var(--green);border-radius:2px;animation:eq .6s ease-in-out infinite}
+.speaking-ind .bars i:nth-child(2){animation-delay:.15s}.speaking-ind .bars i:nth-child(3){animation-delay:.3s}
+@keyframes eq{50%{transform:scaleY(.35)}}
+
+.work{min-width:0}
+.next{display:flex;align-items:center;gap:10px;background:var(--green);color:#fff;border-radius:18px;padding:10px 16px;font-weight:800;font-size:19px;margin-bottom:14px;box-shadow:0 4px 0 var(--green2)}
+.next .arrow{font-size:24px;animation:poke 1.2s ease-in-out infinite}
+@keyframes poke{50%{transform:translateX(5px)}}
+
+@media (max-width:980px), (orientation:portrait) and (max-width:1100px){
+  .layout{grid-template-columns:1fr}
+  .stage{position:static;flex-direction:row;flex-wrap:wrap;align-items:flex-start;background:rgba(255,255,255,.6);border-radius:22px;padding:8px}
+  .tamawrap{width:150px;flex:0 0 150px}
+  .stagecol{flex:1;min-width:260px;display:flex;flex-direction:column;gap:8px}
+  .bubble::before,.bubble::after{top:28px;left:-14px;margin:0;border:12px solid transparent;border-right-color:var(--green);border-left:0}
+  .bubble::after{left:-9px;top:31px;border-width:9px;border-right-color:#fff}
+}
+@media (min-width:981px) and (orientation:landscape), (min-width:1101px){ .stagecol{width:100%;display:flex;flex-direction:column;gap:10px} }
+
+/* ===== カード・ボタン ===== */
+.card{background:var(--card);border-radius:24px;padding:18px;margin-bottom:16px;border:2px solid var(--line);box-shadow:0 5px 0 rgba(0,0,0,.05)}
+.card h2{font-size:21px;margin:0 0 10px;display:flex;align-items:center;gap:8px;font-weight:800}
+.card h2 .ic{font-size:26px}
+.card.good{background:var(--good);border-color:#bfe5c2}
+.card.tip{background:var(--tip);border-color:#f3d48f}
+.card.grow{background:var(--grow);border-color:#f7bfd0}
+.card.self{background:#eef5ff;border-color:#c8dcf6}
+.btn{border:none;border-radius:18px;min-height:60px;padding:10px 22px;font-size:20px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(180deg,#ffc95c,var(--yolk));color:#5a3200;box-shadow:0 5px 0 #c97a1c}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #c97a1c}
+.btn.green{background:linear-gradient(180deg,#7ad37f,var(--green));color:#fff;box-shadow:0 5px 0 var(--green2)}
+.btn.green:active{box-shadow:0 1px 0 var(--green2)}
+.btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line);box-shadow:0 4px 0 #e6dcc3}
+.btn.ghost:active{box-shadow:0 1px 0 #e6dcc3}
+.btn.blue{background:linear-gradient(180deg,#7fb3ea,var(--blue));color:#fff;box-shadow:0 5px 0 #33689f}
+.btn.small{min-height:48px;font-size:16px;padding:6px 14px;border-radius:14px}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.btn.block{width:100%}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.btnrow .btn{flex:1;min-width:200px}
+.muted{color:var(--sub);font-size:15px}
+.note{font-size:14px;color:var(--sub);line-height:1.6}
+label.f{display:block;font-weight:800;margin:12px 0 6px}
+input[type=text],input[type=password],textarea{width:100%;border:3px solid #e6dcc3;border-radius:16px;padding:12px 14px;font-size:20px;background:#fff;outline:none;line-height:1.7}
+input[type=text]:focus,input[type=password]:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(93,187,99,.2)}
+textarea{min-height:150px;resize:vertical}
+textarea[readonly]{background:#fbfaf5}
+.count{font-size:14px;color:var(--sub);text-align:right;margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-size:18px;font-weight:700;min-height:52px}
+.chip.on{border-color:var(--green);background:var(--good);color:var(--green2)}
+.err{background:#ffeaea;border:2px solid #f5b5b5;color:#9b2c2c;border-radius:14px;padding:10px 14px;font-weight:700;margin-top:10px}
+
+/* ===== マイク ===== */
+.micbox{display:flex;align-items:center;gap:16px;margin:6px 0 12px;flex-wrap:wrap}
+.mic{width:120px;height:120px;border-radius:50%;border:none;flex:0 0 120px;background:radial-gradient(circle at 50% 35%,#ffe08a,var(--yolk));box-shadow:0 6px 0 #c97a1c,0 0 0 6px #fff,0 0 0 9px #f3d48f;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#5a3200;position:relative}
+.mic .mi{font-size:46px;line-height:1}
+.mic:active{transform:translateY(3px)}
+.mic.on{background:radial-gradient(circle at 50% 35%,#ff9b9b,#e54848);color:#fff;box-shadow:0 6px 0 #a42d2d,0 0 0 6px #fff,0 0 0 9px #f5b5b5;animation:micpulse 1.4s ease-in-out infinite}
+@keyframes micpulse{50%{box-shadow:0 6px 0 #a42d2d,0 0 0 10px #fff,0 0 0 18px rgba(229,72,72,.25)}}
+.mic.off{background:#ddd;box-shadow:0 6px 0 #aaa;color:#777}
+.micside{flex:1;min-width:220px}
+.micstat{font-weight:800;font-size:18px}
+.micstat.on{color:#c0392b}
+.waves{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle}
+.waves i{width:5px;height:18px;border-radius:3px;background:#e54848;animation:eq .5s ease-in-out infinite}
+.waves i:nth-child(2){animation-delay:.1s}.waves i:nth-child(3){animation-delay:.2s}.waves i:nth-child(4){animation-delay:.3s}
+.live{margin-top:6px;font-size:17px;color:#8a8273;background:#fffdf5;border:2px dashed #eadfbf;border-radius:12px;padding:6px 10px;min-height:40px}
+.kbhint{font-size:14px;color:var(--sub);margin-top:4px}
+
+/* ===== 会話ログ ===== */
+.chat{display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+.msg{display:flex;gap:10px;align-items:flex-start;max-width:92%}
+.msg .av{width:46px;height:46px;flex:0 0 46px;border-radius:50%;background:var(--cream);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.msg .av svg{width:44px;height:44px}
+.msg .tx{background:#fff;border:2px solid #cfe8d1;border-radius:6px 20px 20px 20px;padding:10px 14px;font-size:19px;font-weight:700}
+.msg.me{align-self:flex-end;flex-direction:row-reverse}
+.msg.me .av{font-size:24px;background:#fff4d6}
+.msg.me .tx{background:#fff4d6;border-color:#f3d48f;border-radius:20px 6px 20px 20px;font-weight:500}
+.msg.q .tx{border-color:var(--green);box-shadow:0 0 0 3px rgba(93,187,99,.15)}
+.qcount{font-size:14px;font-weight:800;color:var(--green2)}
+
+/* ===== チェックリスト ===== */
+.checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
+.ck{border-radius:14px;padding:8px 6px;text-align:center;font-weight:800;font-size:16px;border:2px solid #e6e1d3;background:#f7f5ef;color:#aaa294}
+.ck .i{font-size:24px;display:block;line-height:1.2;filter:grayscale(1);opacity:.5}
+.ck.on{background:#fff;border-color:var(--green);color:var(--green2)}
+.ck.on .i{filter:none;opacity:1}
+.ck .s{display:block;font-size:12px;font-weight:700}
+.parts{display:flex;gap:6px;margin-top:10px}
+.part{flex:1;text-align:center;border-radius:12px;padding:8px 4px;font-weight:800;background:#f7f5ef;color:#aaa294;border:2px solid #e6e1d3}
+.part.on{background:#fff4d6;border-color:var(--yolk);color:#9a5a0f}
+.say{font-size:20px;font-weight:700;line-height:1.75}
+.ex{margin-top:8px;background:#fff;border:2px dashed #f3d48f;border-radius:14px;padding:8px 12px;font-size:17px}
+.growlist{margin:0;padding-left:0;list-style:none}
+.growlist li{background:#fff;border-radius:14px;padding:8px 12px;margin-bottom:8px;font-weight:700;font-size:19px;display:flex;gap:8px;align-items:flex-start}
+.growlist li .gi{font-size:22px}
+
+/* 自己評価 */
+.selfrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0;border-bottom:2px dashed #d7e5f8}
+.selfrow:last-child{border-bottom:none}
+.selfrow .lab{flex:1;min-width:210px;font-weight:800}
+.selfrow .lab small{display:block;font-weight:500;font-size:14px;color:var(--sub)}
+.faces{display:flex;gap:6px}
+.face{border:3px solid #d7e5f8;background:#fff;border-radius:14px;min-width:78px;min-height:58px;font-size:13px;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2}
+.face b{font-size:24px}
+.face.on{border-color:var(--blue);background:#dcebff}
+
+/* 組み立てメモ */
+.memo{display:grid;gap:10px}
+.memo .mrow{border-radius:16px;padding:10px;border:2px solid}
+.memo .mrow textarea{min-height:76px;font-size:18px}
+.memo .h{border-color:#f3d48f;background:#fffaf0}
+.memo .n{border-color:#bfe5c2;background:#f4fbf4}
+.memo .o{border-color:#c8dcf6;background:#f4f8ff}
+.memo .t{font-weight:800;margin-bottom:4px}
+.memo .t small{font-weight:500;color:var(--sub);font-size:14px;margin-left:6px}
+.memoview .mrow{border-radius:14px;padding:8px 12px;margin-bottom:8px;border:2px solid}
+.memoview .mrow .t{font-weight:800;font-size:15px}
+
+/* くらべる */
+.cmp{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(280px,1fr);gap:12px;overflow-x:auto;padding-bottom:6px}
+.cmpcol{background:#fff;border:2px solid var(--line);border-radius:20px;padding:12px}
+.cmpcol h3{margin:0 0 6px;font-size:19px}
+.cmpcol .txt{font-size:17px;background:#fffdf5;border-radius:12px;padding:8px 10px;max-height:220px;overflow:auto;margin-bottom:8px;white-space:pre-wrap}
+.cmpcol .mini{font-size:15px;margin-top:6px}
+.bars2 .row{display:grid;grid-template-columns:150px 1fr;gap:8px;align-items:center;margin-bottom:10px}
+.bars2 .lab{font-weight:800;font-size:16px}
+.bars2 .tr{display:flex;flex-direction:column;gap:4px}
+.bars2 .b{height:22px;border-radius:11px;background:#f0ebdc;position:relative;overflow:hidden}
+.bars2 .b i{position:absolute;left:0;top:0;bottom:0;border-radius:11px;background:#f3c36b}
+.bars2 .b.last i{background:var(--green)}
+.bars2 .b span{position:absolute;left:10px;top:0;font-size:13px;font-weight:800;line-height:22px}
+.stamps{display:flex;gap:10px;flex-wrap:wrap;font-size:40px}
+.stampbig{display:inline-flex;flex-direction:column;align-items:center;border:4px solid #e54848;color:#e54848;border-radius:50%;width:120px;height:120px;justify-content:center;font-weight:800;transform:rotate(-8deg);background:#fff;animation:stamp .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes stamp{from{transform:scale(2) rotate(-20deg);opacity:0}}
+.hist{display:flex;align-items:center;gap:10px;padding:10px;border:2px solid var(--line);border-radius:16px;margin-bottom:8px;background:#fff}
+.hist .ht{flex:1;font-weight:800}
+.hist .ht small{display:block;font-weight:500;color:var(--sub);font-size:14px}
+
+/* モーダル */
+.mbg{position:fixed;inset:0;background:rgba(40,30,10,.45);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:#fff;border-radius:26px;max-width:560px;width:100%;max-height:90vh;overflow:auto;padding:22px;border:4px solid var(--green)}
+.modal h3{margin:0 0 8px;font-size:22px}
+.modal ol{padding-left:24px;margin:8px 0}
+.toast{position:fixed;left:50%;bottom:calc(24px + var(--safe-b));transform:translateX(-50%);background:#2d2a26;color:#fff;padding:12px 20px;border-radius:16px;font-weight:800;z-index:200;max-width:90vw;text-align:center;animation:tin .25s}
+@keyframes tin{from{opacity:0;transform:translate(-50%,10px)}}
+.welcomeimg{width:100%;max-width:360px;display:block;margin:0 auto;border-radius:20px}
+.tips3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tips3 div{border-radius:14px;padding:8px 10px;font-size:16px;font-weight:700}
+.tips3 .a{background:#fffaf0;border:2px solid #f3d48f}.tips3 .b{background:#f4fbf4;border:2px solid #bfe5c2}.tips3 .c{background:#f4f8ff;border:2px solid #c8dcf6}
+.tips3 b{display:block;font-size:17px}
+@media (max-width:640px){.tips3{grid-template-columns:1fr}.mic{width:100px;height:100px;flex-basis:100px}}
+.pop{animation:popin .35s cubic-bezier(.2,1,.4,1)}
+@keyframes popin{from{opacity:0;transform:translateY(10px)}}
+
+/* ===== たまごんアニメーション ===== */
+#tama .bodyg{animation:bob 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-1deg)}}
+#tama .armL{transform-box:fill-box;transform-origin:90% 95%;animation:wave 2.6s ease-in-out infinite}
+@keyframes wave{50%{transform:rotate(-10deg)}}
+#tama .eyesOpen{transform-box:fill-box;transform-origin:center;animation:blink 4.2s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+#tama .eyesHappy,#tama .think,#tama .listenMark{display:none}
+#tama .mouth{transform-box:fill-box;transform-origin:50% 20%}
+#tama.talking .mouth{animation:talk .26s ease-in-out infinite}
+@keyframes talk{0%,100%{transform:scaleY(.65)}50%{transform:scaleY(1.15)}}
+#tama.talking .armL{animation-duration:.9s}
+#tama.happy .eyesOpen{display:none}
+#tama.happy .eyesHappy{display:inline}
+#tama.happy .bodyg{animation:jump .7s ease-in-out 2}
+@keyframes jump{50%{transform:translateY(-14px)}}
+#tama.listening .eyesOpen{animation:none;transform:scale(1.18)}
+#tama.listening .bodyg{animation:nod 1.1s ease-in-out infinite}
+@keyframes nod{50%{transform:translateY(3px) rotate(2deg)}}
+#tama.listening .listenMark{display:inline}
+#tama.thinking .think{display:inline}
+#tama.thinking .eyesOpen{animation:none;transform:translateY(-4px)}
+#tama .spark{transform-box:fill-box;transform-origin:center;animation:twinkle 2s ease-in-out infinite}
+#tama .spark:nth-of-type(2){animation-delay:.6s}#tama .spark:nth-of-type(3){animation-delay:1.2s}
+@keyframes twinkle{50%{transform:scale(1.25) rotate(12deg);opacity:.75}}
+#tama.happy .spark{animation-duration:.6s}
+@media (prefers-reduced-motion:reduce){#tama *{animation:none!important}}
+/* ===== 録音・声のふりかえり ===== */
+.mic.rec{background:radial-gradient(circle at 50% 35%,#ffd0d0,#f27b7b);color:#fff;box-shadow:0 6px 0 #b54a4a,0 0 0 6px #fff,0 0 0 9px #f5c2c2}
+.mic.rec .mi{font-size:40px}
+.mic[disabled]{opacity:.5}
+.lvl{height:14px;border-radius:7px;background:#f0ebdc;overflow:hidden;margin-top:6px}
+.lvl i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7ad37f,#f6c343,#f27b7b);transition:width .08s}
+.recok{background:var(--good);border:2px solid #bfe5c2;border-radius:14px;padding:8px 12px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.card.voice{background:#fbf8ff;border-color:#ddd0fb}
+.prow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.vgraph{background:#fff;border:2px solid #e9e1fb;border-radius:16px;padding:6px;margin-bottom:8px}
+.vgraph svg{width:100%;height:170px;display:block;cursor:pointer;touch-action:manipulation}
+.gwrap{position:relative;padding-bottom:20px}
+.gmarks{position:absolute;inset:0;pointer-events:none}
+.gmarks .mk{position:absolute;transform:translateX(-50%);font-size:13px;font-weight:800;background:#dcebff;color:#2e6bb5;border-radius:6px;padding:0 4px;line-height:1.4}
+.gmarks .mk.long{background:#ffe0e0;color:#c0392b}
+.gmarks .mk.star{background:none;font-size:18px;top:-4px!important}
+.gmarks .tick{position:absolute;bottom:0;transform:translateX(-50%);font-size:12px;color:#8a8273}
+.vlegend{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--sub);padding:4px 6px}
+.vlegend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:3px;vertical-align:-1px}
+.mtext{background:#fff;border:2px dashed #e1d6fa;border-radius:14px;padding:10px 12px;font-size:19px;line-height:2}
+.mtext .q,.note .q{color:#b7ab95;font-size:.9em}
+.mtext .l,.note .l{font-weight:800;text-decoration:underline;text-decoration-color:#f6a23c;text-decoration-thickness:4px}
+.pz{display:inline-block;background:#dcebff;color:#2e6bb5;border-radius:8px;padding:0 4px;margin:0 3px;font-size:.8em;font-weight:800}
+.pz.long{background:#ffe0e0;color:#c0392b}
+.pz.big{font-size:1em;padding:2px 8px;margin:0 6px}
+.vcats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:10px}
+.vcat{background:#fff;border:2px solid #ece4fb;border-radius:16px;padding:10px 12px}
+.vcat .vt{font-weight:800;font-size:18px;margin-bottom:4px}
+.vcat .vl{font-size:13px;background:#efe8ff;color:#6d4bd1;border-radius:999px;padding:1px 8px;margin-left:4px}
+.vcat p{margin:4px 0;font-size:17px;line-height:1.6}
+.vcat p.g{color:#2f7d36;font-weight:700}
+.vcat p.t{color:#9a5a0f;font-weight:700}
+.seg{border:2px solid #c8dcf6;background:#eef5ff;border-radius:10px;font-size:14px;font-weight:800;padding:2px 8px;min-height:34px;color:#2e6bb5}
+.notice{margin-top:12px;background:#fff;border:2px solid #ece4fb;border-radius:16px;padding:10px 12px}
+.notice .chip{font-size:16px;min-height:46px}
+.vcmp{margin-bottom:8px}
+.vtab{border-collapse:collapse;width:100%;font-size:16px;margin-top:6px;background:#fff}
+.vtab th,.vtab td{border:2px solid #ece4fb;padding:6px 8px;text-align:center}
+.vtab td:first-child{text-align:left;font-weight:800;white-space:nowrap}
+.vtab .up{color:#2f9a3a;font-weight:800}.vtab .dn{color:#d9822b;font-weight:800}
+.minibar{display:inline-block;width:90px;height:12px;border-radius:6px;background:#f0ebdc;overflow:hidden;vertical-align:middle}
+.minibar i{display:block;height:100%;background:var(--green)}
+.styles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.stylebtn{border:3px solid var(--line);background:#fff;border-radius:16px;padding:10px;text-align:left;min-height:70px}
+.stylebtn b{display:block;font-size:18px}.stylebtn small{color:var(--sub);font-size:14px}
+.stylebtn.on{border-color:#8b5cf6;background:#f3edff}
+.styled{margin-top:10px;background:#fff;border:2px dashed #d9ccf7;border-radius:14px;padding:12px;font-size:22px;font-weight:700;line-height:1.9}
+.styled.small{font-size:17px;padding:6px 10px;margin:6px 0}
+.styled .emph{color:#d0392b;font-size:1.15em;text-decoration:underline;text-decoration-thickness:4px}
+.styled .wow{color:#7c3aed}
+.phase{margin-left:auto;background:#fff;color:var(--green2);border-radius:999px;padding:2px 12px;font-size:15px;white-space:nowrap;animation:blinkp 1.4s ease-in-out infinite}
+@keyframes blinkp{50%{opacity:.6}}
+.sndmeter{display:flex;align-items:flex-end;gap:4px;height:30px;margin-top:6px}
+.sndmeter i{width:7px;height:6px;border-radius:3px;background:#d9d2c0;transition:height .12s}
+.sndmeter.on i{background:var(--green);animation:snd .45s ease-in-out infinite}
+.sndmeter.on i:nth-child(2){animation-delay:.07s}.sndmeter.on i:nth-child(3){animation-delay:.14s}.sndmeter.on i:nth-child(4){animation-delay:.21s}.sndmeter.on i:nth-child(5){animation-delay:.28s}.sndmeter.on i:nth-child(6){animation-delay:.35s}.sndmeter.on i:nth-child(7){animation-delay:.42s}
+@keyframes snd{0%,100%{height:6px}50%{height:26px}}
+.sndmeter span{font-size:14px;font-weight:800;color:var(--sub);margin-left:8px;align-self:center}
+.sndmeter.on span{color:var(--green2)}
+.lvlab{font-size:14px;font-weight:800;color:var(--sub);margin-top:4px}
+.recsec{margin-top:14px;background:#fbf8ff;border:2px solid #ddd0fb;border-radius:18px;padding:12px}
+.rech{margin:0 0 4px;font-size:18px}.rech small{font-size:13px;color:var(--sub);margin-left:8px;font-weight:700}
+.ehead{font-weight:800;font-size:18px;margin-bottom:2px}
+.spin{display:inline-block;width:16px;height:16px;border:3px solid #cfe8d1;border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;vertical-align:-3px;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.credit{font-size:12px;color:var(--sub);font-weight:500;margin-top:2px}
+.vverr{background:#fff3f3;border:2px solid #f5c2c2;color:#9b2c2c;border-radius:12px;padding:6px 10px;font-size:14px;text-align:left}
+.vverr .btn{margin-top:6px}
+.yourturn{animation:turn 1.1s ease-in-out infinite!important}
+@keyframes turn{50%{box-shadow:0 6px 0 #c97a1c,0 0 0 8px #fff,0 0 0 16px rgba(93,187,99,.45)}}
+.vvset h4{margin:0 0 4px;font-size:18px}
+.rng{width:100%;height:36px;accent-color:var(--green)}
+.sel{width:100%;font-size:18px;min-height:48px;border:3px solid #e6dcc3;border-radius:14px;padding:6px 10px;background:#fff}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin-top:6px}
+.chk input{width:22px;height:22px;flex:0 0 22px}
+.take{border:2px solid #ece4fb;border-radius:16px;padding:10px;margin-top:10px;background:#fff}
+</style>
+</head>
+<body>
+
+<!-- たまごん本体（SVG）: <use> で何か所にも表示 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="yolkG" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#fbd38d"/><stop offset=".55" stop-color="#f6a23c"/><stop offset="1" stop-color="#ea7a1c"/></radialGradient>
+    <clipPath id="bodyClip"><path d="M200 46 C150 46 112 118 108 172 C104 230 146 264 202 264 C262 264 306 234 306 184 C306 120 252 46 200 46 Z"/></clipPath>
+    <symbol id="tamaMini" viewBox="96 30 230 250">
+      <g stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M200 46 C150 46 112 118 108 172 C104 230 146 264 202 264 C262 264 306 234 306 184 C306 120 252 46 200 46 Z" fill="#fff"/>
+        <path d="M206 44 C224 30 252 32 268 44 C286 60 302 92 318 128 C308 136 296 138 286 134 C278 116 266 98 252 86 C238 72 222 58 206 44 Z" fill="#7cd36b"/>
+        <path d="M178 66 C176 50 196 44 222 44 C250 44 266 52 266 68 C266 90 250 100 222 100 C194 100 180 88 178 66 Z" fill="#fff"/>
+        <ellipse cx="222" cy="74" rx="34" ry="15" fill="url(#yolkG)" stroke="none"/>
+        <g fill="none" stroke="#6aa7e0" stroke-width="4"><rect x="162" y="100" width="32" height="28" rx="3"/><rect x="230" y="100" width="32" height="28" rx="3"/></g>
+        <ellipse cx="146" cy="166" rx="13" ry="8.5" fill="#f4a3ae" stroke="none"/><ellipse cx="254" cy="172" rx="13" ry="8.5" fill="#f4a3ae" stroke="none"/>
+        <ellipse cx="165" cy="149" rx="8" ry="11" fill="#111" stroke="none"/><ellipse cx="237" cy="153" rx="8" ry="11" fill="#111" stroke="none"/>
+        <path d="M174 170 C190 158 216 160 226 174 C222 192 208 202 196 200 C182 198 174 186 174 170 Z" fill="#f6a23c"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="hd">
+    <div class="logo">
+      <svg class="egg" viewBox="0 0 10 10"><use href="#tamaMini" width="10" height="10"/></svg>
+      <div>
+        <span class="unit">4<ruby>年<rt>ねん</rt></ruby> <ruby>国語<rt>こくご</rt></ruby>「<ruby>聞<rt>き</rt></ruby>いてほしいな、こんな<ruby>出来事<rt>できごと</rt></ruby>」</span>
+        <h1 class="round">TKGたまごんと<ruby>話<rt>はな</rt></ruby>し<ruby>方<rt>かた</rt></ruby>れんしゅう</h1>
+      </div>
+    </div>
+    <div class="tools">
+      <button class="tbtn" data-act="history" title="きろく">📒 きろく</button>
+      <button class="tbtn" data-act="settings" title="せってい">⚙️ せってい</button>
+      <button class="tbtn" data-act="home" title="はじめから">🏠</button>
+    </div>
+  </div>
+  <div class="steps" id="steps"></div>
+</header>
+
+<div class="layout">
+  <aside class="stage">
+    <div class="tamawrap">
+      <svg id="tama" viewBox="-10 0 420 306" role="img" aria-label="TKGたまごん">
+        <g class="bodyg">
+          <g stroke="#222" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+            <!-- あし -->
+            <path d="M152 250 C140 254 122 260 124 268 C126 275 150 273 162 264" fill="#fff"/>
+            <path d="M226 258 C232 268 236 279 249 279 C264 278 264 268 254 260" fill="#fff"/>
+            <!-- 上げている手（見て左） -->
+            <g class="armL">
+              <path d="M124 188 C104 178 86 160 88 140 C90 124 104 118 114 124 C122 130 128 146 136 164" fill="#fff"/>
+              <path d="M96 128 C100 120 110 120 114 126" fill="none"/>
+            </g>
+            <!-- こしに当てた手（見て右） -->
+            <path d="M298 194 C316 196 330 208 326 224 C322 238 304 240 288 230" fill="#fff"/>
+            <path d="M306 218 C302 224 296 226 290 226" fill="none"/>
+            <!-- からだ -->
+            <path d="M200 46 C150 46 112 118 108 172 C104 230 146 264 202 264 C262 264 306 234 306 184 C306 120 252 46 200 46 Z" fill="#fff"/>
+            <!-- タスキ -->
+            <g clip-path="url(#bodyClip)">
+              <path d="M116 160 C150 206 190 246 236 268 L247 251 C205 233 165 197 131 150 Z" fill="#fff35a" stroke-width="2"/>
+              <path d="M150 196 l4 4 M168 214 l4 4 M188 232 l4 3 M206 244 l4 3" stroke="#6b5a00" stroke-width="2"/>
+            </g>
+            <!-- みどりのぼうし -->
+            <path d="M206 44 C224 30 252 32 268 44 C286 60 302 92 320 130 C310 138 296 140 286 136 C278 118 266 100 252 88 C238 74 222 58 206 44 Z" fill="#8ad97a"/>
+            <path d="M262 86 C282 100 302 116 320 130 C310 138 296 140 286 136 C280 118 272 102 262 86 Z" fill="#3fa34d" stroke="none"/>
+            <!-- あたまのTKG -->
+            <path d="M178 66 C176 50 196 44 222 44 C250 44 266 52 266 68 C266 90 250 100 222 100 C194 100 180 88 178 66 Z" fill="#fff"/>
+            <ellipse cx="222" cy="74" rx="34" ry="15" fill="url(#yolkG)" stroke="none"/>
+            <circle cx="219" cy="52" r="3.2" fill="#e5483a" stroke="none"/>
+            <text x="222" y="80" text-anchor="middle" font-size="15" font-family="sans-serif" fill="#5b3a12" stroke="none">TKG</text>
+            <!-- あおいメガネ -->
+            <g fill="none" stroke="#6aa7e0" stroke-width="3.4">
+              <rect x="162" y="100" width="32" height="28" rx="3"/>
+              <rect x="230" y="100" width="32" height="28" rx="3"/>
+              <path d="M194 110 C206 104 218 104 230 110"/>
+              <path d="M162 110 C140 112 120 118 104 126"/>
+              <path d="M262 110 C278 110 292 114 302 120"/>
+            </g>
+            <!-- ほっぺ -->
+            <ellipse cx="146" cy="166" rx="13" ry="8.5" fill="#f4a3ae" stroke="none"/>
+            <ellipse cx="254" cy="172" rx="13" ry="8.5" fill="#f4a3ae" stroke="none"/>
+            <!-- め -->
+            <g class="eyesOpen" stroke="none">
+              <ellipse cx="165" cy="149" rx="7" ry="10" fill="#111"/><circle cx="167" cy="144" r="2.6" fill="#fff"/>
+              <ellipse cx="237" cy="153" rx="7" ry="10" fill="#111"/><circle cx="239" cy="148" r="2.6" fill="#fff"/>
+            </g>
+            <g class="eyesHappy" fill="none" stroke-width="3.6">
+              <path d="M156 152 Q165 140 174 152"/><path d="M228 156 Q237 144 246 156"/>
+            </g>
+            <!-- くち -->
+            <g class="mouth">
+              <path d="M174 170 C190 158 216 160 226 174 C222 192 208 202 196 200 C182 198 174 186 174 170 Z" fill="#f6a23c"/>
+              <path d="M179 175 C192 168 210 168 220 177" fill="none" stroke-width="2"/>
+            </g>
+          </g>
+        </g>
+        <!-- きらきら -->
+        <g fill="#fff35a" stroke="#222" stroke-width="2">
+          <path class="spark" d="M128 14 L134 30 L146 36 L134 42 L128 58 L122 42 L110 36 L122 30 Z"/>
+          <path class="spark" d="M30 166 L36 184 L48 190 L36 196 L30 214 L24 196 L12 190 L24 184 Z"/>
+          <path class="spark" d="M374 148 L379 164 L388 170 L379 176 L374 192 L369 176 L360 170 L369 164 Z"/>
+        </g>
+        <g class="think" font-size="40" font-weight="bold" fill="#3fa34d"><text x="320" y="70">？</text></g>
+        <g class="listenMark" font-size="22" font-weight="bold" fill="#3fa34d"><text x="300" y="60">ふむふむ</text></g>
+      </svg>
+    </div>
+    <div class="stagecol">
+      <div class="bubble round" aria-live="polite"><span class="who">TKGたまごん</span><span id="bubbleText"></span></div>
+      <div class="speaking-ind" id="spInd"></div>
+      <div class="voicebar">
+        <button class="vbtn" data-act="tts-replay">🔊 もう<ruby>一度<rt>いちど</rt></ruby>きく</button>
+        <button class="vbtn stop" data-act="tts-stop">⏹ とめる</button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="work">
+    <div class="next" id="next"><span class="arrow">👉</span><span id="nextText"></span><span class="phase hidden" id="phase"></span></div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<script>
+'use strict';
+/* =====================================================================
+   TKGたまごんと話し方れんしゅう
+   - 外部API・サーバーなしで動く（対話・評価はこのファイル内のしくみ）
+   - 音声認識：ブラウザ標準 Web Speech API（Safari では webkitSpeechRecognition）
+   - 読み上げ：ブラウザ標準 speechSynthesis
+   - 記録：この端末の localStorage のみ
+   ===================================================================== */
+const KEY = 'tkgTamagon.v1';
+const TAMA_IMG = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAEyAZkDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6pooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKiuruCyt5bm5kWKGFDJJIxwFUDJJ/CgCWis7w/4g03xRpFtrGkXAubG6XfFKFIDDOOh5rRoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK84+O17cyeDB4a06RU1HxLdR6XAS2MK5zIx9ggb8SK9BubqGyt5Lm5ljhgiUvJJIwVUUdSSegrzG2hm+IHj+18WSxSxaDokLw6SsqlTdzScSXG087AoCrnr1rgzLHQwlCVST16epUIuTsjZ+Hkdho2p6r4YsLm5kTS4LTfDJMXSIsh/1an7ikKDtHGc13dee3ug3ej+MY/F2hwCaW5jW01W03hTcwr9yRSePMQ547qSOtdvp2qWmrWy3NlOk0RJUlT91hwVPoQeCD0rmyXH08Vh1aV5LfuVUi4st0UUV7BmFFFFABRRRQAUUUUAFFFFABRRmjNABRRRmgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPJPjXcXWkeIPCGr38rXHhUXv2TUbJv8AVCR+IpnA+8FPY8Zx616DgADGMe1M8ceFrbxr4U1Pw/dAbL2BkVu6P1Vh7hgDXIfCzX7jUvAdrJrEqJf6Z5llfliBseFijM3pkKG+hr4vi3BylGFaPodNCXQ6y8vLfT7WW8u547e3gUvJLI21UUdSTXneg22t+NPEln4k8IQnwvoK3BluryWPEmuLkdIegTAOJG55yBTNBs7v426y2r6iskPgSwmxY2ZyP7XlU/66T1iBHC9D+efZkRY1CIoVVGAAMAD0rpyDI3hl7es/efTt6k1al9EA60tFFfVmAUUUUAFFFFABRRRQAUHpVa8v7fT4TPdzpDEDjc5xk9gPU1wuu+ONc1Atb+HoIdPhPBv75C7n3SEEfm5H+6aidSMPiZhWxNOirzdjvbm6gs4GnuZo4Il5Z5GCqPxNcTq3xv8AAemBkj12LU7gHaLbTENzIW9MICB+JArhrvwVaa3MLjxNfah4il67b6YmEfSJcIB+FbNlp1lpkYisbS3tUAwBDGE4/CuaWMj9lHkVc8pr+HG5BcfFnx7rj48O+C7bSrY/dudfnIc/9sY/mH5mtfwPr3jeTxAkXifUtGubK4jZUS0t2iaOXqMEk7gear1V1G4ewjg1CPrZXEVwfTaGAcn6IWP4VlHEycl2OWlnFWdaKe1z13rS01WDqGU5BGQfUU6vRPqAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK8C1X4e+Jrz4za/otn51n4P8SQx32qTrESJQq7XiV+iu7HBxzt57V77RUTpxmrSVwTsQWVlb6daQ2dpDHBbwII4okGFRQMAAVPRRVgF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';
+
+/* ---------- 小道具 ---------- */
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const uid = () => 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const uniq = a => Array.from(new Set(a));
+const fmtDate = t => { const d = new Date(t); return `${d.getMonth() + 1}月${d.getDate()}日`; };
+function toast(msg) { const o = document.querySelector('.toast'); if (o) o.remove(); const el = document.createElement('div'); el.className = 'toast'; el.textContent = msg; document.body.appendChild(el); setTimeout(() => el.remove(), 2600); }
+
+/* ---------- 保存 ---------- */
+function defState() { return { v: 1, name: '', settings: { rate: 1, auto: true, recText: true }, vv: { mode: 'slow', speaker: 3, speed: 1, pitch: 0, into: 1, fallback: false }, sessions: [], cur: null, view: 'welcome', micExplained: false }; }
+let S = load();
+function load() { try { const r = localStorage.getItem(KEY); if (!r) return defState(); const o = JSON.parse(r); const d = defState(); return Object.assign(d, o, { settings: Object.assign(d.settings, o.settings || {}) }); } catch (e) { return defState(); } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* 保存できなくても練習は続けられる */ } }
+const sess = () => S.sessions.find(x => x.id === S.cur) || null;
+
+/* =====================================================================
+   1. ことばの分析（API不要のルール方式）
+   ===================================================================== */
+const RX = {
+  when: /(きのう|昨日|おととい|一昨日|今日|きょう|けさ|今朝|先週|せんしゅう|先月|せんげつ|去年|きょねん|この前|このまえ|夏休み|なつやすみ|冬休み|ふゆやすみ|春休み|はるやすみ|[日月火水木金土]曜|休みの日|やすみの日|週末|しゅうまつ|放課後|ほうかご|休み時間|やすみじかん|朝|あさ|夕方|ゆうがた|夜|よる|お昼|おひる|[0-9０-９一二三四五六七八九十]+月|[0-9０-９]+日|運動会|うんどうかい|遠足|えんそく|誕生日|たんじょうび|お正月|おしょうがつ|クリスマス|ゴールデンウィーク|ある日|このあいだ|この間|小さいころ|[1-6１-６一二三]年生のとき)/,
+  placeCore: /(公園|こうえん|小学校|学校|がっこう|教室|きょうしつ|運動場|うんどうじょう|グラウンド|校庭|こうてい|体育館|たいいくかん|図書館|としょかん|家(?!族|来)|部屋|へや|庭|にわ|海(?!鮮|苔)|うみ|山(?!田)|川(?!口)|プール|水族館|すいぞくかん|動物園|どうぶつえん|遊園地|ゆうえんち|お店|店|スーパー|デパート|レストラン|駅|えき|キャンプ場|病院|びょういん|神社|じんじゃ|お寺|おてら|広場|ひろば|道(?!具)|商店街|ショッピングモール|モール|温泉|おんせん|ホテル|旅館|球場|スタジアム|会場|牧場|畑|はたけ|田んぼ|森|ゆうびんきょく|郵便局|空港|くうこう|島|ユニバ|USJ|東京|大阪|京都|奈良|神戸|北海道|沖縄)/,
+  who: /(友達|友だち|ともだち|お母さん|おかあさん|お父さん|おとうさん|母|父|ママ|パパ|お兄ちゃん|おにいちゃん|お兄さん|お姉ちゃん|おねえちゃん|お姉さん|兄|姉|弟|おとうと|妹|いもうと|おばあちゃん|おじいちゃん|祖母|祖父|家族|かぞく|いとこ|先生|せんせい|クラスのみんな|みんな|チーム|ひとりで|一人で|犬|いぬ|ねこ|[一-龥ァ-ヶー]{1,4}(?:くん|君|さん|ちゃん))/,
+  feel: /(うれし|嬉し|楽し|たのし|悲し|かなし|くやし|悔し|びっくり|おどろ|驚|こわかった|怖|ドキドキ|どきどき|ワクワク|わくわく|はずかし|恥ずかし|さみし|寂し|おもしろかった|面白かった|おもしろい|面白い|感動|かんどう|ほっと|ホッと|安心|あんしん|イライラ|いらいら|こまっ|困っ|不安|ふあん|緊張|きんちょう|つかれ|疲れ|おいしかった|美味しかった|しあわせ|幸せ|大好き|だいすき|笑っ|わらっ|泣い|ないた|ないて|最高|さいこう|残念|ざんねん|がっかり|すっきり|ほこらし|誇らし|心配|しんぱい|あせ|焦|いやだ|いやな|つらかった|痛かった|いたかった|気持ち|きもち|やったー|やった！|すごかった|すごい)(?:かったです|かった|くて|かったけど|い|く|した|して|しました|だった|な)?/g,
+  feelNeg: /(悲し|かなし|くやし|悔し|こわ|怖|さみし|寂し|不安|ふあん|残念|ざんねん|がっかり|イライラ|いらいら|つらかった|痛|いたかった|泣|ないた|心配|しんぱい|こまっ|困っ|あせ|焦|はずかし|恥ずかし)/,
+  detail: /(([ぁ-んァ-ヶ]{2})\2|ような|ように|みたいな|みたいに|くらい|ぐらい|大きな|小さな|大きい|小さい|まっ赤|真っ赤|まっ白|真っ白|まっ黒|真っ黒|赤い|青い|白い|黒い|黄色い|緑の|きれいな|キラキラ|ピカピカ|ぴかぴか|そーっと|そっと|ぎゅっと|さっと|ぱっと|じっと|見えた|みえた|聞こえた|きこえた|音が|音を|におい|ひかって|光って|[0-9０-９一二三四五六七八九十百千]+(?:回|人|分|時間|メートル|センチ|個|こ|ひき|匹|本|点|位|番|かい|にん|ふん|秒|びょう|さい|才|台|まい|枚))/g,
+  talkQuote: /「([^」]{1,40})」/g,
+  talkSay: /([^。、！？\n]{2,24}?)(?:と言いました|と言った|って言った|って言いました|と言われ|って言われ|とさけ|と叫|と聞かれ|って聞かれ|と言って|って言って|と声をかけ)/g,
+  high: /(とくに|特に|いちばん|一番|そのとき|その時|すると|なんと|ところが|そしたら|そうしたら|急に|きゅうに|とつぜん|突然|しかも|やっと|ついに)/,
+  conn: /(まず|はじめに|最初に|さいしょに|次に|つぎに|それから|そして|そのあと|その後|そのとき|その時|すると|最後に|さいごに|けっきょく|結局|だから|でも|ところが)/g,
+  end: /(思いました|おもいました|思います|おもいます|と思った|とおもった|と思う|と感じ|とかんじ|たいです|たいと思|また[^。]{0,14}たい|次は|つぎは|今度は|こんどは|これからは|これからも|もう一度|もういちど|一日でした|いちにちでした|わかりました|学びました|気づきました|心に残|思い出|おもいで|よかったです|よかった。)/,
+  intro: /(話をします|はなしをします|話します|はなします|お話しします|聞いてください|きいてください|について話|についてはな)/,
+  past: /(ました|でした|た。|た$|だ。|ていた|でいた|たんです|ています)/
+};
+const LABEL = { when: 'いつ', where: 'どこで', who: 'だれと', what: '何をした', feel: '気持ち', detail: 'ようす', talk: 'セリフ' };
+const ICON = { when: '🕒', where: '📍', who: '👫', what: '🏃', feel: '💗', detail: '👀', talk: '💬' };
+const SUB = { when: 'いつのこと', where: 'どこで', who: 'だれと', what: 'したこと', feel: '気持ちの言葉', detail: '見えた・聞こえた', talk: '言った言葉' };
+
+function splitSentences(t) {
+  const out = []; let buf = '', depth = 0; const str = String(t);
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    if (c === '「' || c === '『') depth++;
+    if ((c === '」' || c === '』') && depth > 0) depth--;
+    if (c === '\n') { if (buf.trim()) out.push(buf.trim()); buf = ''; continue; }
+    buf += c;
+    if (depth === 0 && /[。！？!?]/.test(c) && !/[。！？!?」]/.test(str[i + 1] || '')) { out.push(buf.trim()); buf = ''; }
+  }
+  if (buf.trim()) out.push(buf.trim());
+  return out.filter(x => x.replace(/[。！？!?、\s]/g, '').length > 0);
+}
+function firstMatch(re, t) { const m = String(t).match(re); return m ? m[0] : ''; }
+function allMatches(re, t) { const out = []; const r = new RegExp(re.source, 'g'); let m; while ((m = r.exec(t))) { out.push(m[0]); if (m.index === r.lastIndex) r.lastIndex++; } return uniq(out); }
+function findPlace(t) {
+  const r = new RegExp('([一-龥ァ-ヶー]{0,6})' + RX.placeCore.source); const m = String(t).match(r);
+  if (m) return m[0];
+  const g = String(t).match(/([一-龥ァ-ヶー]{2,8})(?:に行き|へ行き|に行っ|へ行っ|にいき|へいき|まで行)/);
+  return g ? g[1] : '';
+}
+function findTalk(t) {
+  const q = []; let m; const r1 = new RegExp(RX.talkQuote.source, 'g'); while ((m = r1.exec(t))) q.push(m[1]);
+  const r2 = new RegExp(RX.talkSay.source, 'g'); while ((m = r2.exec(t))) q.push(m[1].replace(/^.*[、]/, ''));
+  return uniq(q.filter(Boolean));
+}
+function charLen(t) { return String(t).replace(/[\s。、！？!?「」]/g, '').length; }
+
+function analyze(raw) {
+  const text = String(raw || '').trim();
+  const sents = splitSentences(text);
+  const f = {
+    text, len: charLen(text), sents: sents.length,
+    when: firstMatch(RX.when, text), where: findPlace(text), who: firstMatch(RX.who, text),
+    feel: allMatches(RX.feel, text), detail: allMatches(RX.detail, text), talk: findTalk(text),
+    high: firstMatch(RX.high, text), conn: allMatches(RX.conn, text)
+  };
+  f.what = RX.past.test(text) || f.len >= 15;
+  const first = sents[0] || '', last = sents.length > 1 ? sents[sents.length - 1] : '';
+  f.end = !!last && (RX.end.test(last) || new RegExp(RX.feel.source).test(last));
+  f.endW = last && RX.end.test(last) ? firstMatch(RX.end, last) : '';
+  f.parts = {
+    hajime: !!first && (RX.when.test(first) || !!findPlace(first) || RX.who.test(first) || RX.intro.test(first)),
+    naka: sents.length >= 3 ? true : (sents.length === 2 && (f.detail.length > 0 || f.talk.length > 0 || !!f.high)),
+    owari: f.end
+  };
+  f.partCount = (f.parts.hajime ? 1 : 0) + (f.parts.naka ? 1 : 0) + (f.parts.owari ? 1 : 0);
+  f.has = { when: !!f.when, where: !!f.where, who: !!f.who, what: !!f.what, feel: f.feel.length > 0, detail: f.detail.length > 0, talk: f.talk.length > 0 };
+  f.elements = Object.values(f.has).filter(Boolean).length;
+  f.longSent = sents.some(s => charLen(s) > 60 || (s.match(/て、|で、/g) || []).length >= 3);
+  f.neg = RX.feelNeg.test(text);
+  return f;
+}
+
+/* =====================================================================
+   2. たまごんの対話（質問は1回に1つ）
+   ===================================================================== */
+const KIND = [
+  { k: 'fun', ic: '😆', t: 'おもしろかった' }, { k: 'happy', ic: '😊', t: 'うれしかった' },
+  { k: 'wow', ic: '😲', t: 'びっくりした' }, { k: 'sad', ic: '😢', t: 'くやしかった・かなしかった' },
+  { k: 'try', ic: '💪', t: 'がんばった' }, { k: 'first', ic: '🌟', t: 'はじめてやった' }
+];
+const IDEAS = {
+  fun: ['友だちと遊んで、わらったこと', '家族とでかけて、おもしろかったこと'],
+  happy: ['ほめられたこと', 'ほしかったものをもらったこと'],
+  wow: ['思っていなかったことがおきたこと', 'はじめて見たもの'],
+  sad: ['試合でまけたこと', 'うまくいかなかったこと'],
+  try: ['練習してできるようになったこと', 'さいごまであきらめなかったこと'],
+  first: ['はじめて行った場所', 'はじめてチャレンジしたこと']
+};
+// 「遊びました」→「遊んだ」（たまごんのあいづち用）
+function plainPast(v) {
+  const stem = v.replace(/ました$/, '');
+  if (!stem) return '';
+  if (/(行き|いき)$/.test(stem)) return stem.slice(0, -1) + 'った';
+  if (/(起き|おき|でき|生き|すぎ|過ぎ|借り|降り|足り|浴び|あび|信じ|感じ|かんじ|[見着寝出来居])$/.test(stem) || /^(み|き|い|ね|で)$/.test(stem)) return stem + 'た';
+  const one = stem.slice(-1);
+  const map = { し: 'した', き: 'いた', ぎ: 'いだ', び: 'んだ', み: 'んだ', に: 'んだ', ち: 'った', り: 'った', い: 'った' };
+  if (map[one]) return stem.slice(0, -1) + map[one];
+  if (/[えけげせぜてでねへべぺめれ]/.test(one) || /[一-龥]/.test(one)) return stem + 'た';
+  return '';
+}
+function echoFirst(text, topic) {
+  const f = analyze(text);
+  if (f.where) {
+    const m = text.match(new RegExp(f.where.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[でにへ]([^。、！？]{1,12}?ました)'));
+    if (m) { const p = plainPast(m[1]); if (p) return `${f.where}で${p}んやね！`; }
+    return `${f.where}でのお話なんやね！`;
+  }
+  return topic ? `「${topic}」のお話、聞かせてくれてありがとう！` : 'お話、聞かせてくれてありがとう！';
+}
+function isGenericAct(text) {
+  const t = String(text);
+  if (/遊び|あそび|遊ん|あそん/.test(t) && !/(ごっこ|サッカー|野球|やきゅう|ドッジ|鬼|おに|かくれんぼ|なわとび|ゲーム|ブランコ|すべり台|ボール|トランプ|カード|一輪車|てつぼう|鉄棒|ケイドロ|けいどろ|バスケ|テニス|水遊び|砂|すな|虫とり|むしとり|つり|釣り)/.test(t)) return 'play';
+  if (/(行きました|いきました|行った|でかけ|出かけ)/.test(t) && charLen(t) < 30) return 'go';
+  if (charLen(t) < 18) return 'short';
+  return '';
+}
+const QORDER = ['act', 'when', 'where', 'who', 'high', 'feel', 'detail', 'talk', 'end'];
+const MAXQ = 5;
+function highQuestion(kind) {
+  return {
+    happy: 'そのとき、特にうれしかった場面はどこやった？',
+    wow: 'いちばんびっくりしたのは、どんな場面やった？',
+    sad: 'いちばんくやしかった（かなしかった）のは、どんな場面やった？',
+    try: 'いちばんがんばったのは、どんなところ？',
+    first: 'はじめてやってみて、いちばん心にのこったのはどんなこと？'
+  }[kind] || 'そのとき、特におもしろかったことはあった？';
+}
+function questionText(key, s) {
+  const t1 = s.attempts[0].text;
+  switch (key) {
+    case 'act': { const g = isGenericAct(t1); const pl = analyze(t1).where;
+      if (g === 'play') return 'どんな遊びをしたん？';
+      if (g === 'go') return `${pl || 'そこ'}で、何をしたん？`;
+      return 'そのとき、どんなことをしたん？ もう少しくわしく教えて！'; }
+    case 'when': return 'それって、いつのことなん？（きのう？ 日曜日？ 夏休み？）';
+    case 'where': return 'それは、どこでのできごとなん？';
+    case 'who': return 'だれといっしょやったん？ それとも、ひとりやった？';
+    case 'high': return highQuestion(s.kind);
+    case 'feel': return 'そのとき、どんな気持ちになったん？';
+    case 'detail': return 'その場面で、何が見えた？ どんな音や声が聞こえた？ 1つ教えて！';
+    case 'talk': return 'そのとき、だれかが何か言ってた？ 言った言葉をそのまま教えて！';
+    case 'end': return 'その出来事のあと、どう思った？ 次にやってみたいことはある？';
+  }
+  return '';
+}
+function combinedText(s) { return [s.attempts[0].text].concat(s.qa.filter(x => x.a && !x.skip).map(x => x.a)).join('\n'); }
+function pickNextQuestion(s) {
+  if (s.qa.length >= MAXQ) return null;
+  const asked = new Set(s.qa.map(x => x.key));
+  const all = combinedText(s), f = analyze(all);
+  const need = {
+    act: !!isGenericAct(s.attempts[0].text) && s.qa.length === 0,
+    when: !f.has.when, where: !f.has.where, who: !f.has.who,
+    high: !(f.high && f.detail.length > 0),
+    feel: !f.has.feel, detail: !f.has.detail, talk: !f.has.talk, end: !f.end
+  };
+  for (const k of QORDER) if (need[k] && !asked.has(k)) return k;
+  return null;
+}
+function reactTo(key, ans, kind) {
+  const a = String(ans || '').trim(); const f = analyze(a);
+  if (!a || charLen(a) < 2) return 'うんうん！';
+  const pos = f.feel.length && !f.neg;
+  switch (key) {
+    case 'act': return f.neg ? 'なるほど、そうやったんや。' : '楽しそうやな！';
+    case 'when': return f.when ? `${f.when}のことなんやね！` : 'なるほど、教えてくれてありがとう！';
+    case 'where': return f.where ? `${f.where}やったんや！` : 'なるほど！ 場所がわかったわ！';
+    case 'who': return f.who ? `${f.who.replace(/^(ひとりで|一人で)$/, 'ひとり')}といっしょやったんやね！`.replace('ひとりといっしょやったんやね', 'ひとりでがんばったんやね') : 'そうなんや！';
+    case 'high': {
+      if (/おもしろ|面白|わら|笑/.test(a)) return 'それはおもしろい場面やな！';
+      if (f.neg && kind !== 'sad') return 'それはドキッとする場面やな！';
+      return ({ fun: 'それはおもしろい場面やな！', happy: 'それはうれしい場面やな！', wow: 'それはびっくりする場面やな！', sad: 'それはくやしい場面やったんやね…。', try: 'よくがんばった場面やな！', first: 'それはすてきな場面やな！' })[kind] || (pos ? 'それはすてきな場面やな！' : 'それは心にのこる場面やな！');
+    }
+    case 'feel': return f.feel.length ? `「${f.feel[0]}」気持ちやったんやね。わかるわあ！` : 'その気持ち、大事にしてな！';
+    case 'detail': return 'うわあ、場面が目にうかんできたわ！';
+    case 'talk': return 'セリフが入ると、その場にいるみたいやな！';
+    case 'end': return 'すてきな思いやね！';
+  }
+  return 'なるほど！';
+}
+
+/* =====================================================================
+   3. アドバイス（よいところ → チャレンジ1つ）と成長
+   ===================================================================== */
+function praiseList(f) {
+  const out = [];
+  if (f.talk.length) out.push({ k: 'talk', t: `「${f.talk[0]}」っていうセリフが入ってるから、その場面が目にうかぶわ！` });
+  if (f.feel.length) out.push({ k: 'feel', t: `「${f.feel.slice(0, 2).join('」「')}」っていう気持ちの言葉が入ってて、気持ちがよう伝わってくるで！` });
+  if (f.detail.length) out.push({ k: 'detail', t: `「${f.detail[0]}」みたいに、ようすがわかる言葉があって、場面が想像できるわ！` });
+  if (f.partCount === 3) out.push({ k: 'parts', t: 'はじめ・中・おわりがそろってて、話の組み立てがばっちりや！' });
+  if (f.high) out.push({ k: 'high', t: `「${f.high}」のところから、いちばん伝えたい場面が話せてるで！` });
+  if (f.conn.length >= 2) out.push({ k: 'conn', t: `「${f.conn.slice(0, 2).join('」「')}」みたいなつなぎ言葉で、話の順番がわかりやすいで！` });
+  if (f.has.when && f.has.where) out.push({ k: 'ww', t: `「${f.when}」「${f.where}」が入ってて、いつ・どこの話かすぐわかるで！` });
+  else if (f.has.where) out.push({ k: 'where', t: `「${f.where}」が入ってて、どこのお話かすぐわかるで！` });
+  else if (f.has.when) out.push({ k: 'when', t: `「${f.when}」が入ってて、いつのお話かすぐわかるで！` });
+  if (f.has.who) out.push({ k: 'who', t: `だれといっしょやったか（${f.who}）がわかるから、場面がはっきりするで！` });
+  if (f.end) out.push({ k: 'owari', t: '最後に思ったことが話せてて、すてきなしめくくりやね！' });
+  if (!out.length) out.push({ k: 'try', t: '最後までがんばって話してくれたね！ 話そうとする気持ちがすばらしいで！' });
+  return out;
+}
+const ADV = {
+  short: { title: 'もう少しくわしく話す', t: 'その出来事でどんなことがあったかを、あと2つか3つの文で話してみよう！ 聞いている人が、場面を思いうかべやすくなるよ！', ex: '（れい）「そのとき、〜がありました。」「〜して、〜になりました。」' },
+  when: { title: '「いつ」を入れる', t: '「いつ」のことかを入れると、聞いている人が「あのときの話やな」とわかりやすくなるよ！', ex: '（れい）「きのうの放課後、」「日曜日に、」' },
+  where: { title: '「どこで」を入れる', t: 'どこでの出来事かを入れると、聞いている人が場面を想像しやすくなるよ！', ex: '（れい）「〇〇公園で、」「家のリビングで、」' },
+  who: { title: '「だれと」を入れる', t: 'だれといっしょだったかを入れると、場面がもっとはっきりするよ！', ex: '（れい）「友だちの〇〇さんと、」「お父さんと、」' },
+  high: { title: 'いちばん伝えたい場面をくわしく', t: 'いちばん伝えたい場面を「そのとき」「とくに」から話しはじめて、くわしく話してみよう！ 話の「中」がはっきりするよ！', ex: '（れい）「とくにおもしろかったのは、〜です。」' },
+  feel: { title: '気持ちの言葉を入れる', t: 'そのときの気持ちを言葉にしてみよう！「ドキドキした」「くやしかった」みたいな気持ちの言葉が入ると、もっと伝わるお話になるよ！', ex: '（れい）「見つかった！と思って、ドキドキしました。」' },
+  detail: { title: '見えたこと・聞こえたことを入れる', t: 'いちばん伝えたい場面で、何が見えたか・どんな音がしたかを1つ足してみよう！ 聞いている人の頭の中に、場面がうかぶよ！', ex: '（れい）「木のかげから、赤いくつが見えていました。」' },
+  owari: { title: '最後に思ったことを話す', t: '最後に、その出来事を通して思ったことを話してみると、もっと伝わるお話になるよ！', ex: '（れい）「また〇〇したいと思いました。」「〜がわかりました。」' },
+  hajime: { title: 'はじめに「いつ・どこで・だれと」', t: 'はじめに「いつ・どこで・だれと」をまとめて言ってから話しはじめると、聞いている人が話に入りやすくなるよ！', ex: '（れい）「きのう、公園で、友だちと鬼ごっこをしました。」' },
+  conn: { title: 'つなぎ言葉で順番をはっきり', t: '「まず」「それから」「そのとき」「さいごに」みたいなつなぎ言葉を使うと、話の順番がわかりやすくなるよ！', ex: '（れい）「まず〜。それから〜。さいごに〜。」' },
+  long: { title: '文を短く区切る', t: '1つの文が長くなっているところがあるよ。「〜て、〜て」とつなげずに、「。」で区切って話すと、聞いている人がわかりやすいよ！', ex: '（れい）「公園に行って、遊んで、帰って…」→「公園に行きました。そこで遊びました。」' },
+  talk: { title: 'セリフを入れる', t: 'そのときに言った言葉や聞こえた言葉を入れてみよう！ セリフが入ると、場面がぐっと目にうかぶよ！', ex: '（れい）友だちが「見つけた！」と言いました。' },
+  voice: { title: '話し方にチャレンジ', t: '内容はばっちりや！ 次は話し方にチャレンジ。いちばん伝えたい言葉の前で少し「間」をあけて、その言葉を少し大きな声で言ってみよう！', ex: '（れい）「そのとき…（1、2）…「見つけた！」」' }
+};
+const ADV_TO_Q = { short: 'act', when: 'when', where: 'where', who: 'who', high: 'high', feel: 'feel', detail: 'detail', owari: 'end', talk: 'talk' };
+function chooseAdvice(f) {
+  if (f.len < 40) return 'short';
+  if (!f.has.when && !f.has.where) return 'hajime';
+  if (!f.has.where) return 'where';
+  if (!f.has.when) return 'when';
+  if (!f.has.who) return 'who';
+  if (!f.high && f.detail.length === 0) return 'high';
+  if (!f.has.feel) return 'feel';
+  if (!f.has.detail) return 'detail';
+  if (!f.end) return 'owari';
+  if (f.sents >= 4 && f.conn.length < 1) return 'conn';
+  if (f.longSent) return 'long';
+  if (!f.has.talk) return 'talk';
+  return 'voice';
+}
+function makeAdvice(s, n) {
+  const at = s.attempts[n - 1], f = at.f;
+  const goods = praiseList(f);
+  const key = chooseAdvice(f);
+  const a = ADV[key];
+  let extra = '';
+  const qk = ADV_TO_Q[key];
+  if (qk) { const qa = s.qa.find(x => x.key === qk && x.a && !x.skip); if (qa) extra = `たまごんの質問に「${qa.a}」って答えてくれたやろ？ それを話の中に入れてみよう！`; }
+  return { goods: goods.slice(0, 2), key, title: a.title, text: a.t, ex: a.ex, extra };
+}
+function growth(prev, cur, prevAdvKey) {
+  const a = prev.f, b = cur.f, g = [];
+  const resolved = { short: b.len >= 40, hajime: b.has.when || b.has.where, where: b.has.where, when: b.has.when, who: b.has.who, high: !!b.high || b.detail.length > 0, feel: b.has.feel, detail: b.has.detail, owari: b.end, conn: b.conn.length >= 1, long: !b.longSent, talk: b.has.talk, voice: false };
+  if (prevAdvKey && resolved[prevAdvKey] && !(prevAdvKey === 'voice')) {
+    // 前回できていなかったことが、今回できた
+    const before = { short: a.len >= 40, hajime: a.has.when || a.has.where, where: a.has.where, when: a.has.when, who: a.has.who, high: !!a.high || a.detail.length > 0, feel: a.has.feel, detail: a.has.detail, owari: a.end, conn: a.conn.length >= 1, long: !a.longSent, talk: a.has.talk }[prevAdvKey];
+    if (!before) g.push({ i: '🎯', t: `前のチャレンジ「${ADV[prevAdvKey].title}」ができたね！ すごい！` });
+  }
+  if (b.len - a.len >= 15 && b.len >= a.len * 1.2) g.push({ i: '📏', t: `前よりくわしく話せたね！（${a.len}文字 → ${b.len}文字）` });
+  if (b.feel.length > a.feel.length) g.push({ i: '💗', t: `気持ちが伝わる言葉が増えたね！（${b.feel.filter(x => a.feel.indexOf(x) < 0).slice(0, 3).map(x => '「' + x + '」').join('') || b.feel.length + 'こ'}）` });
+  if (b.partCount > a.partCount) g.push({ i: '🧩', t: '話の組み立て（はじめ・中・おわり）がよくなったね！' });
+  else if (b.conn.length > a.conn.length && b.conn.length >= 2) g.push({ i: '🔗', t: '話の順番がわかりやすくなったね！（つなぎ言葉が増えたよ）' });
+  const newEl = ['when', 'where', 'who'].filter(k => b.has[k] && !a.has[k]).map(k => LABEL[k]);
+  if (newEl.length) g.push({ i: '📍', t: `「${newEl.join('・')}」が入って、聞く人がわかりやすくなったね！` });
+  if (b.has.talk && !a.has.talk) g.push({ i: '💬', t: 'セリフが入って、場面が目にうかぶようになったね！' });
+  if (b.detail.length > a.detail.length) g.push({ i: '👀', t: 'ようすがわかる言葉が増えたね！' });
+  if (a.longSent && !b.longSent) g.push({ i: '✂️', t: '文を区切って、聞きやすくなったね！' });
+  return g;
+}
+
+/* =====================================================================
+   4. 読み上げ（speechSynthesis）
+   ===================================================================== */
+/* ---------------------------------------------------------------------
+   たまごんの声：WEB版VOICEVOX API（su-shiki.com / tts.quest）
+   - 高速API（APIキー必要）: https://deprecatedapis.tts.quest/v2/voicevox/audio/
+       話速・声の高さ・イントネーションを指定でき、音声(WAV)がそのまま返る
+   - 低速API（キー不要） : https://api.tts.quest/v3/voicevox/synthesis
+       話者だけ指定できる。合成が終わるまで status.json を確認してから再生する
+       （話速はブラウザ側の再生速度で調整。イントネーションは変えられない）
+   - ブラウザの声（speechSynthesis）は、VOICEVOXが使えないときの予備
+   --------------------------------------------------------------------- */
+const VV_FAST = 'https://deprecatedapis.tts.quest/v2/voicevox/audio/';
+const VV_POINTS = 'https://deprecatedapis.tts.quest/v2/api/';
+const VV_SLOW = 'https://api.tts.quest/v3/voicevox/synthesis';
+const VV_SPEAKERS = 'https://api.tts.quest/v3/voicevox/speakers_array';
+const VV_KEY_STORE = 'tkgTamagon.vvkey';
+const VV_FALLBACK_SPEAKERS = { 0: '四国めたん（あまあま）', 1: 'ずんだもん（あまあま）', 2: '四国めたん（ノーマル）', 3: 'ずんだもん（ノーマル）', 8: '春日部つむぎ（ノーマル）', 10: '雨晴はう（ノーマル）', 13: '青山龍星（ノーマル）', 14: '冥鳴ひまり（ノーマル）' };
+const SILENT_WAV = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+const VV_ERR = {
+  invalidApiKey: 'APIキーがちがうみたい（invalidApiKey）。せっていでAPIキーを確かめてください。',
+  notEnoughPoints: '今日使えるポイントが足りなくなりました（notEnoughPoints）。明日になると回復します。',
+  failed: '音声の合成に失敗しました（failed）。少し待ってから、もう一度ためしてください。',
+  nokey: '高速APIを使うには、APIキーを「せってい」で入れてください。',
+  network: 'VOICEVOXのサーバーにつながりませんでした。インターネットを確かめてください。',
+  local: 'ファイルを直接開いているため、ブラウザがVOICEVOXとの通信を止めています。https のURL（GitHub Pagesなど）で開いてください。',
+  timeout: '音声ができるまでに時間がかかりすぎました。少し待ってから、もう一度ためしてください。',
+  busy: 'VOICEVOXのサーバーが混んでいます。少し待ってから、もう一度ためしてください。',
+  play: '音声を再生できませんでした。'
+};
+let vvKeyMem = '';
+function vvKey() { if (vvKeyMem) return vvKeyMem; try { return localStorage.getItem(VV_KEY_STORE) || ''; } catch (e) { return ''; } }
+function vvCfg() { return Object.assign({ mode: 'slow', speaker: 3, speed: 1, pitch: 0, into: 1, fallback: false }, S.vv || {}); }
+function vvSpeakerName(id) { const list = S.vvSpeakers; const n = list && list[id] ? String(list[id]).replace(/^VOICEVOX:/, '') : VV_FALLBACK_SPEAKERS[id]; return n || ('話者' + id); }
+function cleanForVoice(t) {
+  return String(t).replace(/[\u{1F300}-\u{1FAFF}☀-➿⭐⏸-⏺]/gu, '').replace(/（れい）/g, 'たとえば、').replace(/〇〇/g, 'なになに')
+    .replace(/→/g, '、').replace(/[／\/]/g, '、').replace(/[（(]([^）)]*)[）)]/g, '、$1、').replace(/\s+/g, ' ').replace(/、{2,}/g, '、').trim();
+}
+function chunkText(t, max) {
+  const ss = (t.match(/[^。！？!?]+[。！？!?」]*/g) || [t]).map(x => x.trim()).filter(Boolean); const out = []; let cur = '';
+  ss.forEach(x => { if ((cur + x).length > max && cur) { out.push(cur); cur = x; } else cur += x; });
+  if (cur) out.push(cur); return out;
+}
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const NOT_WEB = !/^https?:$/.test(location.protocol);
+class VVError extends Error { constructor(code, detail) { super(code); this.code = code; this.detail = detail; } }
+
+const VV = {
+  audio: null, unlocked: false, cache: new Map(), token: 0, retryUntil: 0, lastSpeaker: '',
+  el() {
+    if (!this.audio) { this.audio = new Audio(); this.audio.preload = 'auto'; this.audio.setAttribute('playsinline', ''); this.audio.setAttribute('webkit-playsinline', ''); }
+    return this.audio;
+  },
+  // iPad：最初にタップしたときに音声の再生を「許可」された状態にしておく
+  unlock() {
+    if (this.unlocked) return;
+    const a = this.el();
+    try { a.src = SILENT_WAV; const p = a.play(); if (p && p.then) p.then(() => { a.pause(); this.unlocked = true; }).catch(() => { }); else this.unlocked = true; } catch (e) { }
+  },
+  async synth(text, o) {
+    const c = vvCfg();
+    const mode = o.mode || c.mode, speaker = o.speaker != null ? o.speaker : c.speaker;
+    const speed = +(o.speed != null ? o.speed : c.speed).toFixed(2), pitch = +(o.pitch != null ? o.pitch : c.pitch).toFixed(2), into = +(o.into != null ? o.into : c.into).toFixed(2);
+    const ck = [mode, speaker, mode === 'fast' ? speed : '', mode === 'fast' ? pitch : '', mode === 'fast' ? into : '', text].join('|');
+    if (this.cache.has(ck)) return this.cache.get(ck);
+    let res;
+    if (mode === 'fast') {
+      const key = vvKey(); if (!key) throw new VVError('nokey');
+      const url = `${VV_FAST}?speaker=${encodeURIComponent(speaker)}&pitch=${pitch}&intonationScale=${into}&speed=${speed}`;
+      let r;
+      try { r = await fetch(url, { method: 'POST', body: new URLSearchParams({ text, key }) }); } catch (e) { throw new VVError(NOT_WEB ? 'local' : 'network'); }
+      const ct = r.headers.get('content-type') || '';
+      if (!r.ok || !/audio|octet/.test(ct)) { let j = null; try { j = await r.json(); } catch (e) { } throw new VVError((j && j.errorMessage) || (r.status === 403 ? 'invalidApiKey' : 'failed')); }
+      const blob = await r.blob();
+      res = { url: URL.createObjectURL(blob), client: false };
+      this.lastSpeaker = vvSpeakerName(speaker);
+    } else {
+      let j = null;
+      for (let tries = 0; tries < 4; tries++) {
+        const wait = this.retryUntil - Date.now(); if (wait > 0) await sleep(wait);
+        let r;
+        try { r = await fetch(`${VV_SLOW}?speaker=${encodeURIComponent(speaker)}&text=${encodeURIComponent(text)}`); } catch (e) { throw new VVError(NOT_WEB ? 'local' : 'network'); }
+        try { j = await r.json(); } catch (e) { j = null; }
+        if (j && j.success) break;
+        if (j && j.retryAfter) { this.retryUntil = Date.now() + (j.retryAfter + 0.3) * 1000; j = null; continue; }
+        throw new VVError((j && j.errorMessage) || 'failed');
+      }
+      if (!j) throw new VVError('busy');
+      this.retryUntil = Date.now() + 600;
+      const t0 = Date.now();
+      while (true) {
+        let st = null;
+        try { st = await (await fetch(j.audioStatusUrl, { cache: 'no-store' })).json(); } catch (e) { st = null; }
+        if (st && st.isAudioError) throw new VVError('failed');
+        if (st && st.isAudioReady) break;
+        if (Date.now() - t0 > 45000) throw new VVError('timeout');
+        await sleep(700);
+      }
+      res = { url: j.mp3DownloadUrl, client: true };
+      this.lastSpeaker = String(j.speakerName || vvSpeakerName(speaker)).replace(/^VOICEVOX:/, '');
+    }
+    this.cache.set(ck, res);
+    if (this.cache.size > 60) { const k = this.cache.keys().next().value; const v = this.cache.get(k); if (v && /^blob:/.test(v.url)) URL.revokeObjectURL(v.url); this.cache.delete(k); }
+    return res;
+  },
+  play(res, rate, tk) {
+    return new Promise(resolve => {
+      if (tk !== this.token) return resolve('stop');
+      const a = this.el();
+      let done = false; const fin = r => { if (done) return; done = true; a.onended = a.onerror = a.onpause = null; resolve(r); };
+      a.onended = () => fin('end');
+      a.onerror = () => fin('error');
+      this._fin = fin;
+      a.src = res.url;
+      a.playbackRate = res.client ? Math.max(0.5, Math.min(2, rate)) : 1;
+      try { a.preservesPitch = true; a.webkitPreservesPitch = true; } catch (e) { }
+      const p = a.play();
+      if (p && p.catch) p.catch(err => fin(err && err.name === 'NotAllowedError' ? 'blocked' : 'error'));
+      TTS.set('play');
+    });
+  },
+  stopAudio() { const a = this.audio; if (a) { try { a.pause(); } catch (e) { } } if (this._fin) { this._fin('stop'); this._fin = null; } },
+  // parts: [{t, rate, pitchAdd, into, gap}]
+  async run(parts, onEnd) {
+    const tk = ++this.token; this.stopAudio();
+    const c = vvCfg();
+    const jobs = []; const jobsLen = () => jobs.length;
+    parts.forEach(p => {
+      const t = cleanForVoice(p.t); if (!t.replace(/[。、！？\s]/g, '')) return;
+      let pieces;
+      if (c.mode === 'slow') { const ss = chunkText(t, 1); pieces = ss.length > 1 && jobsLen() === 0 ? [ss[0]].concat(chunkText(ss.slice(1).join(''), 120)) : chunkText(t, 120); }
+      else pieces = t.length > 240 ? chunkText(t, 200) : [t];
+      pieces.forEach((x, i) => jobs.push(Object.assign({}, p, { t: x, gap: i === pieces.length - 1 ? p.gap : 40 })));
+    });
+    if (!jobs.length) { TTS.set('off'); return; }
+    TTS.set('make');
+    const mk = j => this.synth(j.t, c.mode === 'fast' ? { speed: Math.max(0.5, Math.min(2, c.speed * (j.rate || 1))), pitch: Math.max(-0.15, Math.min(0.15, c.pitch + (j.pitchAdd || 0))), into: Math.max(0, Math.min(2, j.into != null ? j.into : c.into)) } : {});
+    let next = mk(jobs[0]);
+    for (let i = 0; i < jobs.length; i++) {
+      let res;
+      try { res = await next; } catch (e) { if (tk !== this.token) return; TTS.fail(e.code || 'failed', parts); return; }
+      if (tk !== this.token) return;
+      next = i + 1 < jobs.length ? mk(jobs[i + 1]) : null;
+      if (next) next.catch(() => { });
+      const r = await this.play(res, c.speed * (jobs[i].rate || 1), tk);
+      if (tk !== this.token || r === 'stop') return;
+      if (r === 'blocked') { TTS.blocked(parts, onEnd); return; }
+      if (r === 'error') { TTS.fail('play', parts); return; }
+      if (jobs[i].gap) { TTS.set('make-gap'); await sleep(jobs[i].gap); if (tk !== this.token) return; }
+    }
+    TTS.set('off');
+    if (onEnd) onEnd();
+  },
+  stop() { this.token++; this.stopAudio(); }
+};
+
+const BROWSER_TTS = 'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined';
+const TTS = {
+  ok: true, last: '', speaking: false, state: 'off', timer: null, seqId: 0, onEnd: null,
+  voice() { try { const vs = speechSynthesis.getVoices().filter(v => /^ja/i.test(v.lang)); return vs.find(v => /Kyoko|O-ren|Otoya|Google|Nanami|Haruka/i.test(v.name)) || vs[0] || null; } catch (e) { return null; } },
+  clean: cleanForVoice,
+  engine() { return vvCfg().mode; },
+  speak(text, onEnd) { this.last = text; this.run([{ t: text }], onEnd); },
+  seq(parts, onEnd) { this.run(parts.map(p => ({ t: p.t, rate: p.rate, gap: p.gap, pitchAdd: p.pitch ? Math.max(-0.12, Math.min(0.12, (p.pitch - 1.15) * 0.12)) : 0, into: p.pitch && p.pitch > 1.4 ? 1.7 : undefined, bpitch: p.pitch })), onEnd); },
+  run(parts, onEnd) {
+    this.stop();
+    if (this.engine() === 'browser') return this.browser(parts, onEnd);
+    VV.run(parts, onEnd);
+  },
+  browser(parts, onEnd) {
+    if (!BROWSER_TTS) { this.set('off'); toast('このブラウザでは、予備の声も使えないよ'); return; }
+    const id = ++this.seqId; const v = this.voice(); let i = 0; const rate = vvCfg().speed;
+    this.set('play');
+    const next = () => {
+      if (id !== this.seqId) return;
+      if (i >= parts.length) { this.set('off'); if (onEnd) onEnd(); return; }
+      const p = parts[i++]; const u = new SpeechSynthesisUtterance(cleanForVoice(p.t));
+      u.lang = 'ja-JP'; if (v) u.voice = v; u.rate = Math.max(0.5, Math.min(2, (p.rate || 1) * rate)); u.pitch = Math.min(2, p.bpitch || 1.15);
+      let done = false; const fin = () => { if (done) return; done = true; clearTimeout(fbT); setTimeout(next, p.gap || 60); };
+      const fbT = setTimeout(fin, (p.t.length * 200) / u.rate + 1500);
+      u.onend = fin; u.onerror = fin;
+      try { speechSynthesis.speak(u); } catch (e) { fin(); }
+    };
+    next();
+  },
+  stop() { this.seqId++; VV.stop(); if (BROWSER_TTS) { try { speechSynthesis.cancel(); } catch (e) { } } this.set('off'); },
+  fail(code, parts) {
+    this.set('error', VV_ERR[code] || VV_ERR.failed);
+    if (vvCfg().fallback && BROWSER_TTS) this.browser(parts);
+  },
+  blocked(parts, onEnd) { this.pending = { parts, onEnd }; this.set('blocked'); },
+  set(st, msg) {
+    if (st === 'make-gap') st = 'play';
+    this.state = st; this.speaking = st === 'play';
+    const ind = $('spInd'); if (!ind) return;
+    const credit = this.engine() !== 'browser' && VV.lastSpeaker ? `<div class="credit">音声：VOICEVOX:${esc(VV.lastSpeaker)}</div>` : '';
+    if (st === 'make') ind.innerHTML = '<span class="spin"></span>たまごんの声をつくっているよ…（文字は先に読めるよ）';
+    else if (st === 'play') ind.innerHTML = '<span class="bars"><i></i><i></i><i></i></span>たまごんが話しているよ' + credit;
+    else if (st === 'error') ind.innerHTML = `<div class="vverr">🔇 ${esc(msg || '')}<br><button class="btn small ghost" data-act="tts-replay">もう一度</button>${BROWSER_TTS ? ' <button class="btn small ghost" data-act="tts-browser">iPadの声で読む</button>' : ''}</div>`;
+    else if (st === 'blocked') ind.innerHTML = '<button class="btn small green" data-act="tts-unblock">🔊 タップしてたまごんの声を聞く</button>';
+    else ind.innerHTML = credit;
+    setExpr(st === 'play' ? 'talking' : (curExpr === 'talking' ? 'idle' : curExpr), true);
+    refreshPhase();
+  }
+};
+
+/* たまごんの表情とセリフ */
+let curExpr = 'idle';
+function setExpr(e, fromTTS) {
+  const el = $('tama'); if (!el) return;
+  if (!fromTTS) curExpr = e;
+  el.classList.remove('talking', 'happy', 'listening', 'thinking');
+  const show = TTS.speaking ? 'talking' : (fromTTS ? curExpr : e);
+  if (show !== 'idle') el.classList.add(show);
+  if (TTS.speaking && curExpr === 'happy') el.classList.add('happy');
+}
+// たまごんが話しおわったら「きみの番」を知らせる
+function yourTurn() {
+  const b = document.querySelector('#recBtn, #micBtn, #ansText, #topic, #nm');
+  document.querySelectorAll('.yourturn').forEach(x => x.classList.remove('yourturn'));
+  const tgt = document.querySelector('#recBtn') || document.querySelector('#micBtn');
+  if (tgt && !RecTalk.on && !Mic.listening) { tgt.classList.add('yourturn'); const nx = $('nextText'); if (nx && !/きみの番/.test(nx.textContent)) nx.textContent = '🔔 きみの番やで！ ' + nx.textContent; }
+}
+function say(text, expr, opts = {}) {
+  $('bubbleText').textContent = text;
+  setExpr(expr || 'idle');
+  TTS.last = text;
+  document.querySelectorAll('.yourturn').forEach(x => x.classList.remove('yourturn'));
+  if (opts.speak !== false && S.settings.auto && !Mic.listening && !RecTalk.on) TTS.speak(text, () => { yourTurn(); if (opts.onEnd) opts.onEnd(); });
+  else { TTS.stop(); }
+}
+
+/* =====================================================================
+   5. 音声認識（Web Speech API）
+      - iPad Safari では continuous=false で1区切りずつ聞き、話している間は自動で聞き直す
+      - 動かないときは、すぐに文字入力へ切りかえられる
+   ===================================================================== */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const SECURE = window.isSecureContext !== false && location.protocol !== 'file:';
+const IN_FRAME = (() => { try { return window.self !== window.top; } catch (e) { return true; } })();
+const FRAME_MSG = 'この画面は、ほかのページの中に表示されているため、マイクが使えないようになっています。キーボードの🎤（音声入力）ボタンを使うか、先生にこのアプリを直接開くURLで開いてもらってね。';
+const Mic = {
+  supported: !!SR, listening: false, want: false, rec: null, ta: null, base: '', seg: '', idleRestarts: 0,
+  gotText: false, gotSinceStart: false, heard: false, soundOn: false, lastAct: 0, stopTimer: null, meterT: null, errored: false, cancelled: false, t0: 0,
+  // 認識の部品は1つだけ作って使い回す（iPhoneで作り直すと、開始音や許可の確認がくり返されて不安定になる）
+  inst() {
+    if (this.rec) return this.rec;
+    const r = new SR();
+    r.lang = 'ja-JP'; r.interimResults = true; r.continuous = true; r.maxAlternatives = 1;
+    r.onstart = () => { this.listening = true; refreshPhase(); };
+    r.onsoundstart = () => { this.soundOn = true; this.heard = true; this.lastAct = performance.now(); };
+    r.onsoundend = () => { this.soundOn = false; };
+    r.onspeechstart = () => { this.heard = true; this.lastAct = performance.now(); };
+    r.onresult = e => this.onResult(e);
+    r.onerror = e => this.onError(e.error);
+    r.onend = () => this.onEnd();
+    this.rec = r; return r;
+  },
+  start(ta) {
+    if (!this.supported) { this.fail('unsupported'); return; }
+    if (RecTalk.on || PracRec.on) { toast('録音を止めてから、もう一度おしてね'); return; }
+    TTS.stop(); stopAllPlayers();
+    this.ta = ta; this.base = ta.value.trim(); this.seg = ''; this.want = true; this.idleRestarts = 0;
+    this.gotText = false; this.gotSinceStart = false; this.heard = false; this.errored = false; this.cancelled = false; this.t0 = performance.now();
+    ta.readOnly = true;
+    this.ui('on'); setExpr('listening');
+    let r; try { r = this.inst(); } catch (e) { this.fail('start'); return; }
+    try { r.start(); }
+    catch (e) { if (!(e && e.name === 'InvalidStateError')) { this.fail('start'); return; } }  // すでに動いているときはそのまま
+    this.listening = true; this.startMeter(); refreshPhase();
+  },
+  onResult(e) {
+    let fin = '', itr = '';
+    for (let i = 0; i < e.results.length; i++) {
+      const t = (e.results[i][0] && e.results[i][0].transcript) || '';
+      if (e.results[i].isFinal) fin = mergeTxt(fin, t); else itr = mergeTxt(itr, t);
+    }
+    this.seg = mergeTxt(fin, itr);
+    if (this.seg.trim()) { this.gotText = true; this.gotSinceStart = true; this.idleRestarts = 0; }
+    this.heard = true; this.lastAct = performance.now();
+    this.paint();
+  },
+  onError(c) {
+    if (c === 'aborted') return;
+    if (c === 'no-speech') return;   // onend で判断
+    this.fail(c);
+  },
+  onEnd() {
+    clearTimeout(this.stopTimer);
+    this.commit(); this.listening = false;
+    if (this.want) {
+      // 話しているとちゅうで止まった（iPhoneでは無音が続くと止まる）→ 同じ部品で聞き直す
+      if (!this.gotSinceStart) this.idleRestarts++;
+      this.gotSinceStart = false;
+      if (this.idleRestarts >= 4) { this.want = false; this.finish(); this.showErr('hear', this.heard ? 'heard-empty' : 'no-speech'); return; }
+      setTimeout(() => {
+        if (!this.want) return;
+        try { this.rec.start(); this.listening = true; refreshPhase(); }
+        catch (e) { if (!(e && e.name === 'InvalidStateError')) this.fail('restart'); }
+      }, 250);
+    } else {
+      const empty = !this.gotText;
+      this.finish();
+      if (empty && !this.errored && !this.cancelled) this.showErr('hear', this.heard ? 'heard-empty' : 'no-speech');
+    }
+  },
+  commit() {
+    const s = autoPunct(this.seg, true);
+    if (s) this.base = joinText(this.base, s);
+    this.seg = ''; this.paint();
+  },
+  paint() {
+    if (!this.ta) return;
+    this.ta.value = this.seg ? joinText(this.base, this.seg) : this.base;
+    this.ta.dispatchEvent(new Event('input', { bubbles: true }));
+    const lv = document.getElementById('micLive');
+    if (lv) lv.textContent = this.seg ? '📝 ' + this.seg : (this.want ? '🎧 話してね…（文字はここに出るよ）' : '');
+  },
+  stop() {
+    this.want = false;
+    // 聞き直しのすき間でおされたときは、すぐに終わらせる
+    if (!this.listening) { const empty = !this.gotText; this.commit(); this.finish(); if (empty && !this.errored) this.showErr('hear', this.heard ? 'heard-empty' : 'no-speech'); return; }
+    if (this.rec) { try { this.rec.stop(); } catch (e) { } }
+    clearTimeout(this.stopTimer);
+    this.stopTimer = setTimeout(() => { if (this.listening) { try { this.rec.abort(); } catch (e) { } this.listening = false; const empty = !this.gotText; this.commit(); this.finish(); if (empty && !this.errored) this.showErr('hear', this.heard ? 'heard-empty' : 'no-speech'); } }, 1500);
+  },
+  finish() {
+    this.listening = false; this.want = false;
+    if (this.ta) this.ta.readOnly = false;
+    this.stopMeter(); this.ui('off');
+    if (!RecTalk.on) setExpr('idle');
+    const lv = document.getElementById('micLive'); if (lv) lv.textContent = '';
+    refreshPhase();
+  },
+  abortSilently() {
+    if (!this.listening && !this.want) return;
+    this.cancelled = true; this.want = false;
+    try { this.rec && this.rec.abort(); } catch (e) { }
+    this.commit(); this.finish();
+  },
+  fail(code) {
+    this.errored = true; this.want = false;
+    try { this.rec && this.rec.abort(); } catch (e) { }
+    this.commit(); this.finish();
+    this.showErr(micErrCat(code), code);
+  },
+  showErr(cat, code) {
+    const box = document.getElementById('micErr');
+    const msg = (IN_FRAME && cat === 'mic') ? FRAME_MSG : (MIC_ERR[code] || MIC_ERR.other);
+    if (box) {
+      box.innerHTML = `<div class="ehead">${ERR_HEAD[cat] || ERR_HEAD.hear}</div><div>${msg}</div>
+        <div class="btnrow" style="margin-top:8px">${cat !== 'mic' || code === 'restart' || code === 'start' ? `<button class="btn small green" data-act="mic" data-ta="${this.ta ? this.ta.id : ''}">🎤 もう一度ためす</button>` : ''}<button class="btn small ghost" data-act="kb">⌨️ 文字で入力する</button></div>`;
+      box.classList.remove('hidden');
+    }
+    say(cat === 'hear' ? '声がうまく聞きとれへんかったみたい。マイクの近くで、もう一度話してみてな！ 文字で書いてもええで。' : cat === 'net' ? '声を文字にするしくみに、つながらへんみたい。文字で書いても練習できるで！' : 'マイクがうまく使えへんみたい。文字で書いても練習できるで！', 'thinking', { speak: false });
+  },
+  // 声が届いているかの表示（認識のしくみが「音」や「声」を受けとったときに光る）
+  startMeter() {
+    clearInterval(this.meterT);
+    this.meterT = setInterval(() => {
+      const m = document.getElementById('sndMeter'); if (!m) return;
+      const active = this.soundOn || performance.now() - this.lastAct < 800;
+      m.classList.toggle('on', active);
+      const lab = document.getElementById('sndLab');
+      if (lab) lab.textContent = active ? '🔊 声がとどいているよ' : (performance.now() - this.t0 > 4000 && !this.heard ? '🔈 まだ声がとどいていないよ。マイクの近くで話してね' : '…声を待っているよ');
+    }, 150);
+  },
+  stopMeter() { clearInterval(this.meterT); const m = document.getElementById('sndMeter'); if (m) m.classList.remove('on'); const lab = document.getElementById('sndLab'); if (lab) lab.textContent = 'マイクをおすと、ここが動くよ'; },
+  ui(state) {
+    const b = document.getElementById('micBtn'), st = document.getElementById('micStat');
+    if (!b) return;
+    if (state === 'on') {
+      b.classList.add('on'); b.innerHTML = '<span class="mi">⏹</span>おわったら<br>おす';
+      st.className = 'micstat on'; st.innerHTML = '🎤 聞きとり中… 話してね';
+      const e = document.getElementById('micErr'); if (e) e.classList.add('hidden');
+    } else {
+      b.classList.remove('on'); b.innerHTML = '<span class="mi">🎤</span>話して<br>文字にする';
+      st.className = 'micstat'; st.textContent = 'マイクをおして話そう。文字はあとで直せるよ';
+    }
+  }
+};
+function mergeTxt(a, b) {
+  a = a || ''; b = b || '';
+  if (!a) return b; if (!b) return a;
+  if (b.indexOf(a) === 0) return b;          // iPhoneでは、前の文字をふくんだ結果が来ることがある
+  if (a.indexOf(b) >= 0) return a;
+  return a + b;
+}
+const ERR_HEAD = { mic: '🎤 マイクが使えないよ', net: '📡 声を文字にするしくみに、つながらないよ', hear: '👂 声が聞きとれなかったよ' };
+function micErrCat(code) {
+  if (['network', 'service-not-allowed', 'language-not-supported', 'bad-grammar'].indexOf(code) >= 0) return 'net';
+  if (['no-speech', 'heard-empty', 'other'].indexOf(code) >= 0) return 'hear';
+  return 'mic';
+}
+const MIC_ERR = {
+  'not-allowed': 'マイクの使用が許可されていないよ。iPhone・iPadの「設定」→「Safari」→「マイク」を「確認」か「許可」にして、ページを開きなおしてね。',
+  'service-not-allowed': '「設定」→「Siri」（または「Apple Intelligence と Siri」）がオフになっていると、声を文字にできないよ。先生に聞いてね。',
+  'audio-capture': 'マイクが見つからないか、ほかのアプリが使っているよ。ほかのアプリをとじて、もう一度ためしてね。',
+  'network': 'インターネットにつながっていないみたい。声を文字にするには、インターネットが必要だよ。',
+  'no-speech': '声が聞こえなかったよ。iPhone・iPadの下のほう（マイク）に近づいて、もう一度話してね。',
+  'heard-empty': '音は聞こえたけど、言葉にできなかったよ。ゆっくり、はっきり話してみてね。',
+  'language-not-supported': 'この端末では、日本語の声の入力が使えないみたい。',
+  'unsupported': 'このブラウザでは、声を文字にする機能が使えないよ。文字で入力してね。（キーボードの🎤ボタンでも入力できるよ）',
+  'start': 'マイクをうまく始められなかったよ。少し待って、もう一度おしてね。',
+  'restart': 'とちゅうでマイクが止まったよ。ここまでの文字はのこっているので、もう一度おして続きを話してね。',
+  'other': 'うまく聞きとれなかったよ。もう一度おすか、文字で入力してね。'
+};
+/* 今なにをしているか（聞きとり中・録音中・分析中・たまごんが話し中） */
+let analyzingNow = false;
+function refreshPhase() {
+  const el = document.getElementById('phase'); if (!el) return;
+  let p = '';
+  if (Mic.want || Mic.listening) p = '🎤 聞きとり中';
+  else if ((typeof RecTalk !== 'undefined' && RecTalk.on) || (typeof PracRec !== 'undefined' && PracRec.on)) p = '⏺ 録音中';
+  else if (analyzingNow) p = '🔍 声を分析中';
+  else if (TTS.state === 'make') p = '🥚 たまごんの声を準備中';
+  else if (TTS.state === 'play') p = '🔊 たまごんが話し中';
+  el.textContent = p; el.classList.toggle('hidden', !p);
+}
+function autoPunct(s, speech) {
+  s = String(s || '').replace(/[ 　]+/g, '').trim();
+  if (!s) return '';
+  if (speech) s = s.replace(/(ました|でした|です|ます)(?=[^。！？、」でかねよけがしってとなの])/g, '$1。');
+  if (!/[。！？!?」]$/.test(s)) s += '。';
+  return s.replace(/。。+/g, '。');
+}
+function joinText(a, b) { a = String(a || ''); b = String(b || ''); if (!a) return b; if (!b) return a; return /[。！？!?\n」]$/.test(a) ? a + b : a + '。' + b; }
+
+function micHTML(taId, placeholder, rows) {
+  const can = Mic.supported;
+  return `
+  ${can ? `<div class="micbox">
+    <button class="mic" id="micBtn" data-act="mic" data-ta="${taId}"><span class="mi">🎤</span>話して<br>文字にする</button>
+    <div class="micside">
+      <div class="micstat" id="micStat">マイクをおして話そう。文字はあとで直せるよ</div>
+      <div class="sndmeter" id="sndMeter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span id="sndLab">マイクをおすと、ここが動くよ</span></div>
+      <div class="live" id="micLive"></div>
+      ${!SECURE ? '<div class="kbhint">⚠️ このページは https ではないので、声の入力が動かないことがあります。</div>' : ''}
+      ${IN_FRAME ? '<div class="kbhint">⚠️ ほかのページの中で開いているため、マイクが使えないことがあります。そのときはキーボードの🎤ボタンで話してね。</div>' : ''}
+    </div>
+  </div>` : `<div class="card tip" style="padding:12px 14px"><b>⌨️ 文字で入力してね</b><div class="note">このブラウザでは、声を文字にする機能が使えません。iPadなら、キーボードの🎤（音声入力）ボタンでも声で入力できます。</div></div>`}
+  <div id="micErr" class="err hidden"></div>
+  <textarea id="${taId}" rows="${rows || 5}" placeholder="${esc(placeholder)}"></textarea>
+  <div class="count"><span id="${taId}Count">0</span>文字　<span class="muted">✏️ 文字はタップして直せるよ</span></div>`;
+}
+
+/* =====================================================================
+   5b. 録音と話し方の分析（すべてこのiPadの中で計算。外へは送らない）
+   ===================================================================== */
+const AC_CLASS = window.AudioContext || window.webkitAudioContext;
+const CAN_REC = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && AC_CLASS);
+
+/* --- 録音の保存（IndexedDB）。使えないときはページを開いている間だけ --- */
+const AudioDB = {
+  db: null, mem: new Map(), persistent: true,
+  open() {
+    if (this.db) return Promise.resolve(this.db);
+    return new Promise((res, rej) => {
+      try {
+        const r = indexedDB.open('tkgTamagonAudio', 1);
+        r.onupgradeneeded = () => r.result.createObjectStore('clips');
+        r.onsuccess = () => { this.db = r.result; res(this.db); };
+        r.onerror = () => rej(r.error);
+      } catch (e) { rej(e); }
+    });
+  },
+  async put(id, buf) {
+    this.mem.set(id, buf);
+    try {
+      const db = await this.open();
+      await new Promise((res, rej) => { const tx = db.transaction('clips', 'readwrite'); tx.objectStore('clips').put(buf, id); tx.oncomplete = res; tx.onerror = () => rej(tx.error); tx.onabort = () => rej(tx.error); });
+      return true;
+    } catch (e) { this.persistent = false; return false; }
+  },
+  async get(id) {
+    if (this.mem.has(id)) return this.mem.get(id);
+    try { const db = await this.open(); return await new Promise(res => { const r = db.transaction('clips').objectStore('clips').get(id); r.onsuccess = () => res(r.result || null); r.onerror = () => res(null); }); }
+    catch (e) { return null; }
+  },
+  async del(id) { this.mem.delete(id); try { const db = await this.open(); db.transaction('clips', 'readwrite').objectStore('clips').delete(id); } catch (e) { } },
+  async clear() { this.mem.clear(); try { const db = await this.open(); db.transaction('clips', 'readwrite').objectStore('clips').clear(); } catch (e) { } }
+};
+
+/* --- 録音（getUserMedia → Web Audio で生の音を集める） --- */
+const Rec = {
+  active: false, ctx: null, stream: null, src: null, proc: null, sink: null, chunks: [], t0: 0, lastSound: 0, onLevel: null,
+  async start(onLevel) {
+    if (!CAN_REC) throw new Error('unsupported');
+    // iPad では、ボタンをおした流れの中で AudioContext を作る必要がある
+    this.ctx = new AC_CLASS();
+    try { if (this.ctx.state === 'suspended') this.ctx.resume(); } catch (e) { }
+    try {
+      this.stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 } });
+    } catch (e) { try { this.ctx.close(); } catch (_) { } this.ctx = null; throw e; }
+    try { if (this.ctx.state === 'suspended') await this.ctx.resume(); } catch (e) { }
+    this.src = this.ctx.createMediaStreamSource(this.stream);
+    this.proc = this.ctx.createScriptProcessor(4096, 1, 1);
+    this.sink = this.ctx.createGain(); this.sink.gain.value = 0;
+    this.chunks = []; this.onLevel = onLevel;
+    this.proc.onaudioprocess = e => {
+      if (!this.active) return;
+      const d = e.inputBuffer.getChannelData(0);
+      this.chunks.push(new Float32Array(d));
+      let s = 0; for (let i = 0; i < d.length; i += 2) s += d[i] * d[i];
+      const rms = Math.sqrt(s / (d.length / 2));
+      if (rms > 1e-5) this.lastSound = performance.now();
+      if (this.onLevel) this.onLevel(rms);
+    };
+    this.src.connect(this.proc); this.proc.connect(this.sink); this.sink.connect(this.ctx.destination);
+    this.active = true; this.t0 = performance.now(); this.lastSound = 0;
+  },
+  async stop() {
+    if (!this.active && !this.ctx) return null;
+    this.active = false;
+    try { this.src.disconnect(); this.proc.disconnect(); this.sink.disconnect(); } catch (e) { }
+    try { this.stream.getTracks().forEach(t => t.stop()); } catch (e) { }
+    const rate = this.ctx ? this.ctx.sampleRate : 48000;
+    try { await this.ctx.close(); } catch (e) { }
+    this.ctx = null;
+    let n = 0; this.chunks.forEach(c => n += c.length);
+    const all = new Float32Array(n); let o = 0; this.chunks.forEach(c => { all.set(c, o); o += c.length; }); this.chunks = [];
+    const pcm = resample(all, rate, 16000);
+    return { pcm, sr: 16000, dur: pcm.length / 16000 };
+  },
+  elapsed() { return this.active ? (performance.now() - this.t0) / 1000 : 0; }
+};
+function resample(x, from, to) {
+  if (from === to) return x;
+  const ratio = from / to, n = Math.floor(x.length / ratio), y = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    const a = i * ratio, b = Math.min(x.length, (i + 1) * ratio);
+    let s = 0, c = 0; for (let j = Math.floor(a); j < b; j++) { s += x[j]; c++; }
+    y[i] = c ? s / c : 0;
+  }
+  return y;
+}
+function wavBuffer(pcm, sr) {
+  const n = pcm.length, buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+  const w = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+  w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+  v.setUint32(24, sr, true); v.setUint32(28, sr * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+  for (let i = 0; i < n; i++) { const s = Math.max(-1, Math.min(1, pcm[i])); v.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7FFF, true); }
+  return buf;
+}
+
+/* --- 分析 --- */
+const HOP = 0.02;           // 20ミリ秒ごとに調べる
+const PAUSE_MIN = 0.35;     // これ以上の無音を「間」とする
+const PAUSE_LONG = 2.0;     // これ以上は「長すぎる間」
+function pct(sorted, p) { return sorted.length ? sorted[Math.min(sorted.length - 1, Math.max(0, Math.floor(p * sorted.length)))] : 0; }
+function median(a) { const s = a.slice().sort((x, y) => x - y); return pct(s, 0.5); }
+function pitchAt(x, c, sr) {
+  const W = 512, minLag = Math.floor(sr / 600), maxLag = Math.floor(sr / 80);
+  const s0 = c - (W >> 1); if (s0 < 0 || s0 + W + maxLag >= x.length) return 0;
+  let mean = 0; for (let i = 0; i < W; i++) mean += x[s0 + i]; mean /= W;
+  let e0 = 0; for (let i = 0; i < W; i++) { const a = x[s0 + i] - mean; e0 += a * a; }
+  if (e0 < 1e-7) return 0;
+  let best = 0, bestLag = 0; const r = new Float32Array(maxLag + 2);
+  for (let lag = minLag; lag <= maxLag; lag++) {
+    let c2 = 0, e1 = 0;
+    for (let i = 0; i < W; i++) { const a = x[s0 + i] - mean, b = x[s0 + i + lag] - mean; c2 += a * b; e1 += b * b; }
+    const v = e1 > 0 ? c2 / Math.sqrt(e0 * e1) : 0; r[lag] = v;
+    if (v > best) { best = v; bestLag = lag; }
+  }
+  if (best < 0.55) return 0;
+  // 低すぎる高さ（オクターブちがい）を防ぐ：半分の周期にも強い山があればそちらを使う
+  const half = Math.round(bestLag / 2);
+  if (half >= minLag && r[half] > best * 0.85) bestLag = half;
+  return sr / bestLag;
+}
+function analyzeVoice(pcm, sr) {
+  const hop = Math.round(sr * HOP), N = Math.floor(pcm.length / hop), dur = pcm.length / sr;
+  if (N < 30) return { empty: true, dur };
+  const db = new Float32Array(N);
+  for (let f = 0; f < N; f++) { let s = 0; const o = f * hop; for (let i = 0; i < hop; i++) { const v = pcm[o + i]; s += v * v; } db[f] = 20 * Math.log10(Math.sqrt(s / hop) + 1e-7); }
+  const sorted = Array.from(db).sort((a, b) => a - b);
+  const noise = pct(sorted, 0.1), peak = pct(sorted, 0.98);
+  if (peak < -62 || peak - noise < 8) return { empty: true, dur };
+  const th = Math.max(noise + 9, peak - 32, -62);
+  const vo = new Uint8Array(N); for (let f = 0; f < N; f++) vo[f] = db[f] > th ? 1 : 0;
+  // 小さなすき間（0.15秒未満）はつなげ、短すぎる音（0.08秒未満）は消す
+  const runs = () => { const r = []; let s = -1; for (let f = 0; f <= N; f++) { const on = f < N && vo[f]; if (on && s < 0) s = f; if (!on && s >= 0) { r.push([s, f]); s = -1; } } return r; };
+  let rr = runs();
+  for (let i = 1; i < rr.length; i++) if (rr[i][0] - rr[i - 1][1] < 8) for (let f = rr[i - 1][1]; f < rr[i][0]; f++) vo[f] = 1;
+  rr = runs(); rr.forEach(([a, b]) => { if (b - a < 4) for (let f = a; f < b; f++) vo[f] = 0; });
+  rr = runs();
+  if (!rr.length) return { empty: true, dur };
+  // まとまり（フレーズ）と間
+  const gapF = Math.round(PAUSE_MIN / HOP), phr = [];
+  rr.forEach(([a, b]) => { const last = phr[phr.length - 1]; if (last && a - last[1] < gapF) last[1] = b; else phr.push([a, b]); });
+  const pauses = [];
+  for (let i = 1; i < phr.length; i++) { const t = phr[i - 1][1] * HOP, len = (phr[i][0] - phr[i - 1][1]) * HOP; pauses.push({ t: +t.toFixed(2), len: +len.toFixed(2), long: len >= PAUSE_LONG, i }); }
+  const vdb = []; phr.forEach(([a, b]) => { for (let f = a; f < b; f++) if (vo[f]) vdb.push(db[f]); });
+  const vs = vdb.slice().sort((a, b) => a - b), med = pct(vs, 0.5), p90 = pct(vs, 0.9), p30 = pct(vs, 0.3);
+  // なめらかな音量（音節の山を数えるため）
+  const sm = new Float32Array(N); for (let f = 0; f < N; f++) { let s = 0, c = 0; for (let k = -2; k <= 2; k++) { const g = f + k; if (g >= 0 && g < N) { s += db[g]; c++; } } sm[f] = s / c; }
+  const allMean = 10 * Math.log10(vdb.reduce((x, y) => x + Math.pow(10, y / 10), 0) / vdb.length);
+  const phrases = phr.map(([a, b]) => {
+    let e = 0, c = 0, mx = -200; for (let f = a; f < b; f++) if (vo[f]) { e += Math.pow(10, db[f] / 10); c++; if (db[f] > mx) mx = db[f]; }
+    const meanDb = c ? 10 * Math.log10(e / c) : -90;
+    let peaks = 0, lastP = -99;
+    for (let f = a + 1; f < b - 1; f++) {
+      if (sm[f] > sm[f - 1] && sm[f] >= sm[f + 1] && sm[f] > th + 3 && f - lastP >= 5) {
+        let lo = sm[f]; for (let k = Math.max(a, f - 6); k <= Math.min(b - 1, f + 6); k++) lo = Math.min(lo, sm[k]);
+        if (sm[f] - lo >= 2.5) { peaks++; lastP = f; }
+      }
+    }
+    const d = (b - a) * HOP;
+    return { s: +(a * HOP).toFixed(2), e: +(b * HOP).toFixed(2), d: +d.toFixed(2), db: +meanDb.toFixed(1), rel: +(meanDb - allMean).toFixed(1), rate: d > 0.3 ? +(peaks / d).toFixed(2) : 0 };
+  });
+  const speech = phrases.reduce((a, p) => a + p.d, 0);
+  phrases.forEach(p => { p.quiet = p.rel <= -6 && p.d >= 0.3; });
+  let loud = -1, lv = -999; phrases.forEach((p, i) => { if (p.d >= 0.3 && p.db > lv) { lv = p.db; loud = i; } });
+  const rates = phrases.filter(p => p.rate > 0).map(p => p.rate), mr = rates.length ? median(rates) : 0;
+  phrases.forEach(p => { p.fast = mr > 0 && p.rate > mr * 1.3 && p.d >= 0.8; p.slow = mr > 0 && p.rate > 0 && p.rate < mr * 0.7 && p.d >= 0.8; });
+  // 声の高さ（めやす）
+  const pitch = []; const f0s = [];
+  for (let f = 0; f < N; f += 2) {
+    let v = 0; if (vo[f]) v = pitchAt(pcm, f * hop + (hop >> 1), sr);
+    pitch.push(v); if (v) f0s.push(v);
+  }
+  for (let i = 1; i < pitch.length - 1; i++) { const w = [pitch[i - 1], pitch[i], pitch[i + 1]]; if (w.every(x => x > 0)) pitch[i] = w.sort((a, b) => a - b)[1]; }
+  const fs = f0s.slice().sort((a, b) => a - b), f0med = fs.length ? pct(fs, 0.5) : 0;
+  const range = fs.length >= 15 ? 12 * Math.log2(pct(fs, 0.9) / pct(fs, 0.1)) : 0;
+  // グラフ用（0.1秒ごと）
+  const vol = [], pit = [];
+  for (let f = 0; f < N; f += 5) { let m = -90; for (let k = f; k < Math.min(N, f + 5); k++) m = Math.max(m, db[k]); vol.push(Math.round(m)); }
+  for (let i = 0; i < pitch.length; i += 2.5) {
+    const a = pitch.slice(Math.floor(i), Math.floor(i + 2.5)).filter(x => x > 0);
+    pit.push(a.length && f0med ? Math.round(12 * Math.log2(median(a) / f0med) * 10) / 10 : null);
+  }
+  return {
+    dur: +dur.toFixed(2), start: phrases[0].s, end: phrases[phrases.length - 1].e, speech: +speech.toFixed(2),
+    noise: Math.round(noise), th: Math.round(th), med: +med.toFixed(1), p90: +p90.toFixed(1), p30: +p30.toFixed(1), dyn: +(p90 - p30).toFixed(1),
+    phrases, pauses, loud, f0: Math.round(f0med), range: +range.toFixed(1), pitched: fs.length, vol, pit
+  };
+}
+
+/* --- 文字と時間の対応（めやす） --- */
+// 録音中に文字になった時刻があればそれを使い、なければ話している時間に文字を等分に配る
+function makeAligner(v, text, tl) {
+  const L = text.length;
+  if (tl && tl.length >= 3 && tl[tl.length - 1][1] >= L * 0.6) {
+    const pts = [[0, 0]].concat(tl.map(([t, n]) => [Math.max(0, t - 0.6), Math.min(L, n)]));
+    for (let i = 1; i < pts.length; i++) pts[i][1] = Math.max(pts[i][1], pts[i - 1][1]);
+    return { exact: true, at(t) { let i = 1; while (i < pts.length && pts[i][0] < t) i++; if (i >= pts.length) return L; const [t0, n0] = pts[i - 1], [t1, n1] = pts[i]; return Math.round(t1 > t0 ? n0 + (n1 - n0) * (t - t0) / (t1 - t0) : n1); } };
+  }
+  const ph = v.phrases; const tot = v.speech || 1;
+  return { exact: false, at(t) { let acc = 0; for (const p of ph) { if (t >= p.e) acc += p.d; else if (t > p.s) acc += t - p.s; } return Math.round(L * Math.min(1, acc / tot)); } };
+}
+function snipAfter(text, i, n) { const mid = i > 0 && '、。！？!?」「'.indexOf(text[i - 1]) < 0 && '、。！？!?」「'.indexOf(text[i]) < 0; let s = text.slice(i).replace(/^[。、！？!?「」\s]+/, ''); const m = s.match(/^[^。、！？!?\n]{1,40}/); s = m ? m[0] : s; s = s.length > (n || 10) ? s.slice(0, n || 10) + '…' : s; return mid ? '…' + s : s; }
+function snipRange(text, a, b) { let s = text.slice(a, b).replace(/^[。、！？!?」\s]+|[、\s]+$/g, ''); if (s.length > 14) s = s.slice(0, 14) + '…'; return s || snipAfter(text, a, 10); }
+const mmss = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
+const VOL_PCT = d => Math.max(0, Math.min(100, Math.round((d + 60) / 50 * 100)));   // -60dB→0, -10dB→100
+
+/* --- 具体的なふりかえり --- */
+function voiceFeedback(v, text, keyWords) {
+  const al = makeAligner(v, text, v.tl), L = text.length;
+  const cpm = v.speech >= 3 && charLen(text) >= 10 ? Math.round(charLen(text) / (v.speech / 60)) : 0;
+  const out = { vol: [], speed: [], pause: [], strong: [], pitch: [], goods: [], tips: [], cpm, exact: al.exact };
+  const snap = i => { const B = '、。！？!?」'; for (let d = 0; d <= 5; d++) { if (i + d <= L && i + d > 0 && B.indexOf(text[i + d - 1]) >= 0) return text[i + d] === '」' ? i + d + 1 : i + d; if (i - d > 0 && B.indexOf(text[i - d - 1]) >= 0) return text[i - d] === '」' ? i - d + 1 : i - d; } return i; };
+  const ph = v.phrases.map(p => Object.assign({}, p, { a: snap(al.at(p.s)), b: snap(al.at(p.e)) }));
+  // ① 声の大きさ
+  const level = v.med < -42 ? 'low' : v.med < -34 ? 'mid' : 'ok';
+  out.levelLabel = level === 'low' ? 'かなり小さめ' : level === 'mid' ? 'すこし小さめ' : 'しっかり出ている';
+  const quiet = ph.filter(p => p.quiet);
+  if (level === 'low') out.vol.push({ t: '全体的に声が小さめやったよ。マイク（iPad）から遠くなかったかな？ おなかから声を出してみよう！', tip: 1 });
+  quiet.slice(0, 3).forEach(p => out.vol.push({ t: `「${snipRange(text, p.a, p.b)}」のあたり（${mmss(p.s)}）で、声が小さくなっているよ。`, seg: [p.s, p.e], tip: 1 }));
+  if (!quiet.length && level !== 'low') out.vol.push({ t: 'さいごまで、だいたい同じ大きさで話せていたよ！', good: 1 });
+  // ② 速さ
+  if (cpm) {
+    out.speedLabel = cpm < 180 ? 'ゆっくりめ' : cpm <= 330 ? '聞きやすい速さ' : '速め';
+    out.speed.push({ t: `1分間に約${cpm}文字の速さ（${out.speedLabel}）で話していたよ。`, good: cpm >= 180 && cpm <= 330 ? 1 : 0, tip: cpm > 360 ? 1 : 0 });
+  } else out.speed.push({ t: '文字が入ると、話す速さもわかるよ。' });
+  ph.filter(p => p.fast).slice(0, 2).forEach(p => out.speed.push({ t: `「${snipRange(text, p.a, p.b)}」のあたりは、ほかより速くなっているかも。大事なところは、ゆっくり言ってみよう。`, seg: [p.s, p.e], tip: 1 }));
+  ph.filter(p => p.slow).slice(0, 1).forEach(p => out.speed.push({ t: `「${snipRange(text, p.a, p.b)}」のあたりは、ゆっくり、ていねいに話せているよ。`, seg: [p.s, p.e], good: 1 }));
+  // ③ 間
+  const ps = v.pauses.map(p => Object.assign({}, p, { pos: snap(al.at(p.t + p.len / 2)) }));
+  const normal = ps.filter(p => !p.long), longs = ps.filter(p => p.long);
+  const keys = (keyWords || []).filter(Boolean);
+  let goodPause = normal.find(p => { const nx = text.slice(p.pos, p.pos + 14); return keys.some(k => nx.indexOf(k) >= 0); }) || normal.find(p => p.pos > L * 0.6) || normal[0];
+  if (goodPause) out.pause.push({ t: `「${snipAfter(text, goodPause.pos, 10)}」の前で間をとったので、次の言葉が伝わりやすくなったね！`, seg: [Math.max(0, goodPause.t - 1.5), goodPause.t + goodPause.len + 1.5], good: 1 });
+  out.pause.push({ t: `間は${normal.length}回${longs.length ? '、長すぎる間は' + longs.length + '回' : ''}あったよ。` });
+  longs.slice(0, 2).forEach(p => out.pause.push({ t: `${mmss(p.t)}ごろ、「${snipAfter(text, p.pos, 8)}」の前で${p.len.toFixed(1)}びょう止まっているよ。思い出していたのかな？ メモを見ながら話すと、つながりやすいよ。`, seg: [Math.max(0, p.t - 1), p.t + p.len + 1], tip: 1 }));
+  if (!normal.length && v.speech > 6) {
+    const k = keys.find(k => text.indexOf(k) > 0);
+    out.pause.push({ t: k ? `間がほとんどなかったよ。「${k}」の前で、心の中で1、2と数えてから言ってみよう！` : '間がほとんどなかったよ。いちばん伝えたい言葉の前で、心の中で1、2と数えてみよう！', tip: 1 });
+  }
+  if (normal.length > Math.max(4, v.speech / 2.5)) out.pause.push({ t: '止まる回数が多めやったよ。文のとちゅうではなく、文の終わりや大事な言葉の前で止まるようにしてみよう。', tip: 1 });
+  // ④ 強弱
+  if (v.loud >= 0) { const p = ph[v.loud]; out.strong.push({ t: `いちばん強く言ったのは「${snipRange(text, p.a, p.b)}」のところ（${mmss(p.s)}）。そこは、いちばん伝えたいところかな？`, seg: [p.s, p.e], good: 1 }); }
+  out.strongLabel = v.dyn < 6 ? 'ずっと同じくらい' : v.dyn < 12 ? '強弱がある' : '強弱がはっきり';
+  if (v.dyn < 6) out.strong.push({ t: '声の強さがずっと同じくらいやったよ。伝えたい言葉だけ、少し強く言ってみよう！', tip: 1 });
+  else out.strong.push({ t: `強いところと弱いところの差は、約${Math.round(v.dyn)}デシベル（${out.strongLabel}）。` });
+  // ⑤ 抑揚（めやす）
+  if (v.pitched >= 15) {
+    out.pitchLabel = v.range < 3 ? '変化は少なめ' : v.range <= 8 ? 'ほどよく変化' : '大きく変化';
+    out.pitch.push({ t: `声の高さの変化は「${out.pitchLabel}」（約${v.range.toFixed(1)}半音）。` + (v.range < 3 ? '一本調子に聞こえるかも。' : '') });
+  } else out.pitch.push({ t: '声の高さは、うまく読みとれなかったよ。' });
+  out.pitch.push({ t: 'これは機械のめやすだよ。自分の声を聞いて、気持ちが声に出ているか、たしかめてみよう。' });
+  // まとめ（よいところ1つ・チャレンジ1つ）
+  const all = [].concat(out.pause, out.vol, out.speed, out.strong);
+  out.goods = all.filter(x => x.good);
+  const pr = [].concat(out.pause.filter(x => x.tip && /止まっている/.test(x.t)), out.vol.filter(x => x.tip), out.pause.filter(x => x.tip), out.speed.filter(x => x.tip), out.strong.filter(x => x.tip));
+  out.tips = pr;
+  out.ph = ph; out.ps = ps;
+  return out;
+}
+function keyWordsOf(text) {
+  const f = analyze(text); const k = [];
+  if (f.high) k.push(f.high);
+  f.talk.forEach(x => k.push(x.slice(0, 6)));
+  f.feel.slice(0, 2).forEach(x => k.push(x));
+  const s = splitSentences(text); if (s.length >= 2) k.push(s[s.length - 1].slice(0, 6));
+  return uniq(k);
+}
+
+/* --- グラフ --- */
+function voiceGraphHTML(v, gid, fb, opt) {
+  const D = (opt && opt.scaleDur) || v.dur, W = 1000, X = t => (t / D * W).toFixed(1), P = t => (t / D * 100).toFixed(2) + '%';
+  const Y = d => (150 - Math.max(0, Math.min(1, (d + 65) / 60)) * 140).toFixed(1);
+  let area = `M0 150`; v.vol.forEach((d, i) => { area += ` L${X(i * 0.1)} ${Y(d)}`; }); area += ` L${X(v.vol.length * 0.1)} 150 Z`;
+  const bands = v.pauses.map(p => `<rect x="${X(p.t)}" y="0" width="${Math.max(3, X(p.len))}" height="150" fill="${p.long ? '#ff8a8a' : '#8cc4ff'}" opacity=".4"/>`).join('');
+  const qy = Y(v.med - 6);
+  const quiet = v.phrases.filter(p => p.quiet).map(p => `<rect x="${X(p.s)}" y="${(+qy - 6).toFixed(1)}" width="${X(p.d)}" height="${(156 - qy).toFixed(1)}" fill="#ffa53a" opacity=".45"/>`).join('');
+  const lp = v.loud >= 0 ? v.phrases[v.loud] : null;
+  let pl = ''; let pen = false;
+  v.pit.forEach((st, i) => { if (st == null) { pen = false; return; } const y = (195 - Math.max(-10, Math.min(10, st)) * 2.4).toFixed(1); pl += `${pen ? 'L' : 'M'}${X(i * 0.1)} ${y} `; pen = true; });
+  let marks = v.pauses.map(p => `<span style="left:${P(p.t + p.len / 2)};top:2px" class="${p.long ? 'mk long' : 'mk'}">${p.long ? '⏸⏸' : '⏸'}</span>`).join('');
+  if (lp) marks += `<span class="mk star" style="left:${P((lp.s + lp.e) / 2)};top:2px">⭐</span>`;
+  const step = D > 60 ? 10 : D > 20 ? 5 : 2; for (let t = 0; t <= D + 0.01; t += step) marks += `<span class="tick" style="left:${P(t)}">${mmss(t)}</span>`;
+  return `<div class="vgraph"><div class="gwrap"><svg viewBox="0 0 1000 225" preserveAspectRatio="none" id="g-${gid}" data-act="seek" data-g="${gid}" data-dur="${D}">
+    <rect x="0" y="0" width="1000" height="150" fill="#fbfaf5"/>
+    ${bands}
+    <path d="${area}" fill="#7ad37f" opacity=".9"/>
+    ${quiet}
+    <line x1="0" x2="1000" y1="${qy}" y2="${qy}" stroke="#e0902a" stroke-dasharray="8 6" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    <rect x="0" y="168" width="1000" height="54" fill="#f6f2ff"/>
+    <line x1="0" x2="1000" y1="195" y2="195" stroke="#d9d0f5" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <path d="${pl}" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+    <line class="cursor" id="cur-${gid}" x1="0" x2="0" y1="0" y2="225" stroke="#e54848" stroke-width="3" vector-effect="non-scaling-stroke" style="display:none"/>
+  </svg><div class="gmarks">${marks}</div></div>
+  <div class="vlegend"><span><i style="background:#7ad37f"></i>声の大きさ</span><span><i style="background:#ffa53a"></i>小さくなったところ（点線より下）</span><span><i style="background:#8cc4ff"></i>⏸ 間</span><span><i style="background:#ff8a8a"></i>⏸⏸ 長い間</span><span>⭐ いちばん強い</span><span><i style="background:#8b5cf6"></i>下：声の高さ（めやす）</span></div></div>`;
+}
+function markedTextHTML(text, fb) {
+  if (!text) return '';
+  const L = text.length, cls = new Array(L).fill(''), marks = {};
+  fb.ph.forEach((p, i) => { for (let k = p.a; k < Math.min(L, p.b); k++) { if (p.quiet) cls[k] = 'q'; } });
+  if (fb.ph.length) { const lp = fb.ph.reduce((m, p, i) => (p.db > (m ? m.db : -999) && p.d >= 0.3 ? p : m), null); if (lp) for (let k = lp.a; k < Math.min(L, lp.b); k++) cls[k] = 'l'; }
+  fb.ps.forEach(p => { let k = Math.min(L, Math.max(0, p.pos)); marks[k] = p.long ? '<span class="pz long">⏸⏸</span>' : '<span class="pz">⏸</span>'; });
+  let html = '', cur = null;
+  for (let k = 0; k <= L; k++) {
+    if (marks[k]) { if (cur !== null) { html += '</span>'; cur = null; } html += marks[k]; }
+    if (k === L) break;
+    if (cls[k] !== cur) { if (cur !== null) html += '</span>'; html += `<span class="${cls[k]}">`; cur = cls[k]; }
+    html += esc(text[k]);
+  }
+  if (cur !== null) html += '</span>';
+  return `<div class="mtext">${html}</div><div class="note">⏸＝間　<span class="q">うすい字</span>＝声が小さくなったところ　<span class="l">太い字</span>＝いちばん強く言ったところ　${fb.exact ? '（声と文字の位置はめやす）' : '（文字の位置は、話した時間から計算しためやす）'}</div>`;
+}
+
+/* --- 再生 --- */
+const Players = {};
+async function playerFor(gid, audioId) {
+  if (Players[gid] && Players[gid].audioId === audioId) return Players[gid];
+  const buf = await AudioDB.get(audioId);
+  if (!buf) return null;
+  const url = URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }));
+  const a = new Audio(); a.src = url; a.preload = 'auto';
+  const p = { audio: a, url, audioId, stopAt: null, raf: 0 };
+  a.addEventListener('ended', () => stopPlayer(gid));
+  Players[gid] = p; return p;
+}
+function stopAllPlayers(except) { Object.keys(Players).forEach(k => { if (k !== except) stopPlayer(k); }); }
+function stopPlayer(gid) {
+  const p = Players[gid]; if (!p) return;
+  try { p.audio.pause(); } catch (e) { }
+  cancelAnimationFrame(p.raf); p.stopAt = null;
+  const c = document.getElementById('cur-' + gid); if (c) c.style.display = 'none';
+  document.querySelectorAll(`[data-g="${gid}"].pbtn`).forEach(b => b.innerHTML = '▶ 聞く');
+}
+async function playVoice(gid, audioId, from, to) {
+  TTS.stop(); stopAllPlayers(gid);
+  const p = await playerFor(gid, audioId);
+  if (!p) { toast('録音が見つからないよ（けしたか、保存できなかったみたい）'); return; }
+  if (!p.audio.paused && from == null) { stopPlayer(gid); return; }
+  try { p.audio.currentTime = from || 0; } catch (e) { }
+  p.stopAt = to || null;
+  try { await p.audio.play(); } catch (e) { toast('再生できなかったよ。もう一度おしてね'); return; }
+  document.querySelectorAll(`[data-g="${gid}"].pbtn`).forEach(b => b.innerHTML = '⏸ 止める');
+  const svg = document.getElementById('g-' + gid), c = document.getElementById('cur-' + gid);
+  const D = svg ? +svg.dataset.dur : 0;
+  const tick = () => {
+    const t = p.audio.currentTime;
+    if (c && D) { c.style.display = ''; c.setAttribute('x1', t / D * 1000); c.setAttribute('x2', t / D * 1000); }
+    if (p.stopAt && t >= p.stopAt) { stopPlayer(gid); return; }
+    if (!p.audio.paused) p.raf = requestAnimationFrame(tick);
+  };
+  tick();
+}
+function voiceCompact(v, tl, audioId) { const o = Object.assign({}, v); o.tl = tl || []; o.audio = audioId; o.at = Date.now(); return o; }
+
+/* --- 録音して話す（③⑥の画面） --- */
+const RecTalk = {
+  on: false, busy: false, timer: null, srOn: false, baseLen: 0, levelMax: 0,
+  html() {
+    return `<h3 class="rech">🎙️ 話し方チェック（録音）<small>できたら、やってみよう</small></h3>
+    <p class="note" style="margin:0 0 6px">上の文章を見ながら、聞いている人に伝えるつもりで、声に出して話してね。声の大きさ・速さ・間を調べるよ。</p>
+    <div class="micbox">
+      <button class="mic rec" id="recBtn" data-act="rec-talk"><span class="mi">⏺</span>録音して<br>話す</button>
+      <div class="micside">
+        <div class="micstat" id="recStat">ボタンをおすと録音がはじまるよ</div>
+        <div class="lvl"><i id="lvlBar"></i></div>
+        <div class="lvlab" id="lvlLab">声の大きさメーター（録音中に動くよ）</div>
+      </div>
+    </div>
+    <div id="recErr" class="err hidden"></div>
+    <div id="recDone"></div>`;
+  },
+  async start() {
+    if (this.busy) return;
+    const s = sess(); const ta = $('talkText');
+    // 声を文字にする機能が動いていたら止める（iPhoneでは、録音と同時に使うとマイクを取り合って不安定になる）
+    if (Mic.listening || Mic.want) Mic.abortSilently();
+    TTS.stop(); stopAllPlayers();
+    this.busy = true;
+    const eb = $('recErr'); if (eb) eb.classList.add('hidden');
+    try {
+      await Rec.start(rms => { const d = 20 * Math.log10(rms + 1e-7); const b = $('lvlBar'); if (b) b.style.width = Math.min(100, VOL_PCT(d)) + '%'; const l = $('lvlLab'); if (l) l.textContent = d < -50 ? '🔈 声が聞こえないよ' : d < -38 ? '🔉 もう少し大きな声で' : d < -12 ? '🔊 いい大きさ！' : '📢 大きすぎるかも'; });
+    } catch (e) {
+      this.busy = false;
+      const name = e && e.name;
+      const msg = IN_FRAME ? FRAME_MSG : name === 'NotAllowedError' ? 'マイクの使用が許可されていないよ。「設定」→「Safari」→「マイク」を「確認」か「許可」にして、ページを開きなおしてね。' : name === 'NotFoundError' ? 'マイクが見つからないよ。' : name === 'NotReadableError' || name === 'AbortError' ? 'マイクをほかの機能が使っているみたい。2〜3秒待ってから、もう一度おしてね。' : '録音を始められなかったよ。もう一度おしてみてね。';
+      if (eb) { eb.innerHTML = `<div class="ehead">🎤 録音できないよ</div><div>${msg}</div><div class="note" style="margin-top:4px">録音しなくても、文章のアドバイスはもらえるよ。</div>`; eb.classList.remove('hidden'); }
+      say('録音がうまくできへんみたい。録音しなくても、文章でアドバイスできるで！', 'thinking', { speak: false });
+      return;
+    }
+    this.busy = false; this.on = true; this.srOn = false;
+    if (s.draftVoice) { AudioDB.del(s.draftVoice.audio); s.draftVoice = null; }
+    $('recDone').innerHTML = '';
+    const b = $('recBtn'); b.classList.add('on'); b.innerHTML = '<span class="mi">⏹</span>おわったら<br>おす';
+    setExpr('listening'); refreshPhase();
+    this.baseLen = ta.value.length;
+    const t0 = performance.now();
+    this.timer = setInterval(() => {
+      const el = Rec.elapsed(); const st = $('recStat');
+      if (st) st.innerHTML = `<span style="color:#c0392b">⏺ 録音中 ${mmss(el)}</span> <span class="waves"><i></i><i></i><i></i><i></i></span>`;
+      // 録音に音が入っていない（文字にする機能とぶつかった可能性）
+      if (performance.now() - t0 > 2500 && !Rec.lastSound) { const l = $('lvlLab'); if (l) l.textContent = '⚠️ 音が入っていないみたい。マイクがふさがっていないか、たしかめてね。'; }
+      if (el >= 180) this.stop();
+    }, 400);
+  },
+  async stop() {
+    if (!this.on) return;
+    this.on = false; clearInterval(this.timer);
+    const s = sess();
+    const b = $('recBtn'); if (b) { b.classList.remove('on'); b.innerHTML = '<span class="mi">⏺</span>録音して<br>話す'; b.disabled = true; }
+    const st = $('recStat'); if (st) st.textContent = '🔍 たまごんが声を分析しているよ…';
+    analyzingNow = true; refreshPhase();
+    const r = await Rec.stop();
+    setExpr('thinking');
+    await new Promise(res => setTimeout(res, 30));
+    let v = null;
+    try { v = r ? analyzeVoice(r.pcm, r.sr) : null; } catch (e) { v = null; }
+    if (b) b.disabled = false;
+    analyzingNow = false; refreshPhase();
+    const l0 = $('lvlLab'); if (l0) l0.textContent = '声の大きさメーター（録音中に動くよ）'; const lb = $('lvlBar'); if (lb) lb.style.width = '0';
+    if (!v || v.empty) {
+      if (st) st.textContent = 'ボタンをおして話そう。声を録音して、話し方もチェックするよ';
+      $('recDone').innerHTML = `<div class="err">声が録音できていなかったよ。マイクに近づいて、もう一度おしてね。</div>`;
+      setExpr('idle'); return;
+    }
+    const tl = [];
+    const id = 'a' + uid();
+    const saved = await AudioDB.put(id, wavBuffer(r.pcm, r.sr));
+    s.draftVoice = voiceCompact(v, tl, id); save();
+    if (st) st.textContent = '録音できたよ！ もう一度おすと、とりなおせるよ';
+    this.showDone(s, saved);
+    setExpr('happy');
+    const ta = $('talkText');
+    say(charLen(ta.value) >= 8 ? '録音できたで！ 「話しおわった！」をおすと、話の内容と話し方の両方をふりかえるで。' : '録音できたで！ 話した言葉を上の欄に入れてな。マイクボタンやキーボードの🎤でも入れられるで。', 'happy');
+  },
+  showDone(s, saved) {
+    const v = s.draftVoice; if (!v) return;
+    $('recDone').innerHTML = `<div class="recok">✅ 録音できたよ（${mmss(v.dur)}）
+      <button class="btn small blue pbtn" data-act="play" data-g="draft" data-a="${v.audio}">▶ 聞く</button>
+      <button class="btn small ghost" data-act="rec-del">🗑 けす</button>
+      ${saved === false || !AudioDB.persistent ? '<div class="note">※このページでは録音を保存できないので、ページを閉じると消えるよ。</div>' : ''}</div>`;
+  }
+};
+
+/* =====================================================================
+   5c. 声のふりかえり・くらべる・お手本れんしゅう の画面パーツ
+   ===================================================================== */
+const NOTICE = ['声が小さいところがあった', '速くなったところがあった', '間がとれていた', '大事な言葉を強く言えた', '気持ちが声に出ていた', 'もう一度ためしたいところがある'];
+function fbItemsHTML(items, gid, audio) {
+  return items.map(x => `<p class="${x.good ? 'g' : x.tip ? 't' : ''}">${x.good ? '◎ ' : x.tip ? '💡 ' : ''}${esc(x.t)}${x.seg && audio ? ` <button class="seg" data-act="seg" data-g="${gid}" data-a="${audio}" data-from="${x.seg[0]}" data-to="${x.seg[1]}">▶ そこを聞く</button>` : ''}</p>`).join('');
+}
+function voiceCardHTML(at, gid) {
+  const v = at.voice;
+  if (!v) return CAN_REC ? `<div class="card voice"><h2><span class="ic">🎧</span>声のふりかえり</h2><p class="say" style="margin:0">こんどは「⏺ 録音して話す」で話してみてな。声の大きさ・速さ・間・強弱・声の高さを、グラフで見られるで！</p></div>` : '';
+  const fb = voiceFeedback(v, at.text, keyWordsOf(at.text));
+  const audio = v.deleted ? '' : v.audio;
+  const cat = (ic, title, label, items) => `<div class="vcat"><div class="vt">${ic} ${title}${label ? ` <span class="vl">${esc(label)}</span>` : ''}</div>${fbItemsHTML(items, gid, audio)}</div>`;
+  return `<div class="card voice">
+    <h2><span class="ic">🎧</span>声のふりかえり（${at.n}回目）</h2>
+    <div class="prow">${audio ? `<button class="btn small blue pbtn" data-act="play" data-g="${gid}" data-a="${audio}">▶ 聞く</button>` : '<span class="muted">（録音はけしたよ。グラフだけのこっているよ）</span>'}
+      <span class="muted">${mmss(v.dur)}${audio ? '　グラフをタップすると、そこから聞けるよ' : ''}</span>
+      ${audio ? `<button class="btn small ghost" data-act="voice-del" data-n="${at.n}" style="margin-left:auto">🗑 録音をけす</button>` : ''}</div>
+    ${voiceGraphHTML(v, gid, fb)}
+    ${markedTextHTML(at.text, fb)}
+    <div class="vcats">
+      ${cat('🔊', '① 声の大きさ', fb.levelLabel, fb.vol)}
+      ${cat('🏃', '② 話す速さ', fb.speedLabel, fb.speed)}
+      ${cat('⏸', '③ 間のとり方', '', fb.pause)}
+      ${cat('💪', '④ 声の強弱', fb.strongLabel, fb.strong)}
+      ${cat('🎵', '⑤ 抑揚（声の高さ）', fb.pitchLabel, fb.pitch)}
+    </div>
+    <div class="notice"><b>👂 自分の声を聞いて、気づいたことは？</b>（いくつえらんでもOK）
+      <div class="chips" style="margin-top:6px">${NOTICE.map((t, i) => `<button class="chip ${(at.notice || []).indexOf(i) >= 0 ? 'on' : ''}" data-act="notice" data-n="${at.n}" data-i="${i}">${t}</button>`).join('')}</div></div>
+    <p class="note">グラフや数字は、機械が音から計算した「めやす」です。まわりの音やiPadの持ち方でも変わります。いちばん大事なのは、自分の声を聞いて気づくこと！</p>
+  </div>`;
+}
+const VMETRICS = [
+  { k: 'vol', t: '声の大きさ', f: (v, fb) => VOL_PCT(v.med), u: '', up: 1 },
+  { k: 'quiet', t: '小さくなったところ', f: (v, fb) => v.phrases.filter(p => p.quiet).length, u: 'か所', up: -1 },
+  { k: 'cpm', t: '話す速さ', f: (v, fb) => fb.cpm || '－', u: '文字/分', up: 0 },
+  { k: 'pause', t: '間', f: (v, fb) => v.pauses.filter(p => !p.long).length, u: '回', up: 0 },
+  { k: 'long', t: '長すぎる間', f: (v, fb) => v.pauses.filter(p => p.long).length, u: '回', up: -1 },
+  { k: 'dyn', t: '強弱の差', f: (v, fb) => Math.round(v.dyn), u: 'dB', up: 1 },
+  { k: 'range', t: '声の高さの変化', f: (v, fb) => v.pitched >= 15 ? Math.round(v.range * 10) / 10 : '－', u: '半音', up: 1 }
+];
+function voiceGrowth(a, b) {
+  const va = a.voice, vb = b.voice, fa = voiceFeedback(va, a.text, keyWordsOf(a.text)), fbb = voiceFeedback(vb, b.text, keyWordsOf(b.text)), g = [];
+  const qa = va.phrases.filter(p => p.quiet).length, qb = vb.phrases.filter(p => p.quiet).length;
+  if (qb < qa) g.push({ i: '🔊', t: `声が小さくなるところが減ったね！（${qa}か所 → ${qb}か所）` });
+  if (VOL_PCT(vb.med) - VOL_PCT(va.med) >= 8) g.push({ i: '📣', t: '前より、声がしっかり出るようになったね！' });
+  const la = va.pauses.filter(p => p.long).length, lb = vb.pauses.filter(p => p.long).length;
+  if (lb < la) g.push({ i: '🔗', t: '長く止まるところが減って、話がつながったね！' });
+  const gp = fbb.pause.find(x => x.good);
+  const na = va.pauses.filter(p => !p.long).length, nb = vb.pauses.filter(p => !p.long).length;
+  if (gp && (na === 0 || nb > na)) g.push({ i: '⏸', t: gp.t });
+  if (fa.cpm > 330 && fbb.cpm && fbb.cpm <= 330) g.push({ i: '🐢', t: `前より落ち着いた速さで話せたね！（${fa.cpm} → ${fbb.cpm}文字/分）` });
+  if (vb.dyn - va.dyn >= 3) g.push({ i: '💪', t: `声の強弱がはっきりしてきたね！（差 ${Math.round(va.dyn)} → ${Math.round(vb.dyn)}dB）` });
+  if (va.pitched >= 15 && vb.pitched >= 15 && vb.range - va.range >= 2) g.push({ i: '🎵', t: '声の高さの変化が大きくなって、いきいきした話し方に近づいたね（めやす）' });
+  return g;
+}
+function voiceCompareHTML(A) {
+  const vs = A.filter(a => a.voice);
+  if (!vs.length) return '';
+  const D = Math.max.apply(null, vs.map(a => a.voice.dur));
+  const fbs = vs.map(a => voiceFeedback(a.voice, a.text, keyWordsOf(a.text)));
+  const g = vs.length >= 2 ? voiceGrowth(vs[0], vs[vs.length - 1]) : [];
+  const head = `<tr><th></th>${vs.map(a => `<th>${a.n}回目</th>`).join('')}</tr>`;
+  const rows = VMETRICS.map(m => `<tr><td>${m.t}</td>${vs.map((a, i) => {
+    const val = m.f(a.voice, fbs[i]);
+    let arrow = '';
+    if (i > 0 && typeof val === 'number') { const pv = m.f(vs[i - 1].voice, fbs[i - 1]); if (typeof pv === 'number' && pv !== val) { const better = m.up === 0 ? null : (val > pv) === (m.up > 0); arrow = `<span class="${better === null ? '' : better ? 'up' : 'dn'}">${val > pv ? ' ↑' : ' ↓'}</span>`; } }
+    return `<td>${m.k === 'vol' ? `<span class="minibar"><i style="width:${val}%"></i></span>` : esc(val) + (val === '－' ? '' : m.u)}${arrow}</td>`;
+  }).join('')}</tr>`).join('');
+  return `<div class="card voice">
+    <h2><span class="ic">🎧</span>声をくらべる</h2>
+    ${g.length ? `<ul class="growlist">${g.map(x => `<li><span class="gi">${x.i}</span><span>${esc(x.t)}</span></li>`).join('')}</ul>` : vs.length >= 2 ? '<p class="say">2つの声を聞きくらべて、ちがいを見つけてみよう！</p>' : '<p class="say">もう一度「⏺ 録音して話す」で話すと、前の声とくらべられるよ！</p>'}
+    ${vs.map((a, i) => `<div class="vcmp"><div class="prow"><b>${a.n}回目</b>${a.voice.deleted ? '<span class="muted">（録音はけしたよ）</span>' : `<button class="btn small blue pbtn" data-act="play" data-g="c${a.n}" data-a="${a.voice.audio}">▶ 聞く</button>`}<span class="muted">${mmss(a.voice.dur)}</span></div>${voiceGraphHTML(a.voice, 'c' + a.n, fbs[i], { scaleDur: D })}</div>`).join('')}
+    <div style="overflow-x:auto"><table class="vtab">${head}${rows}</table></div>
+    <p class="note">↑↓は前の回とくらべたときの変化（緑＝よくなった、オレンジ＝前より気をつけたい）。「話す速さ」は、話した文字の数を、声を出していた時間でわった「めやす」です。</p>
+  </div>`;
+}
+
+/* --- ⑥ お手本れんしゅう --- */
+const STYLES = [
+  { k: 'normal', ic: '🙂', t: 'ふつうに話す', d: 'いつもの速さで、はっきりと' },
+  { k: 'strong', ic: '💪', t: '大事なところを強く', d: '伝えたい言葉を、ゆっくり強く' },
+  { k: 'pause', ic: '⏸', t: '間をとって', d: '大事な言葉の前で、1、2と止まる' },
+  { k: 'wow', ic: '😲', t: 'びっくりした気持ちで', d: '声を高く、いきおいよく' }
+];
+function pracSplit(sent, key) {
+  let i = key ? sent.indexOf(key) : -1;
+  if (i <= 0) { const c = sent.indexOf('、'); i = c > 0 ? c + 1 : Math.floor(sent.length / 2); key = ''; }
+  return { pre: sent.slice(0, i), rest: sent.slice(i), i };
+}
+function styleParts(style, sent, key) {
+  if (style === 'normal') return [{ t: sent }];
+  if (style === 'wow') return [{ t: sent, rate: 1.15, pitch: 1.8 }];
+  if (style === 'strong') {
+    const i = key ? sent.indexOf(key) : -1;
+    if (i < 0) return [{ t: sent, rate: 0.85, pitch: 1.35 }];
+    return [{ t: sent.slice(0, i), gap: 120 }, { t: key, rate: 0.7, pitch: 1.5, gap: 150 }, { t: sent.slice(i + key.length) }].filter(p => p.t.replace(/[。、！？\s]/g, ''));
+  }
+  const sp = pracSplit(sent, key);
+  return [{ t: sp.pre, gap: 1100 }, { t: sp.rest, rate: 0.9 }].filter(p => p.t.replace(/[。、！？\s]/g, ''));
+}
+function styledHTML(style, sent, key) {
+  if (style === 'strong' && key && sent.indexOf(key) >= 0) { const i = sent.indexOf(key); return `${esc(sent.slice(0, i))}<b class="emph">${esc(key)}</b>${esc(sent.slice(i + key.length))}`; }
+  if (style === 'pause') { const sp = pracSplit(sent, key); return `${esc(sp.pre)}<span class="pz big">⏸ 1、2</span>${esc(sp.rest)}`; }
+  if (style === 'wow') return `<span class="wow">⤴ ${esc(sent)}</span>`;
+  return esc(sent);
+}
+function pracFeedback(take) {
+  const v = take.voice, sent = take.sent, key = take.key || '';
+  const fb = voiceFeedback(v, sent, [key]); const out = [];
+  const L = sent.length, ki = key ? sent.indexOf(key) : -1;
+  // 文字の位置 → 時間（話した時間に等分）
+  const timeOfChar = c => { const target = v.speech * Math.max(0, Math.min(1, c / Math.max(1, L))); let acc = 0; for (const p of v.phrases) { if (acc + p.d >= target) return p.s + (target - acc); acc += p.d; } return v.end; };
+  if (take.style === 'pause') {
+    const ps = fb.ps.filter(p => !p.long);
+    const want = ki > 0 ? ki : pracSplit(sent, key).i;
+    if (!ps.length) out.push({ tip: 1, t: `まだ間がなかったよ。「${snipAfter(sent, want, 8)}」の前で、心の中で1、2と数えてみよう！` });
+    else {
+      const near = ps.find(p => Math.abs(p.pos - want) <= Math.max(3, L * 0.2));
+      out.push(near ? { good: 1, t: `「${snipAfter(sent, want, 8)}」の前で間がとれたね！ 次の言葉が引き立つよ。` } : { tip: 1, t: `間はとれたよ（${ps.length}回）。「${snipAfter(sent, want, 8)}」の前でとると、もっと伝わるで！` });
+    }
+  } else if (take.style === 'strong') {
+    if (ki < 0) out.push({ t: '強くする言葉を、文の中からえらぶと、くわしく見られるよ。' });
+    else {
+      const t0 = timeOfChar(ki), t1 = timeOfChar(ki + key.length);
+      const inK = [], outK = [];
+      v.vol.forEach((d, i) => { const t = i * 0.1; const sp = v.phrases.some(p => t >= p.s && t <= p.e); if (!sp) return; (t >= t0 - 0.15 && t <= t1 + 0.15 ? inK : outK).push(d); });
+      const diff = inK.length && outK.length ? Math.max.apply(null, inK) - median(outK) : 0;
+      out.push(diff >= 3 ? { good: 1, t: `「${key}」のあたりが、ほかより強く言えてるで！（約${Math.round(diff)}dB 大きい・めやす）` } : { tip: 1, t: `「${key}」を、もう少し強く、ゆっくり言ってみよう！` });
+    }
+  } else if (take.style === 'wow') {
+    if (v.pitched >= 10 && v.range >= 6) out.push({ good: 1, t: `声の高さが大きく変わって、びっくりした感じが出てるで！（約${v.range.toFixed(1)}半音・めやす）` });
+    else out.push({ tip: 1, t: 'もっと高い声で、パッと言ってみよう！ お手本の声の高さをまねしてみてな。' });
+    if (v.dyn >= 8) out.push({ good: 1, t: '声の強弱もついていて、いきおいがあるね！' });
+  } else {
+    out.push(fb.levelLabel === 'しっかり出ている' ? { good: 1, t: '声がしっかり出ているよ！' } : { tip: 1, t: `声が${fb.levelLabel}やったよ。もう少し大きな声で言ってみよう。` });
+    if (fb.cpm) out.push({ t: `速さは1分間に約${fb.cpm}文字（${fb.speedLabel}）。` });
+  }
+  out.push({ t: '▶ お手本と自分の声を聞きくらべてみよう。にているところ、ちがうところはどこかな？' });
+  return out;
+}
+function vPractice() {
+  const s = sess(); const at = s.attempts[s.attempts.length - 1];
+  const sents = at ? splitSentences(at.text) : [];
+  if (!s.prac) {
+    const f = at ? analyze(at.text) : null;
+    let sent = sents.find(x => f && ((f.talk[0] && x.indexOf(f.talk[0]) >= 0) || (f.high && x.indexOf(f.high) >= 0))) || sents[0] || 'そのとき、友だちが「見つけた！」と言いました。';
+    const k = keyWordsOf(sent).find(w => sent.indexOf(w) > 0) || '';
+    s.prac = { sent, key: k, style: 'strong', takes: [] }; save();
+  }
+  const P = s.prac;
+  setNext('お手本を聞いて、まねして録音してみよう');
+  $('view').innerHTML = `
+  <div class="card pop">
+    <h2><span class="ic">🎭</span>お手本を聞いて、まねしてみよう</h2>
+    <label class="f">れんしゅうする文</label>
+    ${sents.length ? `<div class="chips" style="margin-bottom:8px">${sents.slice(0, 6).map((x, i) => `<button class="chip ${x === P.sent ? 'on' : ''}" data-act="pr-sent" data-i="${i}" style="font-size:16px">${esc(x.length > 22 ? x.slice(0, 22) + '…' : x)}</button>`).join('')}</div>` : ''}
+    <input type="text" id="prSent" value="${esc(P.sent)}" maxlength="60">
+    <label class="f">強くしたい言葉・前で間をとりたい言葉</label>
+    <input type="text" id="prKey" value="${esc(P.key)}" maxlength="15" placeholder="れい：見つけた">
+  </div>
+  <div class="card">
+    <h2><span class="ic">🔊</span>たまごんのお手本（4つの話し方）</h2>
+    <div class="styles">${STYLES.map(x => `<button class="stylebtn ${P.style === x.k ? 'on' : ''}" data-act="pr-style" data-k="${x.k}"><b>${x.ic} ${x.t}</b><small>${x.d}</small></button>`).join('')}</div>
+    <div class="styled" id="prView">${styledHTML(P.style, P.sent, P.key)}</div>
+    <div class="btnrow"><button class="btn green" data-act="pr-model">🔊 お手本を聞く</button></div>
+    <p class="note">コンピューターの声なので、ちがいが小さく聞こえることもあるよ。上の文の印（太字・⏸・⤴）も見てね。</p>
+  </div>
+  <div class="card">
+    <h2><span class="ic">⏺</span>まねして録音</h2>
+    ${CAN_REC ? `<div class="micbox"><button class="mic rec" id="prRec" data-act="pr-rec"><span class="mi">⏺</span>まねして<br>録音</button>
+      <div class="micside"><div class="micstat" id="prStat">お手本を聞いたら、ボタンをおして同じ文を言ってみよう</div><div class="lvl"><i id="lvlBar"></i></div></div></div>
+      <div id="micErr" class="err hidden"></div>` : '<p class="err">このブラウザでは録音が使えないよ。お手本を聞いて、声に出して練習してね。</p>'}
+    <div id="prTakes">${P.takes.slice().reverse().map((t, i) => takeHTML(t, P.takes.length - i)).join('')}</div>
+  </div>
+  <div class="btnrow"><button class="btn ghost" data-act="pr-back">← アドバイスにもどる</button></div>`;
+  const upd = () => { P.sent = $('prSent').value.trim(); P.key = $('prKey').value.trim(); save(); $('prView').innerHTML = styledHTML(P.style, P.sent, P.key); };
+  $('prSent').addEventListener('input', upd); $('prKey').addEventListener('input', upd);
+  say('同じ文でも、話し方を変えると伝わり方が変わるで！ お手本を聞いて、まねして録音してみてな。', 'happy');
+}
+function takeHTML(t, n) {
+  const st = STYLES.find(x => x.k === t.style) || STYLES[0];
+  const fbk = pracFeedback(t); const fb = voiceFeedback(t.voice, t.sent, [t.key]);
+  return `<div class="take"><div class="prow"><b>${n}回目のまね：${st.ic} ${st.t}</b>
+    ${t.voice.audio ? `<button class="btn small blue pbtn" data-act="play" data-g="t${t.id}" data-a="${t.voice.audio}">▶ 自分の声</button>` : ''}
+    <button class="btn small ghost" data-act="pr-model2" data-s="${t.style}" data-id="${t.id}">🔊 お手本</button>
+    <button class="btn small ghost" data-act="pr-del" data-id="${t.id}" style="margin-left:auto">🗑</button></div>
+    <div class="styled small">${styledHTML(t.style, t.sent, t.key)}</div>
+    ${voiceGraphHTML(t.voice, 't' + t.id, fb)}
+    <div class="vcat" style="margin-top:6px">${fbItemsHTML(fbk, 't' + t.id, t.voice.audio)}</div></div>`;
+}
+const PracRec = {
+  on: false, timer: null,
+  async toggle() {
+    if (this.on) return this.stop();
+    const s = sess(); TTS.stop(); stopAllPlayers();
+    try { await Rec.start(rms => { const b = $('lvlBar'); if (b) b.style.width = Math.min(100, VOL_PCT(20 * Math.log10(rms + 1e-7))) + '%'; }); }
+    catch (e) { const box = $('micErr'); if (box) { box.textContent = '⚠️ ' + (IN_FRAME ? FRAME_MSG : e && e.name === 'NotAllowedError' ? 'マイクの使用が許可されていないよ。iPadの「設定」→「Safari」→「マイク」を許可にしてね。' : '録音を始められなかったよ。'); box.classList.remove('hidden'); } return; }
+    this.on = true; setExpr('listening'); refreshPhase();
+    if (Mic.listening || Mic.want) Mic.abortSilently();
+    const b = $('prRec'); b.classList.add('on'); b.innerHTML = '<span class="mi">⏹</span>おわったら<br>おす';
+    this.timer = setInterval(() => { const st = $('prStat'); if (st) st.innerHTML = `<span style="color:#c0392b">⏺ 録音中 ${mmss(Rec.elapsed())}</span>`; if (Rec.elapsed() > 60) this.stop(); }, 300);
+  },
+  async stop() {
+    if (!this.on) return; this.on = false; clearInterval(this.timer);
+    const s = sess(), P = s.prac;
+    const st = $('prStat'); if (st) st.textContent = '🔍 たまごんが声を分析しているよ…';
+    analyzingNow = true; refreshPhase();
+    const r = await Rec.stop(); setExpr('thinking');
+    await new Promise(res => setTimeout(res, 30));
+    let v = null; try { v = r ? analyzeVoice(r.pcm, r.sr) : null; } catch (e) { v = null; }
+    analyzingNow = false; refreshPhase();
+    const b = $('prRec'); if (b) { b.classList.remove('on'); b.innerHTML = '<span class="mi">⏺</span>まねして<br>録音'; }
+    if (!v || v.empty) { if (st) st.textContent = '声が録音できていなかったよ。もう一度おしてね'; setExpr('idle'); return; }
+    const id = 'p' + uid(); await AudioDB.put(id, wavBuffer(r.pcm, r.sr));
+    const take = { id: uid(), style: P.style, sent: P.sent, key: P.key, voice: voiceCompact(v, [], id) };
+    P.takes.push(take);
+    while (P.takes.length > 6) { const old = P.takes.shift(); if (old.voice.audio) AudioDB.del(old.voice.audio); }
+    save();
+    const fbk = pracFeedback(take);
+    vPractice();
+    const g = fbk.find(x => x.good), tp = fbk.find(x => x.tip);
+    say(`${g ? g.t : 'まねして話せたね！'}${tp ? ' ' + tp.t : ''}`, 'happy');
+  }
+};
+function abortRecordings() {
+  if (RecTalk.on) { RecTalk.on = false; clearInterval(RecTalk.timer); Rec.stop(); }
+  if (PracRec.on) { PracRec.on = false; clearInterval(PracRec.timer); Rec.stop(); }
+  stopAllPlayers();
+}
+function recInfoModal(next) {
+  modal(`<h3>🎙️ 録音について</h3>
+    <ol>
+      <li>録音した声は、<b>このiPadの中だけ</b>にしまうよ。ほかの人やインターネットには送らないよ。</li>
+      <li>声の大きさ・速さ・間などは、<b>このiPadの中で計算</b>するよ。</li>
+      <li>録音は、🗑ボタンでいつでも<b>けせる</b>よ。「せってい」から全部けすこともできるよ。</li>
+      <li>ただし、<b>声を文字にする機能</b>を使うときは、文字にするために、声がiPadのしくみ（Apple）に送られるよ。これは録音とは別のしくみだよ。</li>
+    </ol>
+    <div class="btnrow"><button class="btn green" data-act="rec-info-ok" data-next="${next}">わかった！ 録音する</button><button class="btn ghost small" data-act="close" style="flex:0 0 auto">やめる</button></div>`);
+}
+
+/* =====================================================================
+   6. 画面
+   ===================================================================== */
+const STEPS = ['①であう', '②きめる', '③はなす', '④こたえる', '⑤アドバイス', '⑥もう一度', '⑦くらべる'];
+function stepIndex() {
+  const v = S.view, s = sess();
+  if (v === 'welcome' || v === 'history') return 0;
+  if (v === 'topic') return 1;
+  if (v === 'talk') return s && s.attempts.length >= 1 ? 5 : 2;
+  if (v === 'qa') return 3;
+  if (v === 'advice') return s && S.adviceN >= 2 ? 6 : 4;
+  if (v === 'compare' || v === 'finish') return 6;
+  if (v === 'practice') return s && s.attempts.length >= 2 ? 6 : 4;
+  return 0;
+}
+function renderSteps() {
+  const i = stepIndex();
+  $('steps').innerHTML = STEPS.map((t, k) => `<div class="step ${k < i ? 'done' : ''} ${k === i ? 'now' : ''}">${k < i ? '✓ ' : ''}${t}</div>`).join('');
+  const now = document.querySelector('.step.now'); if (now && now.scrollIntoView) { try { now.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) { } }
+}
+function setNext(t) { $('nextText').textContent = t; }
+function go(v, opt) {
+  abortRecordings();
+  if (Mic.listening || Mic.want) Mic.abortSilently();
+  if (S.view !== v && v === 'practice') S.prevView = S.view;
+  S.view = v; if (opt) Object.assign(S, opt); save();
+  render(); window.scrollTo(0, 0);
+}
+function render() {
+  renderSteps();
+  const R = { welcome: vWelcome, topic: vTopic, talk: vTalk, qa: vQA, advice: vAdvice, compare: vCompare, finish: vFinish, history: vHistory, practice: vPractice };
+  let v = S.view;
+  if (v !== 'welcome' && v !== 'history' && !sess()) v = S.view = 'welcome';
+  (R[v] || vWelcome)();
+}
+function bindCount(id) { const ta = $(id), c = $(id + 'Count'); if (!ta || !c) return; const up = () => c.textContent = charLen(ta.value); ta.addEventListener('input', up); up(); }
+function tamaAvatar() { return '<svg viewBox="0 0 10 10"><use href="#tamaMini" width="10" height="10"/></svg>'; }
+
+/* --- ① であう --- */
+function vWelcome() {
+  setNext('名前を入れて「はじめる」をおそう（名前はなくてもOK）');
+  const cur = sess();
+  $('view').innerHTML = `
+  <div class="card pop" style="text-align:center">
+    <img class="welcomeimg" src="${TAMA_IMG}" alt="TKGたまごん">
+    <h2 style="justify-content:center" class="round">ぼく、TKGたまごん！ きみの<ruby>話<rt>はなし</rt></ruby>の<ruby>相棒<rt>あいぼう</rt></ruby>やで</h2>
+    <p class="muted" style="margin:0">きみが<ruby>体験<rt>たいけん</rt></ruby>した<ruby>出来事<rt>できごと</rt></ruby>を<ruby>聞<rt>き</rt></ruby>かせてな。いっしょに、もっと<ruby>伝<rt>つた</rt></ruby>わる<ruby>話<rt>はな</rt></ruby>し<ruby>方<rt>かた</rt></ruby>にしていこう！</p>
+  </div>
+  <div class="card">
+    <label class="f" for="nm">きみの<ruby>名前<rt>なまえ</rt></ruby>（ニックネームでOK）</label>
+    <input type="text" id="nm" maxlength="10" value="${esc(S.name)}" placeholder="れい：たろう">
+    <p class="note">名前と練習の記録は、このiPadの中だけに保存されます。ほかの人には送られません。</p>
+    <div class="btnrow">
+      <button class="btn green" data-act="start">🥚 はじめる</button>
+      ${cur && cur.attempts.length && !cur.done ? `<button class="btn ghost" data-act="resume">▶ つづきから（${esc(cur.topic)}）</button>` : ''}
+    </div>
+  </div>
+  <div class="card">
+    <h2><span class="ic">🎤</span>声の入力のじゅんび</h2>
+    ${micReadyHTML()}
+  </div>
+  <div class="card">
+    <h2><span class="ic">🗺️</span>れんしゅうの<ruby>流<rt>なが</rt></ruby>れ</h2>
+    <div class="chips" style="gap:6px">${STEPS.map(t => `<span class="chip" style="min-height:auto;font-size:15px">${t}</span>`).join('')}</div>
+    <p class="note">③で話して、④でたまごんの質問に答えて、⑤でアドバイスをもらって、⑥でもう一度話すよ。⑦で前とくらべて、のびたところを見つけよう！</p>
+  </div>`;
+  say(`こんにちは！ ぼく、TKGたまごん。きみが体験した出来事を、聞かせてほしいねん。名前を入れて「はじめる」をおしてな！`, 'happy', { speak: false });
+}
+function micReadyHTML() {
+  if (!Mic.supported) return `<p class="say" style="font-size:17px">⌨️ このブラウザでは、声を文字にする機能が使えません。<b>文字の入力</b>で練習できます。iPadなら、キーボードの🎤ボタン（音声入力）も使えます。</p>`;
+  return `<p style="margin:0;font-size:17px">✅ このブラウザには、声を文字にする機能があります。<br>はじめてマイクをおすと「マイクを使ってもいい？」と聞かれるので、<b>「許可」</b>をおしてね。</p>
+  ${!SECURE ? '<p class="err">⚠️ このページは https で開かれていないため、声の入力が動かない場合があります。先生にURLで開いてもらってね。</p>' : ''}
+  ${IN_FRAME ? '<p class="err">⚠️ いまは、ほかのページの中に表示されているため、マイクが使えない場合があります。そのときは、文字を入れる欄をタップして、キーボードの🎤（音声入力）ボタンで話してね。</p>' : ''}
+  <p class="note">※声は、ブラウザのしくみ（iPadではAppleのサービス）で文字になります。インターネットが必要です。</p>`;
+}
+
+/* --- ② きめる --- */
+function vTopic() {
+  const s = sess();
+  setNext('話したい出来事をえらんで、タイトルを書こう');
+  $('view').innerHTML = `
+  <div class="card pop">
+    <h2><span class="ic">💭</span>どんな<ruby>出来事<rt>できごと</rt></ruby>を<ruby>話<rt>はな</rt></ruby>す？</h2>
+    <div class="chips" id="kinds">${KIND.map(k => `<button class="chip ${s.kind === k.k ? 'on' : ''}" data-act="kind" data-k="${k.k}">${k.ic} ${k.t}</button>`).join('')}</div>
+    <div id="ideas" class="note" style="margin-top:8px">${s.kind ? '💡 たとえば：' + IDEAS[s.kind].join(' ／ ') : ''}</div>
+    <label class="f" for="topic">出来事のタイトル</label>
+    <input type="text" id="topic" maxlength="30" value="${esc(s.topic)}" placeholder="れい：公園で鬼ごっこをしたこと">
+    <div class="btnrow"><button class="btn green" data-act="topic-ok" id="topicOk">✅ これに決めた！</button></div>
+  </div>
+  <div class="card">
+    <h2><span class="ic">🧩</span><ruby>伝<rt>つた</rt></ruby>わる<ruby>話<rt>はなし</rt></ruby>のヒント</h2>
+    ${tips3()}
+  </div>`;
+  const up = () => { $('topicOk').disabled = !$('topic').value.trim(); };
+  $('topic').addEventListener('input', up); up();
+  say(`${S.name ? S.name + 'さん、' : ''}どんな出来事を話してくれるん？ 気持ちをえらんで、出来事のタイトルを書いてな！`, 'idle');
+}
+function tips3() {
+  return `<div class="tips3">
+    <div class="a"><b>はじめ</b>いつ・どこで・だれと</div>
+    <div class="b"><b><ruby>中<rt>なか</rt></ruby></b>いちばん伝えたい場面（ようす・気持ち・セリフ）</div>
+    <div class="c"><b>おわり</b>思ったこと・これからのこと</div>
+  </div>`;
+}
+
+/* --- ③⑥ はなす --- */
+function vTalk() {
+  const s = sess(), n = s.attempts.length + 1;
+  setNext(n === 1 ? 'マイクをおして、出来事を話してみよう' : 'メモを見ながら、もう一度話してみよう');
+  const lastAdv = n > 1 ? s.attempts[n - 2].advice : null;
+  $('view').innerHTML = `
+  <div class="card pop">
+    <h2><span class="ic">🎤</span>${n}<ruby>回目<rt>かいめ</rt></ruby>の<ruby>話<rt>はなし</rt></ruby>「${esc(s.topic)}」</h2>
+    ${n === 1 ? tips3() + '<div style="height:10px"></div>' : ''}
+    ${lastAdv ? `<div class="card tip" style="padding:10px 14px;margin-bottom:12px"><b>🎯 今回のチャレンジ：${esc(lastAdv.title)}</b><div class="note">${esc(lastAdv.text)}</div></div>` : ''}
+    ${micHTML('talkText', n === 1 ? 'ここに話した言葉が出るよ。文字で書いてもOK！' : '今度はメモを見ながら、もう一度はじめから話してね', 6)}
+    ${CAN_REC && !IN_FRAME ? `<div class="recsec">${RecTalk.html()}</div>` : ''}
+    <div class="btnrow"><button class="btn green" data-act="talk-done" id="talkDone">📣 話しおわった！ たまごんに聞いてもらう</button></div>
+    <div id="talkErr" class="err hidden"></div>
+  </div>
+  ${n > 1 ? memoViewHTML(s) : ''}`;
+  bindCount('talkText');
+  const ta = $('talkText'); ta.value = s.draft || '';
+  ta.dispatchEvent(new Event('input'));
+  ta.addEventListener('input', () => { s.draft = ta.value; save(); });
+  if (s.draftVoice && $('recDone')) RecTalk.showDone(s, AudioDB.persistent);
+  if (n === 1) say(`「${s.topic}」の話やね！ ワクワクするわ。${Mic.supported ? 'マイクのボタンをおして' : '文字で'}、さいしょから話してみて！ 話しおわったら、もう一度ボタンをおしてな。`, 'happy');
+  else say(`${n}回目のチャレンジやね！ 前のアドバイス「${lastAdv.title}」を思い出しながら、もう一度はじめから話してみよう！`, 'happy');
+}
+function memoViewHTML(s) {
+  const m = s.memo || {};
+  if (!m.h && !m.n && !m.o) return '';
+  return `<div class="card memoview"><h2><span class="ic">📝</span><ruby>組<rt>く</rt></ruby>み<ruby>立<rt>た</rt></ruby>てメモ</h2>
+    <div class="mrow" style="border-color:#f3d48f;background:#fffaf0"><div class="t">はじめ</div>${esc(m.h) || '<span class="muted">（まだ書いていないよ）</span>'}</div>
+    <div class="mrow" style="border-color:#bfe5c2;background:#f4fbf4"><div class="t">中</div>${esc(m.n) || '<span class="muted">（まだ書いていないよ）</span>'}</div>
+    <div class="mrow" style="border-color:#c8dcf6;background:#f4f8ff"><div class="t">おわり</div>${esc(m.o) || '<span class="muted">（まだ書いていないよ）</span>'}</div></div>`;
+}
+async function submitTalk() {
+  const s = sess(); let ta = $('talkText');
+  if (RecTalk.on) { await RecTalk.stop(); ta = $('talkText'); }
+  if (Mic.listening || Mic.want) { Mic.stop(); }
+  const text = ta.value.trim();
+  const er = $('talkErr');
+  if (charLen(text) < 8) { er.textContent = 'もう少しだけ話してから、おしてね！（8文字いじょう）'; er.classList.remove('hidden'); say('もうちょっとだけ、話を聞かせてほしいな！', 'thinking'); return; }
+  const n = s.attempts.length + 1;
+  const at = { n, text, f: analyze(text), at: Date.now(), self: {}, voice: s.draftVoice || null, notice: [] };
+  s.attempts.push(at); s.draft = ''; s.draftVoice = null;
+  if (n === 1) {
+    s.qa = [];
+    const key = pickNextQuestion(s);
+    const echo = echoFirst(text, s.topic);
+    if (key) { s.qa.push({ key, q: questionText(key, s), a: '' }); s.qaIntro = echo; }
+    save();
+    go('qa');
+  } else {
+    at.advice = makeAdvice(s, n);
+    save();
+    go('advice', { adviceN: n });
+  }
+}
+
+/* --- ④ こたえる（たまごんとの対話） --- */
+function vQA() {
+  const s = sess();
+  const open = s.qa.length && !s.qa[s.qa.length - 1].a && !s.qa[s.qa.length - 1].skip ? s.qa[s.qa.length - 1] : null;
+  const answered = s.qa.filter(x => x.a || x.skip).length;
+  setNext(open ? 'たまごんの質問に答えよう（1つずつでOK）' : '「アドバイスをもらう」をおそう');
+  let log = `<div class="msg me"><div class="av">🙂</div><div class="tx">${esc(s.attempts[0].text)}</div></div>`;
+  s.qa.forEach((x, i) => {
+    const pre = i === 0 ? (s.qaIntro || '') : (s.qa[i - 1].react || '');
+    log += `<div class="msg ${x === open ? 'q' : ''}"><div class="av">${tamaAvatar()}</div><div class="tx">${pre ? esc(pre) + '<br>' : ''}${esc(x.q)}</div></div>`;
+    if (x.a) log += `<div class="msg me"><div class="av">🙂</div><div class="tx">${esc(x.a)}</div></div>`;
+    if (x.skip) log += `<div class="msg me"><div class="av">🙂</div><div class="tx" style="color:#999">（パス）</div></div>`;
+  });
+  if (!open) log += `<div class="msg"><div class="av">${tamaAvatar()}</div><div class="tx">${esc((s.qa.length ? (s.qa[s.qa.length - 1].react || '') + ' ' : (s.qaIntro || echoFirst(s.attempts[0].text, s.topic)) + ' ') + 'たくさん教えてくれてありがとう！ ほな、アドバイスするで！')}</div></div>`;
+  $('view').innerHTML = `
+  <div class="card pop">
+    <h2><span class="ic">💬</span>たまごんとお<ruby>話<rt>はなし</rt></ruby> <span class="qcount">${open ? `しつもん ${s.qa.length}` : `しつもん おわり`}</span></h2>
+    <div class="chat">${log}</div>
+    ${open ? `
+      ${micHTML('ansText', 'ここに答えが出るよ。文字で書いてもOK！', 3)}
+      <div class="btnrow">
+        <button class="btn green" data-act="answer" id="ansBtn">💬 こたえる</button>
+        <button class="btn ghost small" data-act="skip" style="flex:0 0 auto;min-width:150px">🤔 わからない・パス</button>
+      </div>` : ''}
+    <div class="btnrow">
+      <button class="btn ${open ? 'ghost' : ''}" data-act="to-advice" ${answered < 1 && open ? 'style="display:none"' : ''}>💡 アドバイスをもらう</button>
+    </div>
+  </div>`;
+  if (open) bindCount('ansText');
+  const last = document.querySelector('.chat .msg:last-child'); if (last && last.scrollIntoView) { try { last.scrollIntoView({ block: 'center' }); } catch (e) { } }
+  const prevReact = s.qa.length >= 2 ? (s.qa[s.qa.length - 2].react || '') : (s.qaIntro || '');
+  if (open) say(`${prevReact} ${open.q}`.trim(), 'listening');
+  else say('たくさん教えてくれてありがとう！ ほな、アドバイスするで！「アドバイスをもらう」をおしてな。', 'happy');
+}
+function answerQ(skip) {
+  const s = sess(); const x = s.qa[s.qa.length - 1]; if (!x) return;
+  if (Mic.listening || Mic.want) Mic.stop();
+  const ta = $('ansText');
+  const a = skip ? '' : (ta ? ta.value.trim() : '');
+  if (!skip && !a) { toast('答えを話すか、書いてからおしてね'); return; }
+  if (skip) { x.skip = true; x.react = 'だいじょうぶやで！'; } else { x.a = a; x.react = reactTo(x.key, a, s.kind); }
+  const key = pickNextQuestion(s);
+  if (key) s.qa.push({ key, q: questionText(key, s), a: '' });
+  save(); render();
+}
+
+/* --- ⑤ アドバイス --- */
+function buildMemo(s) {
+  const src = [s.attempts[0].text].concat(s.qa.filter(x => x.a).map(x => autoPunct(x.a)));
+  const sents = []; src.forEach(t => splitSentences(t).forEach(x => sents.push(/[。！？!?]$/.test(x) ? x : x + '。')));
+  const h = [], n = [], o = [];
+  sents.forEach((x, i) => {
+    const scene = findTalk(x).length || allMatches(RX.detail, x).length || allMatches(RX.feel, x).length || RX.high.test(x);
+    if (RX.end.test(x) && i > 0) o.push(x);
+    else if (i === 0) h.push(x);
+    else if (!scene && (RX.when.test(x) || findPlace(x) || RX.who.test(x)) && charLen(x) < 25) h.push(x);
+    else n.push(x);
+  });
+  return { h: h.join(''), n: n.join(''), o: o.join('') };
+}
+function checksHTML(f) {
+  return `<div class="checks">${Object.keys(LABEL).map(k => `<div class="ck ${f.has[k] ? 'on' : ''}"><span class="i">${ICON[k]}</span>${LABEL[k]}<span class="s">${f.has[k] ? '✓ 入ってた' : SUB[k]}</span></div>`).join('')}</div>
+  <div class="parts"><div class="part ${f.parts.hajime ? 'on' : ''}">はじめ</div><div class="part ${f.parts.naka ? 'on' : ''}">中</div><div class="part ${f.parts.owari ? 'on' : ''}">おわり</div></div>`;
+}
+const SELF = [
+  { k: 'vol', t: '声の大きさ', d: 'みんなに聞こえる声で話せた' },
+  { k: 'speed', t: '話す速さ', d: 'ゆっくり、はっきり話せた' },
+  { k: 'pause', t: '間（ま）', d: '大事なところの前で、少し止まれた' },
+  { k: 'stress', t: '強調', d: '伝えたい言葉を、強く言えた' }
+];
+const FACES = [{ v: 3, f: '😊', t: 'できた' }, { v: 2, f: '🙂', t: 'すこし' }, { v: 1, f: '🤔', t: 'もうすこし' }];
+function selfHTML(at) {
+  return SELF.map(x => `<div class="selfrow"><div class="lab">${x.t}<small>${x.d}</small></div><div class="faces">${FACES.map(fc => `<button class="face ${at.self[x.k] === fc.v ? 'on' : ''}" data-act="self" data-k="${x.k}" data-v="${fc.v}"><b>${fc.f}</b>${fc.t}</button>`).join('')}</div></div>`).join('');
+}
+function vAdvice() {
+  const s = sess(); const n = S.adviceN || s.attempts.length; const at = s.attempts[n - 1];
+  if (!at.advice) { at.advice = makeAdvice(s, n); save(); }
+  const ad = at.advice;
+  if (n === 1 && !s.memo) { s.memo = buildMemo(s); save(); }
+  const g = n >= 2 ? growth(s.attempts[n - 2], at, s.attempts[n - 2].advice && s.attempts[n - 2].advice.key) : [];
+  const gFirst = n >= 3 ? growth(s.attempts[0], at, null) : [];
+  setNext(n === 1 ? 'アドバイスを読んで、メモを整えたら「もう一度話す」をおそう' : 'よくなったところを見て、「くらべる」か「もう一度話す」をおそう');
+  $('view').innerHTML = `
+  ${n >= 2 ? `<div class="card grow pop"><h2><span class="ic">🆙</span>前よりよくなったところ</h2>
+    ${g.length ? `<ul class="growlist">${g.map(x => `<li><span class="gi">${x.i}</span><span>${esc(x.t)}</span></li>`).join('')}</ul>`
+      : `<p class="say">今回も最後まで話せたね！ 前のチャレンジ「${esc(s.attempts[n - 2].advice.title)}」に、もう一度ちょうせんしてみよう！</p>`}
+    ${gFirst.length ? `<p class="note">1回目とくらべると：${gFirst.map(x => esc(x.t)).join(' ／ ')}</p>` : ''}
+  </div>` : ''}
+  <div class="card good pop">
+    <h2><span class="ic">🌟</span>ここがよかった！</h2>
+    ${ad.goods.map(x => `<p class="say" style="margin:0 0 6px">◎ ${esc(x.t)}</p>`).join('')}
+  </div>
+  <div class="card tip">
+    <h2><span class="ic">💡</span>つぎのチャレンジ（1つだけ）：${esc(ad.title)}</h2>
+    <p class="say" style="margin:0">${esc(ad.text)}</p>
+    ${ad.extra ? `<p class="say" style="margin:8px 0 0;color:#9a5a0f">👉 ${esc(ad.extra)}</p>` : ''}
+    <div class="ex">${esc(ad.ex)}</div>
+  </div>
+  <div class="card">
+    <h2><span class="ic">🔍</span>${n}回目の話に入っていたもの</h2>
+    ${checksHTML(at.f)}
+    <p class="note">こい色になっているものが、話の中に見つかったものだよ。</p>
+  </div>
+  ${voiceCardHTML(at, 'v' + n)}
+  <div class="card self">
+    <h2><span class="ic">🗣️</span>話し方を、自分でもふりかえろう</h2>
+    <p class="note" style="margin-top:0">${at.voice ? '録音を聞いて、自分ではどう思ったか、えらんでな。' : 'こんかいは録音していないから、自分の話し方を思い出して、えらんでな。'}</p>
+    ${selfHTML(at)}
+  </div>
+  ${n === 1 ? `<div class="card">
+    <h2><span class="ic">📝</span><ruby>組<rt>く</rt></ruby>み<ruby>立<rt>た</rt></ruby>てメモ</h2>
+    <p class="note" style="margin-top:0">話した言葉と、質問の答えをならべたよ。直したり、足したりしてね。2回目に話すときに見られるよ。</p>
+    <div class="memo">
+      <div class="mrow h"><div class="t">はじめ<small>いつ・どこで・だれと</small></div><textarea id="mh" placeholder="れい：きのう、公園で、友だちと鬼ごっこをしました。">${esc(s.memo.h)}</textarea></div>
+      <div class="mrow n"><div class="t">中<small>いちばん伝えたい場面・ようす・気持ち・セリフ</small></div><textarea id="mn" placeholder="れい：とくにおもしろかったのは〜">${esc(s.memo.n)}</textarea></div>
+      <div class="mrow o"><div class="t">おわり<small>思ったこと・これから</small></div><textarea id="mo" placeholder="れい：また〜したいと思いました。">${esc(s.memo.o)}</textarea></div>
+    </div>
+  </div>` : ''}
+  <div class="btnrow">
+    <button class="btn green" data-act="again">🎤 もう一度話してみる</button>
+    <button class="btn blue" data-act="practice">🎭 お手本で話し方れんしゅう</button>
+    ${n >= 2 ? '<button class="btn blue" data-act="compare">📊 くらべてみる</button>' : ''}
+    <button class="btn ghost small" data-act="finish" style="flex:0 0 auto;min-width:140px">🏁 おわる</button>
+  </div>`;
+  if (n === 1) ['mh', 'mn', 'mo'].forEach((id, i) => $(id).addEventListener('input', e => { s.memo[['h', 'n', 'o'][i]] = e.target.value; save(); }));
+  const lead = n >= 2 && g.length ? g[0].t + ' ' : '';
+  let vgood = ''; if (at.voice) { const vf = voiceFeedback(at.voice, at.text, keyWordsOf(at.text)); if (vf.goods[0]) vgood = ' 声のほうは、' + vf.goods[0].t; }
+  say(`${lead}${ad.goods[0].t}${vgood} つぎのチャレンジは、「${ad.title}」や。${ad.text}`, 'happy');
+}
+
+/* --- ⑦ くらべる --- */
+function vCompare() {
+  const s = sess(); const A = s.attempts;
+  setNext('のびたところをたしかめよう。もう一回話すこともできるよ');
+  const first = A[0], last = A[A.length - 1];
+  const gAll = A.length >= 2 ? growth(first, last, null) : [];
+  const maxLen = Math.max.apply(null, A.map(a => a.f.len)) || 1;
+  const metric = (lab, fn, max, unit) => `<div class="row"><div class="lab">${lab}</div><div class="tr">${A.map((a, i) => { const v = fn(a); return `<div class="b ${i === A.length - 1 ? 'last' : ''}"><i style="width:${Math.max(4, Math.round(v / max * 100))}%"></i><span>${i + 1}回目：${v}${unit}</span></div>`; }).join('')}</div></div>`;
+  const selfAvg = a => { const v = Object.values(a.self || {}); return v.length ? v.filter(x => x === 3).length : 0; };
+  $('view').innerHTML = `
+  <div class="card grow pop">
+    <h2><span class="ic">🌱</span>1回目から、こんなにのびたよ！</h2>
+    ${gAll.length ? `<ul class="growlist">${gAll.map(x => `<li><span class="gi">${x.i}</span><span>${esc(x.t)}</span></li>`).join('')}</ul>` : '<p class="say">何回も話したことが、いちばんの力になるで！ チャレンジを続けよう！</p>'}
+  </div>
+  <div class="card">
+    <h2><span class="ic">📊</span>グラフでくらべる</h2>
+    <div class="bars2">
+      ${metric('話の長さ', a => a.f.len, maxLen, '文字')}
+      ${metric('入っていたもの', a => a.f.elements, 7, '/7')}
+      ${metric('組み立て', a => a.f.partCount, 3, '/3')}
+      ${metric('気持ちの言葉', a => a.f.feel.length, Math.max(3, ...A.map(a => a.f.feel.length)), 'こ')}
+      ${metric('話し方😊の数', selfAvg, 4, '/4')}
+    </div>
+    <p class="note">「話し方😊の数」は、自分でふりかえった結果だよ。</p>
+  </div>
+  ${voiceCompareHTML(A)}
+  <div class="card">
+    <h2><span class="ic">🔁</span>話をならべて見る</h2>
+    <div class="cmp">${A.map(a => `<div class="cmpcol">
+      <h3>${a.n}回目</h3>
+      <div class="txt">${esc(a.text)}</div>
+      ${checksHTML(a.f)}
+      ${a.advice ? `<div class="mini">🌟 ${esc(a.advice.goods[0].t)}</div><div class="mini">💡 チャレンジ：${esc(a.advice.title)}</div>` : ''}
+    </div>`).join('')}</div>
+    ${s.qa && s.qa.length ? `<details style="margin-top:10px"><summary style="font-weight:800;min-height:44px">💬 たまごんの質問と答え（1回目のあと）</summary>${s.qa.map(x => `<p style="margin:6px 0"><b>Q.</b> ${esc(x.q)}<br><b>A.</b> ${x.skip ? '（パス）' : esc(x.a)}</p>`).join('')}</details>` : ''}
+  </div>
+  <div class="btnrow">
+    <button class="btn green" data-act="again">🎤 もう一回話す</button>
+    <button class="btn blue" data-act="practice">🎭 お手本で話し方れんしゅう</button>
+    <button class="btn blue" data-act="new">🥚 新しい出来事で練習</button>
+    ${s.done ? '<button class="btn ghost" data-act="history">📒 きろくにもどる</button>' : '<button class="btn ghost small" data-act="finish" style="flex:0 0 auto;min-width:140px">🏁 おわる</button>'}
+  </div>`;
+  say(gAll.length ? `${gAll[0].t} ${A.length}回も話したきみは、ほんまにすごいで！` : `${A.length}回も話してくれたね！ 何回も話すことが、いちばんの力になるで！`, 'happy');
+}
+
+/* --- おわり --- */
+function vFinish() {
+  const s = sess(); s.done = true; save();
+  const A = s.attempts, g = A.length >= 2 ? growth(A[0], A[A.length - 1], null) : [];
+  const last = A[A.length - 1];
+  const star = last && last.f.partCount === 3 && last.f.elements >= 6;
+  setNext('おつかれさま！ また練習しにきてな');
+  $('view').innerHTML = `
+  <div class="card pop" style="text-align:center">
+    <div class="stampbig"><span style="font-size:13px">TKGたまごん</span><span style="font-size:22px">よくできました</span><span>🥚</span></div>
+    <h2 style="justify-content:center;margin-top:14px">「${esc(s.topic)}」の練習、おつかれさま！</h2>
+    <div class="stamps" style="justify-content:center">${A.map(() => '🥚').join('')}${g.length ? '🐣' : ''}${star ? '🌟' : ''}</div>
+    <p class="note">🥚＝話した回数　🐣＝前よりのびた　🌟＝はじめ・中・おわりがそろって、6つ以上入っていた</p>
+  </div>
+  ${g.length ? `<div class="card grow"><h2><span class="ic">🌱</span>のびたところ</h2><ul class="growlist">${g.map(x => `<li><span class="gi">${x.i}</span><span>${esc(x.t)}</span></li>`).join('')}</ul></div>` : ''}
+  <div class="btnrow">
+    <button class="btn green" data-act="new">🥚 新しい出来事で練習</button>
+    <button class="btn blue" data-act="compare">📊 くらべる画面を見る</button>
+    <button class="btn ghost" data-act="home">🏠 はじめにもどる</button>
+  </div>`;
+  say(`${S.name ? S.name + 'さん、' : ''}${A.length}回も話してくれて、ありがとう！ ${g.length ? g[0].t + ' ' : ''}また、きみの話を聞かせてな！`, 'happy');
+}
+
+/* --- きろく --- */
+function vHistory() {
+  setNext('前の練習を見ることができるよ');
+  const list = S.sessions.filter(x => x.attempts.length).slice().reverse();
+  $('view').innerHTML = `
+  <div class="card pop">
+    <h2><span class="ic">📒</span>れんしゅうの<ruby>記録<rt>きろく</rt></ruby></h2>
+    ${list.length ? list.map(x => `<div class="hist"><div class="ht">${esc(x.topic)}<small>${fmtDate(x.created)}・${x.attempts.length}回話した${x.done ? '' : '（とちゅう）'}</small></div>
+      <button class="btn small blue" data-act="open" data-id="${x.id}">見る</button></div>`).join('') : '<p class="say">まだ記録がないよ。</p>'}
+    <p class="note">記録はこのiPadの中だけに保存されています。</p>
+    <div class="btnrow"><button class="btn ghost" data-act="home">🏠 はじめにもどる</button>${list.length ? '<button class="btn ghost small" data-act="clear-all" style="flex:0 0 auto;min-width:180px;color:#c0392b">🗑️ 記録をすべてけす</button>' : ''}</div>
+  </div>`;
+  say('これまでの練習の記録やで。見たい出来事の「見る」をおしてな。', 'idle', { speak: false });
+}
+
+/* --- モーダル --- */
+function modal(html) { closeModal(); const bg = document.createElement('div'); bg.className = 'mbg'; bg.id = 'mbg'; bg.innerHTML = `<div class="modal">${html}</div>`; bg.addEventListener('click', e => { if (e.target === bg) closeModal(); }); document.body.appendChild(bg); }
+function closeModal() { const m = $('mbg'); if (m) m.remove(); }
+function settingsModal() {
+  if (vvCfg().mode !== 'browser') loadSpeakers();
+  const c = vvCfg(), key = vvKey(), fast = c.mode === 'fast', browser = c.mode === 'browser';
+  const names = S.vvSpeakers && S.vvSpeakers.length ? S.vvSpeakers.map((n, i) => [i, String(n).replace(/^VOICEVOX:/, '')]) : Object.entries(VV_FALLBACK_SPEAKERS).map(([i, n]) => [+i, n]);
+  let savedKey = false; try { savedKey = !!localStorage.getItem(VV_KEY_STORE); } catch (e) { }
+  modal(`<h3>⚙️ せってい</h3>
+    <div class="vvset">
+    <h4>🔊 たまごんの声（WEB版VOICEVOX）</h4>
+    <label class="f">声のしくみ</label>
+    <div class="chips">
+      <button class="chip ${c.mode === 'slow' ? 'on' : ''}" data-act="vv-mode" data-v="slow">VOICEVOX 低速（キー不要）</button>
+      <button class="chip ${fast ? 'on' : ''}" data-act="vv-mode" data-v="fast">VOICEVOX 高速（APIキー）</button>
+      <button class="chip ${browser ? 'on' : ''}" data-act="vv-mode" data-v="browser">iPadの声（予備）</button>
+    </div>
+    <p class="note">${fast ? '高速API：声がすぐにできます。話す速さ・声の高さ・イントネーションを変えられます。APIキーが必要で、1回ごとに「1500＋100×文字数」ポイントを使います（1日の上限あり）。' : c.mode === 'slow' ? '低速API：APIキーなしで使えます。声ができるまで数秒〜十数秒かかることがあります。話す速さは再生の速さで変えます。声の高さ・イントネーションは変えられません。' : 'iPadに入っている声で読みます（VOICEVOXが使えないときの予備）。'}</p>
+    ${fast ? `<label class="f" for="vvKey">APIキー（先生用）</label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><input type="password" id="vvKey" autocomplete="off" value="${esc(key)}" placeholder="su-shiki.com で発行したAPIキー" style="flex:1;min-width:220px">
+      <button class="btn small green" data-act="vv-key-save">保存</button><button class="btn small ghost" data-act="vv-key-clear">けす</button></div>
+    <label class="chk"><input type="checkbox" id="vvKeyKeep" ${savedKey || !key ? 'checked' : ''}> このiPadにキーをおぼえさせる（オフにすると、ページを閉じるまでだけ使います）</label>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px"><button class="btn small ghost" data-act="vv-points">残りポイントを確認</button><span id="vvPoints" class="note"></span></div>
+    <details class="note" style="margin-top:6px"><summary style="font-weight:800;min-height:40px">APIキーの安全について</summary>
+      APIキーはこのアプリのHTMLには入れていません。ここで入れたキーは、このiPadのブラウザの中にだけ保存され、VOICEVOX（tts.quest）へ送るときだけ使います。<br>
+      HTMLにキーを直接書いて公開すると、ページを開いた人はだれでもソースからキーを見られます。ポイントはキーごとに共有なので、だれかが使いすぎると、授業中に声が出なくなります。キーはHTMLに書かず、使う端末で入力してください。クラス全体で使う場合は、学校のサーバーなどでキーをかくして中継するしくみがより安全です。
+    </details>` : ''}
+    ${browser ? '' : `<label class="f" for="vvSpk">話者（声のキャラクター）</label>
+    <select id="vvSpk" class="sel">${names.map(([i, n]) => `<option value="${i}" ${+i === +c.speaker ? 'selected' : ''}>${esc(n)}</option>`).join('')}</select>
+    <p class="note">キャラクターごとに利用規約があります。授業で使う前に、各キャラクターの規約を確認してください。画面には「VOICEVOX:キャラクター名」を表示します。</p>`}
+    <label class="f">話す速さ <span id="vvSpeedV">${c.speed.toFixed(2)}</span></label>
+    <input type="range" class="rng" id="vvSpeed" min="0.7" max="1.5" step="0.05" value="${c.speed}">
+    ${browser ? '' : `<label class="f">声の高さ <span id="vvPitchV">${c.pitch.toFixed(2)}</span>${fast ? '' : '（高速APIのみ）'}</label>
+    <input type="range" class="rng" id="vvPitch" min="-0.1" max="0.1" step="0.01" value="${c.pitch}" ${fast ? '' : 'disabled'}>
+    <label class="f">イントネーション（抑揚） <span id="vvIntoV">${c.into.toFixed(2)}</span>${fast ? '' : '（高速APIのみ）'}</label>
+    <input type="range" class="rng" id="vvInto" min="0.5" max="1.8" step="0.05" value="${c.into}" ${fast ? '' : 'disabled'}>`}
+    <div class="btnrow" style="margin-top:8px"><button class="btn small green" data-act="vv-test">🔊 この声で試す</button></div>
+    <label class="f">たまごんの声を流すタイミング</label>
+    <div class="chips"><button class="chip ${S.settings.auto ? 'on' : ''}" data-act="auto" data-v="1">🔊 自動で読む</button><button class="chip ${!S.settings.auto ? 'on' : ''}" data-act="auto" data-v="0">🔇 読まない（ボタンで聞く）</button></div>
+    ${browser ? '' : `<label class="f">VOICEVOXが失敗したとき</label>
+    <div class="chips"><button class="chip ${!c.fallback ? 'on' : ''}" data-act="vv-fb" data-v="0">知らせるだけ</button><button class="chip ${c.fallback ? 'on' : ''}" data-act="vv-fb" data-v="1">iPadの声で読む</button></div>`}
+    <p class="note">たまごんの返事の文章は、声にするためにVOICEVOX（su-shiki.com / tts.quest）のサーバーへ送られます。子どもの話した文章や録音は送りません。</p>
+    </div>
+    <label class="f">声の入力（音声認識）</label>
+    <p class="note" style="margin-top:0">${Mic.supported ? '✅ このブラウザは対応しています。' : '❌ このブラウザは対応していません（文字入力で使えます）。'}${SECURE ? '' : ' ⚠️ https で開かれていないため、動かない場合があります。'}<br>声はブラウザのしくみ（iPad では Apple のサービス）で文字に変えられます。インターネットが必要です。</p>
+    <label class="f">記録と録音</label>
+    <p class="note" style="margin-top:0">名前・話した文章・ふりかえりは、この端末の中（localStorage）だけに保存されます。録音した声は、この端末の中（IndexedDB）だけに保存され、声の分析もこの端末の中で行います。どちらも外のサーバーには送りません。</p>
+    <div class="btnrow" style="margin-top:4px"><button class="btn ghost small" data-act="rec-clear" style="color:#c0392b">🗑️ 録音をすべてけす</button></div>
+    <div class="btnrow"><button class="btn green" data-act="close">とじる</button></div>`);
+}
+function micExplainModal(taId) {
+  modal(`<h3>🎤 マイクを使うよ</h3>
+    <ol><li>このあと<b>「マイクを使ってもいい？」</b>と出たら、<b>「許可」</b>をおしてね。</li>
+    <li>マイクが赤くなったら、話しはじめてね。</li>
+    <li>話しおわったら、<b>もう一度マイクをおして</b>止めてね。</li>
+    <li>まちがった文字は、あとでタップして直せるよ。</li></ol>
+    <p class="note">声はブラウザのしくみ（iPad では Apple のサービス）で文字になります。</p>
+    <div class="btnrow"><button class="btn green" data-act="mic-go" data-ta="${taId}">🎤 わかった！ 話す</button><button class="btn ghost small" data-act="kb-close" data-ta="${taId}" style="flex:0 0 auto">⌨️ 文字で書く</button></div>`);
+}
+
+/* =====================================================================
+   7. ボタンの動き
+   ===================================================================== */
+function newSession() { const s = { id: uid(), created: Date.now(), topic: '', kind: '', attempts: [], qa: [], memo: null, draft: '', done: false }; S.sessions.push(s); if (S.sessions.length > 40) S.sessions.shift(); S.cur = s.id; save(); return s; }
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const a = el.dataset.act;
+  switch (a) {
+    case 'start': { const nm = $('nm'); S.name = nm ? nm.value.trim().slice(0, 10) : ''; newSession(); go('topic'); break; }
+    case 'resume': { const s = sess(); if (!s.topic) go('topic'); else if (!s.attempts.length) go('talk'); else if (s.attempts.length === 1 && !s.attempts[0].advice) go('qa'); else go('advice', { adviceN: s.attempts.length }); break; }
+    case 'kind': { const s = sess(); s.kind = el.dataset.k; save(); document.querySelectorAll('#kinds .chip').forEach(c => c.classList.toggle('on', c === el)); $('ideas').textContent = '💡 たとえば：' + IDEAS[s.kind].join(' ／ '); break; }
+    case 'topic-ok': { const s = sess(); const t = $('topic').value.trim(); if (!t) return; s.topic = t; save(); go('talk'); break; }
+    case 'mic': {
+      const ta = $(el.dataset.ta); if (!ta) return;
+      if (Mic.listening || Mic.want) { Mic.stop(); return; }
+      if (!S.micExplained) { micExplainModal(el.dataset.ta); return; }
+      Mic.start(ta); break;
+    }
+    case 'mic-go': { S.micExplained = true; save(); closeModal(); const ta = $(el.dataset.ta); if (ta) Mic.start(ta); break; }
+    case 'kb-close': { closeModal(); const ta = $(el.dataset.ta); if (ta) ta.focus(); break; }
+    case 'kb': { const ta = document.querySelector('#talkText,#ansText'); if (ta) { ta.readOnly = false; ta.focus(); } break; }
+    case 'talk-done': submitTalk(); break;
+    case 'rec-talk': if (RecTalk.on) RecTalk.stop(); else if (!S.recExplained) recInfoModal('talk'); else RecTalk.start(); break;
+    case 'rec-info-ok': { S.recExplained = true; save(); closeModal(); if (el.dataset.next === 'prac') PracRec.toggle(); else RecTalk.start(); break; }
+    case 'rec-del': { const s = sess(); if (s.draftVoice) { AudioDB.del(s.draftVoice.audio); s.draftVoice = null; save(); } stopAllPlayers(); $('recDone').innerHTML = ''; toast('録音をけしたよ'); break; }
+    case 'play': playVoice(el.dataset.g, el.dataset.a); break;
+    case 'seg': playVoice(el.dataset.g, el.dataset.a, +el.dataset.from, +el.dataset.to); break;
+    case 'seek': { const svg = el.closest('svg'); const btn = document.querySelector(`.pbtn[data-g="${el.dataset.g}"]`); if (!svg || !btn) break; const r = svg.getBoundingClientRect(); const t = Math.max(0, (e.clientX - r.left) / r.width * (+svg.dataset.dur)); playVoice(el.dataset.g, btn.dataset.a, t); break; }
+    case 'notice': { const s = sess(); const at = s.attempts[+el.dataset.n - 1]; if (!at) break; at.notice = at.notice || []; const i = +el.dataset.i; const k = at.notice.indexOf(i); if (k >= 0) at.notice.splice(k, 1); else at.notice.push(i); save(); el.classList.toggle('on'); break; }
+    case 'voice-del': { const s = sess(); const at = s.attempts[+el.dataset.n - 1]; if (at && at.voice) { AudioDB.del(at.voice.audio); at.voice.deleted = true; save(); stopAllPlayers(); render(); toast('録音をけしたよ（グラフはのこるよ）'); } break; }
+    case 'practice': go('practice'); break;
+    case 'pr-back': go(S.prevView && S.prevView !== 'practice' ? S.prevView : 'advice'); break;
+    case 'pr-sent': { const s = sess(); const at = s.attempts[s.attempts.length - 1]; const x = splitSentences(at.text)[+el.dataset.i]; s.prac.sent = x; s.prac.key = keyWordsOf(x).find(w => x.indexOf(w) > 0) || ''; save(); vPractice(); break; }
+    case 'pr-style': { const s = sess(); s.prac.style = el.dataset.k; save(); document.querySelectorAll('.stylebtn').forEach(b => b.classList.toggle('on', b === el)); $('prView').innerHTML = styledHTML(s.prac.style, s.prac.sent, s.prac.key); TTS.seq(styleParts(s.prac.style, s.prac.sent, s.prac.key)); break; }
+    case 'pr-model': { const P = sess().prac; stopAllPlayers(); TTS.seq(styleParts(P.style, P.sent, P.key)); break; }
+    case 'pr-model2': { const P = sess().prac; const t = P.takes.find(x => x.id === el.dataset.id); if (t) { stopAllPlayers(); TTS.seq(styleParts(t.style, t.sent, t.key)); } break; }
+    case 'pr-rec': if (PracRec.on) PracRec.stop(); else if (!S.recExplained) recInfoModal('prac'); else PracRec.toggle(); break;
+    case 'pr-del': { const P = sess().prac; const i = P.takes.findIndex(x => x.id === el.dataset.id); if (i >= 0) { const t = P.takes.splice(i, 1)[0]; if (t.voice.audio) AudioDB.del(t.voice.audio); save(); stopAllPlayers(); vPractice(); } break; }
+    case 'rec-text': S.settings.recText = el.dataset.v === '1'; save(); settingsModal(); break;
+    case 'rec-clear': modal(`<h3>🗑️ 録音をすべてけしますか？</h3><p>このiPadにしまってある、すべての録音がきえます。話した文章やグラフはのこります。</p><div class="btnrow"><button class="btn ghost" data-act="close">やめる</button><button class="btn" data-act="rec-clear-yes" style="background:#e54848;color:#fff;box-shadow:0 5px 0 #a42d2d">けす</button></div>`); break;
+    case 'rec-clear-yes': { AudioDB.clear(); S.sessions.forEach(x => { (x.attempts || []).forEach(a => { if (a.voice) a.voice.deleted = true; }); if (x.prac) x.prac.takes = []; if (x.draftVoice) x.draftVoice = null; }); save(); closeModal(); stopAllPlayers(); render(); toast('録音をすべてけしました'); break; }
+    case 'answer': answerQ(false); break;
+    case 'skip': answerQ(true); break;
+    case 'to-advice': { const s = sess(); const x = s.qa[s.qa.length - 1]; if (x && !x.a && !x.skip) s.qa.pop(); save(); go('advice', { adviceN: 1 }); break; }
+    case 'self': { const s = sess(); const at = s.attempts[(S.adviceN || s.attempts.length) - 1]; at.self[el.dataset.k] = +el.dataset.v; save(); el.parentNode.querySelectorAll('.face').forEach(b => b.classList.toggle('on', b === el)); break; }
+    case 'again': { const s = sess(); s.done = false; save(); go('talk'); break; }
+    case 'compare': go('compare'); break;
+    case 'finish': go('finish'); break;
+    case 'new': { newSession(); go('topic'); break; }
+    case 'home': go('welcome'); break;
+    case 'history': go('history'); break;
+    case 'open': { S.cur = el.dataset.id; save(); go('compare'); break; }
+    case 'clear-all': modal(`<h3>🗑️ 記録をすべてけしますか？</h3><p>話した文章やふりかえりが、すべてきえます。元にもどせません。</p><div class="btnrow"><button class="btn ghost" data-act="close">やめる</button><button class="btn" data-act="clear-yes" style="background:#e54848;color:#fff;box-shadow:0 5px 0 #a42d2d">けす</button></div>`); break;
+    case 'clear-yes': { AudioDB.clear(); const keep = { name: S.name, settings: S.settings, micExplained: S.micExplained, recExplained: S.recExplained }; S = Object.assign(defState(), keep); save(); closeModal(); go('welcome'); toast('記録をけしました'); break; }
+    case 'settings': settingsModal(); break;
+    case 'vv-mode': { S.vv = Object.assign(vvCfg(), { mode: el.dataset.v }); save(); TTS.stop(); settingsModal(); if (el.dataset.v !== 'browser') loadSpeakers(); break; }
+    case 'vv-fb': S.vv = Object.assign(vvCfg(), { fallback: el.dataset.v === '1' }); save(); settingsModal(); break;
+    case 'vv-key-save': { const k = ($('vvKey').value || '').trim(); const keep = $('vvKeyKeep').checked; vvKeyMem = k; try { if (keep && k) localStorage.setItem(VV_KEY_STORE, k); else localStorage.removeItem(VV_KEY_STORE); } catch (e) { } VV.cache.clear(); toast(k ? (keep ? 'APIキーを保存しました' : 'APIキーをこのページを閉じるまで使います') : 'APIキーをけしました'); break; }
+    case 'vv-key-clear': { vvKeyMem = ''; try { localStorage.removeItem(VV_KEY_STORE); } catch (e) { } VV.cache.clear(); settingsModal(); toast('APIキーをけしました'); break; }
+    case 'vv-points': { const k = vvKey(); const out = $('vvPoints'); if (!k) { out.textContent = '先にAPIキーを保存してください'; break; } out.textContent = '確認中…';
+      fetch(`${VV_POINTS}?key=${encodeURIComponent(k)}`).then(r => r.json()).then(j => { out.textContent = j.errorMessage ? (VV_ERR[j.errorMessage] || j.errorMessage) : Object.entries(j).filter(([a]) => !/key/i.test(a)).map(([a, b]) => `${a}: ${typeof b === 'object' ? JSON.stringify(b) : b}`).join(' ／ '); }).catch(() => { out.textContent = VV_ERR.network; }); break; }
+    case 'vv-test': TTS.speak('こんにちは！ ぼく、TKGたまごん。きみの話を聞かせてな！'); break;
+    case 'tts-browser': TTS.browser([{ t: TTS.last }]); break;
+    case 'tts-unblock': { VV.unlock(); const pd = TTS.pending; TTS.pending = null; if (pd) TTS.run(pd.parts, pd.onEnd); break; }
+    case 'auto': S.settings.auto = el.dataset.v === '1'; save(); settingsModal(); if (!S.settings.auto) TTS.stop(); break;
+    case 'close': closeModal(); break;
+    case 'tts-replay': if (Mic.listening || RecTalk.on) { toast('マイクを止めてから聞いてね'); break; } TTS.speak($('bubbleText').textContent, yourTurn); break;
+    case 'tts-stop': TTS.stop(); break;
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.isComposing && e.target && e.target.id === 'topic') { e.preventDefault(); const b = $('topicOk'); if (b && !b.disabled) b.click(); }
+});
+document.addEventListener('visibilitychange', () => { if (document.hidden) { if (RecTalk.on) RecTalk.stop(); if (PracRec.on) PracRec.stop(); if (Mic.listening || Mic.want) Mic.abortSilently(); TTS.stop(); stopAllPlayers(); } });
+
+/* 起動 */
+render();
+TTS.set('off');
+// iPad：最初のタップで音声再生を使えるようにする
+['pointerdown', 'touchend', 'click'].forEach(ev => document.addEventListener(ev, () => VV.unlock(), { capture: true, passive: true }));
+function loadSpeakers() {
+  if (S.vvSpeakers && S.vvSpeakers.length) return;
+  fetch(VV_SPEAKERS).then(r => r.json()).then(j => { if (j && j.success && Array.isArray(j.speakers)) { S.vvSpeakers = j.speakers; save(); if ($('vvSpk')) settingsModal(); } }).catch(() => { });
+}
+document.addEventListener('input', e => {
+  const t = e.target; const m = { vvSpeed: 'speed', vvPitch: 'pitch', vvInto: 'into' }[t.id];
+  if (m) { S.vv = Object.assign(vvCfg(), { [m]: +t.value }); const lab = $(t.id + 'V'); if (lab) lab.textContent = (+t.value).toFixed(2); save(); }
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.id === 'vvSpk') { S.vv = Object.assign(vvCfg(), { speaker: +t.value }); save(); TTS.speak('この声で話すで！'); }
+  if (/^vv(Speed|Pitch|Into)$/.test(t.id)) TTS.speak('このくらいで話すで！');
+});
+</script>
+</body>
+</html>
